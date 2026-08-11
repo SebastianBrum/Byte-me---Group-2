@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
-//Testing
+//I changed this for test 2
 namespace Byte_me___Group_2
 {
     // Home page: dashboard visuals (welcome message, search, theme toggle) + playlist functionality.
