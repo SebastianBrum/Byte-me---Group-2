@@ -112,426 +112,427 @@ namespace Byte_me___Group_2
             pnlPlaylistCard6.Visible = false;
         }
 
-      
-        // Random subtitle options shown under the main heading
-        private static readonly string[] WelcomeSubMessages = new string[]
-        {
-            "Here's what's happening in your library today.",
-            "Let's pick up where you left off.",
-            "Your playlists are right where you left them.",
-            "Time to queue up something good."
-        };
-        private static readonly Random rng = new Random(); // shared random generator
 
-        // Sets the personalised welcome heading + a random subtitle
-        public void SetWelcomeUsername(string username)
-        {
-            if (string.IsNullOrWhiteSpace(username))
-            {
-                return; // nothing to show without a username
-            }
-            // time-of-day greeting + username for the big heading
-            lblMainWelcome.Text = GetTimeOfDayGreeting() + ", " + username;
-            // random subtitle line
-            lblMainWelcomeSub.Text = WelcomeSubMessages[rng.Next(WelcomeSubMessages.Length)];
-        }
+        //// Random subtitle options shown under the main heading
+        //private static readonly string[] WelcomeSubMessages = new string[]
+        //{
+        //    "Here's what's happening in your library today.",
+        //    "Let's pick up where you left off.",
+        //    "Your playlists are right where you left them.",
+        //    "Time to queue up something good."
+        //};
+        //private static readonly Random rng = new Random(); // shared random generator
 
-        // Returns "Good morning/afternoon/evening" based on the current hour
-        private string GetTimeOfDayGreeting()
-        {
-            int hour = DateTime.Now.Hour; // current hour (0-23)
-            if (hour < 12)
-            {
-                return "Good morning";
-            }
-            if (hour < 18)
-            {
-                return "Good afternoon";
-            }
-            return "Good evening";
-        }
+        //// Sets the personalised welcome heading + a random subtitle
+        //public void SetWelcomeUsername(string username)
+        //{
+        //    if (string.IsNullOrWhiteSpace(username))
+        //    {
+        //        return; // nothing to show without a username
+        //    }
+        //    // time-of-day greeting + username for the big heading
+        //    lblMainWelcome.Text = GetTimeOfDayGreeting() + ", " + username;
+        //    // random subtitle line
+        //    lblMainWelcomeSub.Text = WelcomeSubMessages[rng.Next(WelcomeSubMessages.Length)];
+        //}
 
-        // ---- Search box placeholder behaviour ----
-        // Clears the placeholder text when the search box gains focus
-        private void txtSearch_GotFocus(object sender, EventArgs e)
-        {
-            if (txtSearch.Text == SearchPlaceholder)
-            {
-                txtSearch.Text = "";                              // remove placeholder
-                txtSearch.ForeColor = Color.FromArgb(31, 41, 55); // normal text colour
-            }
-        }
+        //// Returns "Good morning/afternoon/evening" based on the current hour
+        //private string GetTimeOfDayGreeting()
+        //{
+        //    int hour = DateTime.Now.Hour; // current hour (0-23)
+        //    if (hour < 12)
+        //    {
+        //        return "Good morning";
+        //    }
+        //    if (hour < 18)
+        //    {
+        //        return "Good afternoon";
+        //    }
+        //    return "Good evening";
+        //}
 
-        // Restores the placeholder text when the search box loses focus and is empty
-        private void txtSearch_LostFocus(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtSearch.Text))
-            {
-                txtSearch.Text = SearchPlaceholder;                    // show placeholder again
-                txtSearch.ForeColor = Color.FromArgb(156, 163, 175);   // greyed-out colour
-            }
-        }
+        //// ---- Search box placeholder behaviour ----
+        //// Clears the placeholder text when the search box gains focus
+        //private void txtSearch_GotFocus(object sender, EventArgs e)
+        //{
+        //    if (txtSearch.Text == SearchPlaceholder)
+        //    {
+        //        txtSearch.Text = "";                              // remove placeholder
+        //        txtSearch.ForeColor = Color.FromArgb(31, 41, 55); // normal text colour
+        //    }
+        //}
 
-        // ---- Theme toggle (visual demo only) ----
-        // Flips the sun/moon icon; no real theme change wired up yet
-        private void lblThemeToggle_Click(object sender, EventArgs e)
-        {
-            isDarkMode = !isDarkMode;                     // flip the flag
-            lblThemeToggle.Text = isDarkMode ? "🌙" : "☀"; // swap icon to match
-        }
+        //// Restores the placeholder text when the search box loses focus and is empty
+        //private void txtSearch_LostFocus(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrWhiteSpace(txtSearch.Text))
+        //    {
+        //        txtSearch.Text = SearchPlaceholder;                    // show placeholder again
+        //        txtSearch.ForeColor = Color.FromArgb(156, 163, 175);   // greyed-out colour
+        //    }
+        //}
+
+        //// ---- Theme toggle (visual demo only) ----
+        //// Flips the sun/moon icon; no real theme change wired up yet
+        //private void lblThemeToggle_Click(object sender, EventArgs e)
+        //{
+        //    isDarkMode = !isDarkMode;                     // flip the flag
+        //    lblThemeToggle.Text = isDarkMode ? "🌙" : "☀"; // swap icon to match
+        //}
 
         // Switches to "All playlists" view and refreshes
-        private void pnlNavAllPlaylists_Click(object sender, EventArgs e)
-        {
-            showFavouritesOnly = false; // turn off favourites-only filter
-            SetActiveFilterHighlight(); // update highlight styling
-            RefreshPlaylistView();      // rebuild the list
-        }
+        //private void pnlNavAllPlaylists_Click(object sender, EventArgs e)
+        //{
+        //    showFavouritesOnly = false; // turn off favourites-only filter
+        //    SetActiveFilterHighlight(); // update highlight styling
+        //    RefreshPlaylistView();      // rebuild the list
+        //}
 
-        // Switches to "Favourites" view and refreshes
-        private void pnlNavFavourites_Click(object sender, EventArgs e)
-        {
-            showFavouritesOnly = true;  // turn on favourites-only filter
+        //// Switches to "Favourites" view and refreshes
+        //private void pnlNavFavourites_Click(object sender, EventArgs e)
+        //{
+        //    showFavouritesOnly = true;  // turn on favourites-only filter
 
-            SetActiveFilterHighlight(); // update highlight styling
-            RefreshPlaylistView();      // rebuild the list
-        }
+        //    SetActiveFilterHighlight(); // update highlight styling
+        //    RefreshPlaylistView();      // rebuild the list
+        //}
 
-        // Colours the "All playlists" / "Favourites" buttons to show which is active
-        private void SetActiveFilterHighlight()
-        {
-            Color activeBackground = Color.FromArgb(237, 233, 254); // light purple
-            Color activeText = Color.FromArgb(124, 92, 255);        // purple text
-            Color inactiveText = Color.FromArgb(75, 85, 99);        // grey text
-            Color inactiveCount = Color.FromArgb(156, 163, 175);    // lighter grey text
+        //// Colours the "All playlists" / "Favourites" buttons to show which is active
+        //private void SetActiveFilterHighlight()
+        //{
+        //    Color activeBackground = Color.FromArgb(237, 233, 254); // light purple
+        //    Color activeText = Color.FromArgb(124, 92, 255);        // purple text
+        //    Color inactiveText = Color.FromArgb(75, 85, 99);        // grey text
+        //    Color inactiveCount = Color.FromArgb(156, 163, 175);    // lighter grey text
 
-            // "All playlists" button styling
-            pnlNavAllPlaylists.BackColor = showFavouritesOnly ? Color.White : activeBackground;
-            lblNavAllPlaylistsText.ForeColor = showFavouritesOnly ? inactiveText : activeText;
-            lblNavAllPlaylistsCount.ForeColor = showFavouritesOnly ? inactiveCount : activeText;
+        //    // "All playlists" button styling
+        //    pnlNavAllPlaylists.BackColor = showFavouritesOnly ? Color.White : activeBackground;
+        //    lblNavAllPlaylistsText.ForeColor = showFavouritesOnly ? inactiveText : activeText;
+        //    lblNavAllPlaylistsCount.ForeColor = showFavouritesOnly ? inactiveCount : activeText;
 
-            // "Favourites" button styling
-            pnlNavFavourites.BackColor = showFavouritesOnly ? activeBackground : Color.White;
-            lblNavFavouritesText.ForeColor = showFavouritesOnly ? activeText : inactiveText;
-            lblNavFavouritesCount.ForeColor = showFavouritesOnly ? activeText : inactiveCount;
-        }
+        //    // "Favourites" button styling
+        //    pnlNavFavourites.BackColor = showFavouritesOnly ? activeBackground : Color.White;
+        //    lblNavFavouritesText.ForeColor = showFavouritesOnly ? activeText : inactiveText;
+        //    lblNavFavouritesCount.ForeColor = showFavouritesOnly ? activeText : inactiveCount;
+        //}
 
-        // Rebuilds the sidebar quick-list and main grid from what's on disk
-        private void RefreshPlaylistView()
-        {
-            // remove old dynamic sidebar rows before rebuilding
-            int r = 0;
-            for (r = 0; r < dynamicNavRowCount; r++)
-            {
-                pnlSidebar.Controls.Remove(dynamicNavRows[r]); // detach from UI
-                dynamicNavRows[r].Dispose();                    // free resources
-                dynamicNavRows[r] = null;                       // clear reference
-            }
-            dynamicNavRowCount = 0; // reset counter
+        //// Rebuilds the sidebar quick-list and main grid from what's on disk
+        //private void RefreshPlaylistView()
+        //{
+        //    // remove old dynamic sidebar rows before rebuilding
+        //    int r = 0;
+        //    for (r = 0; r < dynamicNavRowCount; r++)
+        //    {
+        //        pnlSidebar.Controls.Remove(dynamicNavRows[r]); // detach from UI
+        //        dynamicNavRows[r].Dispose();                    // free resources
+        //        dynamicNavRows[r] = null;                       // clear reference
+        //    }
+        //    dynamicNavRowCount = 0; // reset counter
 
-            // remove old dynamic grid cards before rebuilding
-            for (r = 0; r < dynamicCardCount; r++)
-            {
-                flpPlaylists.Controls.Remove(dynamicCards[r]); // detach from UI
-                dynamicCards[r].Dispose();                      // free resources
-                dynamicCards[r] = null;                         // clear reference
-            }
-            dynamicCardCount = 0; // reset counter
+        //    // remove old dynamic grid cards before rebuilding
+        //    for (r = 0; r < dynamicCardCount; r++)
+        //    {
+        //        flpPlaylists.Controls.Remove(dynamicCards[r]); // detach from UI
+        //        dynamicCards[r].Dispose();                      // free resources
+        //        dynamicCards[r] = null;                         // clear reference
+        //    }
+        //    dynamicCardCount = 0; // reset counter
 
-            string[] allPlaylistFiles = Directory.GetFiles(playlistsFolder, "*.txt"); // every playlist file
-            string[] favourites = ReadAllLinesSafe(favouritesFile); // favourited playlist names
-            string[] recents = ReadAllLinesSafe(recentFile);        // recently opened playlist names
+        //    string[] allPlaylistFiles = Directory.GetFiles(playlistsFolder, "*.txt"); // every playlist file
+        //    string[] favourites = ReadAllLinesSafe(favouritesFile); // favourited playlist names
+        //    string[] recents = ReadAllLinesSafe(recentFile);        // recently opened playlist names
 
-            lblNavAllPlaylistsCount.Text = allPlaylistFiles.Length.ToString(); // total playlist count
+        //    lblNavAllPlaylistsCount.Text = allPlaylistFiles.Length.ToString(); // total playlist count
 
-            // count how many playlists are favourited
-            int favouriteTotal = 0;
-            int f = 0;
-            for (f = 0; f < allPlaylistFiles.Length; f++)
-            {
-                string favCheckName = Path.GetFileNameWithoutExtension(allPlaylistFiles[f]); // name without .txt
-                if (StringArrayContains(favourites, favCheckName))
-                    favouriteTotal++; // matched a favourite
-            }
-            lblNavFavouritesCount.Text = favouriteTotal.ToString(); // show favourite count
+        //    // count how many playlists are favourited
+        //    int favouriteTotal = 0;
+        //    int f = 0;
+        //    for (f = 0; f < allPlaylistFiles.Length; f++)
+        //    {
+        //        string favCheckName = Path.GetFileNameWithoutExtension(allPlaylistFiles[f]); // name without .txt
+        //        if (StringArrayContains(favourites, favCheckName))
+        //            favouriteTotal++; // matched a favourite
+        //    }
+        //    lblNavFavouritesCount.Text = favouriteTotal.ToString(); // show favourite count
 
-            // apply favourites-only filter if active
-            string[] visibleFiles = showFavouritesOnly
-                ? FilterToFavourites(allPlaylistFiles, favourites)
-                : allPlaylistFiles;
+        //    // apply favourites-only filter if active
+        //    string[] visibleFiles = showFavouritesOnly
+        //        ? FilterToFavourites(allPlaylistFiles, favourites)
+        //        : allPlaylistFiles;
 
-            string searchQuery = GetActiveSearchQuery();               // current typed search text
-            string[] searchedFiles = FilterBySearch(visibleFiles, searchQuery); // narrow down by search
-            string[] orderedFiles = OrderByFavouriteThenRecentThenName(searchedFiles, favourites, recents); // sort
+        //    string searchQuery = GetActiveSearchQuery();               // current typed search text
+        //    string[] searchedFiles = FilterBySearch(visibleFiles, searchQuery); // narrow down by search
+        //    string[] orderedFiles = OrderByFavouriteThenRecentThenName(searchedFiles, favourites, recents); // sort
 
-            // build a row/card for every playlist in the ordered list
-            int i = 0;
-            for (i = 0; i < orderedFiles.Length; i++)
-            {
-                string path = orderedFiles[i];                              // file path
-                string name = Path.GetFileNameWithoutExtension(path);       // playlist name
-                int trackCount = CountTracksInFile(path);                   // number of tracks
+        //    // build a row/card for every playlist in the ordered list
+        //    int i = 0;
+        //    for (i = 0; i < orderedFiles.Length; i++)
+        //    {
+        //        string path = orderedFiles[i];                              // file path
+        //        string name = Path.GetFileNameWithoutExtension(path);       // playlist name
+        //        int trackCount = CountTracksInFile(path);                   // number of tracks
 
-                if (i < MaxSidebarRows) // only the first N appear in the sidebar
-                {
-                    int y = 280 + 42 * i;                                   // vertical position for this row
-                    Panel row = BuildNavRow(name, trackCount, path, y);     // build the row
-                    pnlSidebar.Controls.Add(row);                           // add to sidebar
-                    dynamicNavRows[dynamicNavRowCount] = row;               // track for next teardown
-                    dynamicNavRowCount++;
-                }
+        //        if (i < MaxSidebarRows) // only the first N appear in the sidebar
+        //        {
+        //            int y = 280 + 42 * i;                                   // vertical position for this row
+        //            Panel row = BuildNavRow(name, trackCount, path, y);     // build the row
+        //            pnlSidebar.Controls.Add(row);                           // add to sidebar
+        //            dynamicNavRows[dynamicNavRowCount] = row;               // track for next teardown
+        //            dynamicNavRowCount++;
+        //        }
 
-                Panel card = BuildPlaylistCard(name, trackCount, path); // build the grid card
-                flpPlaylists.Controls.Add(card);                        // add to grid
-                dynamicCards[dynamicCardCount] = card;                  // track for next teardown
-                dynamicCardCount++;
-            }
+        //        Panel card = BuildPlaylistCard(name, trackCount, path); // build the grid card
+        //        flpPlaylists.Controls.Add(card);                        // add to grid
+        //        dynamicCards[dynamicCardCount] = card;                  // track for next teardown
+        //        dynamicCardCount++;
+        //    }
 
-            ShowOrHideEmptyState(orderedFiles.Length == 0); // show message if list is empty
-            RefreshStatistics();                             // recompute the 3 stat tiles
-        }
+        //    ShowOrHideEmptyState(orderedFiles.Length == 0); // show message if list is empty
+        //    RefreshStatistics();                             // recompute the 3 stat tiles
+        //}
 
-        // Shows/hides the "no playlists" message in the main grid
-        private void ShowOrHideEmptyState(bool shouldShow)
-        {
-            if (shouldShow)
-            {
-                if (emptyStateLabel == null) // create the label once, lazily
-                {
-                    emptyStateLabel = new Label();
-                    emptyStateLabel.AutoSize = false;
-                    emptyStateLabel.Font = new Font("Segoe UI", 9.5F);
-                    emptyStateLabel.ForeColor = Color.FromArgb(107, 114, 128);
-                    emptyStateLabel.Location = new Point(32, 408);
-                    emptyStateLabel.Size = new Size(500, 24);
-                    pnlMainContent.Controls.Add(emptyStateLabel);
-                }
-                string activeSearch = GetActiveSearchQuery(); // current search text, if any
-                if (activeSearch.Length > 0)
-                {
-                    emptyStateLabel.Text = "No playlists or songs match \"" + activeSearch + "\"."; // no search matches
-                }
-                else
-                {
-                    // message depends on which filter is active
-                    emptyStateLabel.Text = showFavouritesOnly
-                        ? "No favourite playlists yet - star one, or switch back to \"All playlists\"."
-                        : "No playlists yet - click \"+ New Playlist\" to create your first one.";
-                }
-                emptyStateLabel.Visible = true; // show the message
-            }
-            else if (emptyStateLabel != null)
-            {
-                emptyStateLabel.Visible = false; // hide the message
-            }
-        }
+        //// Shows/hides the "no playlists" message in the main grid
+        //private void ShowOrHideEmptyState(bool shouldShow)
+        //{
+        //    if (shouldShow)
+        //    {
+        //        if (emptyStateLabel == null) // create the label once, lazily
+        //        {
+        //            emptyStateLabel = new Label();
+        //            emptyStateLabel.AutoSize = false;
+        //            emptyStateLabel.Font = new Font("Segoe UI", 9.5F);
+        //            emptyStateLabel.ForeColor = Color.FromArgb(107, 114, 128);
+        //            emptyStateLabel.Location = new Point(32, 408);
+        //            emptyStateLabel.Size = new Size(500, 24);
+        //            pnlMainContent.Controls.Add(emptyStateLabel);
+        //        }
+        //        string activeSearch = GetActiveSearchQuery(); // current search text, if any
+        //        if (activeSearch.Length > 0)
+        //        {
+        //            emptyStateLabel.Text = "No playlists or songs match \"" + activeSearch + "\"."; // no search matches
+        //        }
+        //        else
+        //        {
+        //            // message depends on which filter is active
+        //            emptyStateLabel.Text = showFavouritesOnly
+        //                ? "No favourite playlists yet - star one, or switch back to \"All playlists\"."
+        //                : "No playlists yet - click \"+ New Playlist\" to create your first one.";
+        //        }
+        //        emptyStateLabel.Visible = true; // show the message
+        //    }
+        //    else if (emptyStateLabel != null)
+        //    {
+        //        emptyStateLabel.Visible = false; // hide the message
+        //    }
+        //}
+
 
         // Recomputes the 3 stat tiles (playlists, tracks, top artist) from disk
-        private void RefreshStatistics()
-        {
-            string[] playlistFiles = Directory.GetFiles(playlistsFolder, "*.txt"); // every playlist file
-            int totalPlaylists = playlistFiles.Length; // total playlist count
-            int totalTracks = 0;                        // running total of tracks
+        //private void RefreshStatistics()
+        //{
+        //    string[] playlistFiles = Directory.GetFiles(playlistsFolder, "*.txt"); // every playlist file
+        //    int totalPlaylists = playlistFiles.Length; // total playlist count
+        //    int totalTracks = 0;                        // running total of tracks
 
-            // parallel arrays used as a manual "artist name -> count" tally
-            string[] artistNames = new string[200];
-            int[] artistCounts = new int[200];
-            int knownArtists = 0; // number of distinct artists found so far
+        //    // parallel arrays used as a manual "artist name -> count" tally
+        //    string[] artistNames = new string[200];
+        //    int[] artistCounts = new int[200];
+        //    int knownArtists = 0; // number of distinct artists found so far
 
-            int p = 0;
-            for (p = 0; p < playlistFiles.Length; p++)
-            {
-                string[] lines = ReadAllLinesSafe(playlistFiles[p]); // every track line in this playlist
-                int t = 0;
-                for (t = 0; t < lines.Length; t++)
-                {
-                    if (lines[t].Trim().Length == 0)
-                        continue; // skip blank lines
-                    totalTracks++; // count this track
+        //    int p = 0;
+        //    for (p = 0; p < playlistFiles.Length; p++)
+        //    {
+        //        string[] lines = ReadAllLinesSafe(playlistFiles[p]); // every track line in this playlist
+        //        int t = 0;
+        //        for (t = 0; t < lines.Length; t++)
+        //        {
+        //            if (lines[t].Trim().Length == 0)
+        //                continue; // skip blank lines
+        //            totalTracks++; // count this track
 
-                    string[] parts = lines[t].Split('|'); // split "Title|Artist|Duration"
-                    if (parts.Length < 2)
-                        continue; // malformed line, skip artist tally
-                    string artist = parts[1].Trim(); // artist name
-                    if (artist.Length == 0)
-                        continue; // no artist to tally
+        //            string[] parts = lines[t].Split('|'); // split "Title|Artist|Duration"
+        //            if (parts.Length < 2)
+        //                continue; // malformed line, skip artist tally
+        //            string artist = parts[1].Trim(); // artist name
+        //            if (artist.Length == 0)
+        //                continue; // no artist to tally
 
-                    // look for this artist among the ones already tallied
-                    int foundIndex = -1;
-                    int a = 0;
-                    while (a < knownArtists)
-                    {
-                        if (string.Equals(artistNames[a], artist, StringComparison.OrdinalIgnoreCase))
-                        {
-                            foundIndex = a; // already known
-                            break;
-                        }
-                        a++;
-                    }
-                    if (foundIndex >= 0)
-                        artistCounts[foundIndex]++; // bump existing artist's count
-                    else if (knownArtists < artistNames.Length)
-                    {
-                        artistNames[knownArtists] = artist; // record new artist
-                        artistCounts[knownArtists] = 1;     // first track for them
-                        knownArtists++;
-                    }
-                }
-            }
+        //            // look for this artist among the ones already tallied
+        //            int foundIndex = -1;
+        //            int a = 0;
+        //            while (a < knownArtists)
+        //            {
+        //                if (string.Equals(artistNames[a], artist, StringComparison.OrdinalIgnoreCase))
+        //                {
+        //                    foundIndex = a; // already known
+        //                    break;
+        //                }
+        //                a++;
+        //            }
+        //            if (foundIndex >= 0)
+        //                artistCounts[foundIndex]++; // bump existing artist's count
+        //            else if (knownArtists < artistNames.Length)
+        //            {
+        //                artistNames[knownArtists] = artist; // record new artist
+        //                artistCounts[knownArtists] = 1;     // first track for them
+        //                knownArtists++;
+        //            }
+        //        }
+        //    }
 
-            // Stat 1: total playlists and a bar per playlist
-            string[] favouritesForStats = ReadAllLinesSafe(favouritesFile); // favourite names
-            string[] recentsForStats = ReadAllLinesSafe(recentFile);        // recent names
-            string[] orderedForBars = OrderByFavouriteThenRecentThenName(playlistFiles, favouritesForStats, recentsForStats); // sorted playlists
+        //    // Stat 1: total playlists and a bar per playlist
+        //    string[] favouritesForStats = ReadAllLinesSafe(favouritesFile); // favourite names
+        //    string[] recentsForStats = ReadAllLinesSafe(recentFile);        // recent names
+        //    string[] orderedForBars = OrderByFavouriteThenRecentThenName(playlistFiles, favouritesForStats, recentsForStats); // sorted playlists
 
-            // count how many playlists are favourited (for the sub-caption)
-            int favouriteCount = 0;
-            int fc = 0;
-            for (fc = 0; fc < playlistFiles.Length; fc++)
-            {
-                if (StringArrayContains(favouritesForStats, Path.GetFileNameWithoutExtension(playlistFiles[fc])))
-                    favouriteCount++;
-            }
+        //    // count how many playlists are favourited (for the sub-caption)
+        //    int favouriteCount = 0;
+        //    int fc = 0;
+        //    for (fc = 0; fc < playlistFiles.Length; fc++)
+        //    {
+        //        if (StringArrayContains(favouritesForStats, Path.GetFileNameWithoutExtension(playlistFiles[fc])))
+        //            favouriteCount++;
+        //    }
 
-            lblStatPlaylistsValue.Text = totalPlaylists.ToString(); // big number tile
-            lblStatPlaylistsSub.Text = totalPlaylists == 0
-                ? "None yet"
-                : favouriteCount + (favouriteCount == 1 ? " favourite playlist" : " favourite playlists"); // sub-caption
-            UpdatePlaylistBars(orderedForBars); // draw the per-playlist bar chart
+        //    lblStatPlaylistsValue.Text = totalPlaylists.ToString(); // big number tile
+        //    lblStatPlaylistsSub.Text = totalPlaylists == 0
+        //        ? "None yet"
+        //        : favouriteCount + (favouriteCount == 1 ? " favourite playlist" : " favourite playlists"); // sub-caption
+        //    UpdatePlaylistBars(orderedForBars); // draw the per-playlist bar chart
 
-            // Stat 2: total tracks and average per playlist
-            lblStatTracksValue.Text = totalTracks.ToString(); // big number tile
-            double avgPerPlaylist = totalPlaylists > 0 ? (double)totalTracks / totalPlaylists : 0; // average
-            lblStatTracksSub.Text = totalPlaylists == 0
-                ? "Across all playlists"
-                : "Avg " + avgPerPlaylist.ToString("0.0") + " tracks per playlist"; // sub-caption
-            lblStatTracksTrendIcon.Visible = false; // no real trend data to show
+        //    // Stat 2: total tracks and average per playlist
+        //    lblStatTracksValue.Text = totalTracks.ToString(); // big number tile
+        //    double avgPerPlaylist = totalPlaylists > 0 ? (double)totalTracks / totalPlaylists : 0; // average
+        //    lblStatTracksSub.Text = totalPlaylists == 0
+        //        ? "Across all playlists"
+        //        : "Avg " + avgPerPlaylist.ToString("0.0") + " tracks per playlist"; // sub-caption
+        //    lblStatTracksTrendIcon.Visible = false; // no real trend data to show
 
-            // Stat 3: top artist and ranked top-3 bars 
-            UpdateTopArtists(artistNames, artistCounts, knownArtists);
-        }
+        //    // Stat 3: top artist and ranked top-3 bars 
+        //    UpdateTopArtists(artistNames, artistCounts, knownArtists);
+        //}
 
-        // Resizes/positions the 6 mini bar-chart panels to reflect track counts per playlist
-        private void UpdatePlaylistBars(string[] orderedFiles)
-        {
-            Panel[] bars = { pnlBarPlaylists1, pnlBarPlaylists2, pnlBarPlaylists3, pnlBarPlaylists4, pnlBarPlaylists5, pnlBarPlaylists6 };
-            Color normalColor = Color.FromArgb(221, 214, 254);    // default bar colour
-            Color highlightColor = Color.FromArgb(124, 92, 255);  // colour for the tallest bar
-            const int baseline = 162; // bottom Y that every bar aligns to
-            const int maxHeight = 40; // tallest a bar can be drawn
-            const int minHeight = 6;  // smallest visible sliver for 0 tracks
+        //// Resizes/positions the 6 mini bar-chart panels to reflect track counts per playlist
+        //private void UpdatePlaylistBars(string[] orderedFiles)
+        //{
+        //    Panel[] bars = { pnlBarPlaylists1, pnlBarPlaylists2, pnlBarPlaylists3, pnlBarPlaylists4, pnlBarPlaylists5, pnlBarPlaylists6 };
+        //    Color normalColor = Color.FromArgb(221, 214, 254);    // default bar colour
+        //    Color highlightColor = Color.FromArgb(124, 92, 255);  // colour for the tallest bar
+        //    const int baseline = 162; // bottom Y that every bar aligns to
+        //    const int maxHeight = 40; // tallest a bar can be drawn
+        //    const int minHeight = 6;  // smallest visible sliver for 0 tracks
 
-            int shownCount = Math.Min(orderedFiles.Length, bars.Length); // number of bars actually used
+        //    int shownCount = Math.Min(orderedFiles.Length, bars.Length); // number of bars actually used
 
-            // find the highest track count among the shown playlists (used to scale bar heights)
-            int maxTracks = 1;
-            int i = 0;
-            for (i = 0; i < shownCount; i++)
-            {
-                int c = CountTracksInFile(orderedFiles[i]);
-                if (c > maxTracks)
-                    maxTracks = c;
-            }
+        //    // find the highest track count among the shown playlists (used to scale bar heights)
+        //    int maxTracks = 1;
+        //    int i = 0;
+        //    for (i = 0; i < shownCount; i++)
+        //    {
+        //        int c = CountTracksInFile(orderedFiles[i]);
+        //        if (c > maxTracks)
+        //            maxTracks = c;
+        //    }
 
-            int tallestIndex = -1;  // index of the tallest bar
-            int tallestCount = -1;  // track count of the tallest bar
-            for (i = 0; i < bars.Length; i++)
-            {
-                if (i < shownCount)
-                {
-                    int trackCount = CountTracksInFile(orderedFiles[i]);                               // this playlist's track count
-                    int height = Math.Max(minHeight, (int)Math.Round((trackCount / (double)maxTracks) * maxHeight)); // scaled bar height
-                    bars[i].Visible = true;                                                             // show this bar
-                    bars[i].Size = new Size(25, height);                                                 // set bar height
-                    bars[i].Location = new Point(bars[i].Location.X, baseline - height);                 // align to baseline
-                    bars[i].BackColor = normalColor;                                                      // default colour
-                    if (trackCount > tallestCount)
-                    {
-                        tallestCount = trackCount; // remember the new tallest
-                        tallestIndex = i;
-                    }
-                }
-                else
-                {
-                    bars[i].Visible = false; // no playlist for this slot, hide it
-                }
-            }
+        //    int tallestIndex = -1;  // index of the tallest bar
+        //    int tallestCount = -1;  // track count of the tallest bar
+        //    for (i = 0; i < bars.Length; i++)
+        //    {
+        //        if (i < shownCount)
+        //        {
+        //            int trackCount = CountTracksInFile(orderedFiles[i]);                               // this playlist's track count
+        //            int height = Math.Max(minHeight, (int)Math.Round((trackCount / (double)maxTracks) * maxHeight)); // scaled bar height
+        //            bars[i].Visible = true;                                                             // show this bar
+        //            bars[i].Size = new Size(25, height);                                                 // set bar height
+        //            bars[i].Location = new Point(bars[i].Location.X, baseline - height);                 // align to baseline
+        //            bars[i].BackColor = normalColor;                                                      // default colour
+        //            if (trackCount > tallestCount)
+        //            {
+        //                tallestCount = trackCount; // remember the new tallest
+        //                tallestIndex = i;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            bars[i].Visible = false; // no playlist for this slot, hide it
+        //        }
+        //    }
 
-            if (tallestIndex >= 0)
-            {
-                bars[tallestIndex].BackColor = highlightColor; // highlight the tallest bar
-            }
-        }
+        //    if (tallestIndex >= 0)
+        //    {
+        //        bars[tallestIndex].BackColor = highlightColor; // highlight the tallest bar
+        //    }
+        //}
 
-        // Fills in the top-3 artist labels and ranked bar widths
-        private void UpdateTopArtists(string[] artistNames, int[] artistCounts, int knownArtists)
-        {
-            Label[] nameLabels = { lblArtistName1, lblArtistName2, lblArtistName3 };
-            Panel[] barBgs = { pnlArtistBarBg1, pnlArtistBarBg2, pnlArtistBarBg3 };
-            Panel[] barFills = { pnlArtistBarFill1, pnlArtistBarFill2, pnlArtistBarFill3 };
+        //// Fills in the top-3 artist labels and ranked bar widths
+        //private void UpdateTopArtists(string[] artistNames, int[] artistCounts, int knownArtists)
+        //{
+        //    Label[] nameLabels = { lblArtistName1, lblArtistName2, lblArtistName3 };
+        //    Panel[] barBgs = { pnlArtistBarBg1, pnlArtistBarBg2, pnlArtistBarBg3 };
+        //    Panel[] barFills = { pnlArtistBarFill1, pnlArtistBarFill2, pnlArtistBarFill3 };
 
-            if (knownArtists == 0) // no tracks/artists at all yet
-            {
-                lblStatArtistValue.Text = "-";
-                lblStatArtistSub.Text = "No tracks yet";
-                int none = 0;
-                for (none = 0; none < nameLabels.Length; none++)
-                {
-                    nameLabels[none].Visible = false; // hide all 3 rows
-                    barBgs[none].Visible = false;
-                    barFills[none].Visible = false;
-                }
-                return;
-            }
+        //    if (knownArtists == 0) // no tracks/artists at all yet
+        //    {
+        //        lblStatArtistValue.Text = "-";
+        //        lblStatArtistSub.Text = "No tracks yet";
+        //        int none = 0;
+        //        for (none = 0; none < nameLabels.Length; none++)
+        //        {
+        //            nameLabels[none].Visible = false; // hide all 3 rows
+        //            barBgs[none].Visible = false;
+        //            barFills[none].Visible = false;
+        //        }
+        //        return;
+        //    }
 
-            // manually pick the top 3 (or fewer) artists by track count
-            int topN = Math.Min(3, knownArtists);
-            string[] topNames = new string[topN];
-            int[] topCounts = new int[topN];
-            bool[] used = new bool[knownArtists]; // marks artists already picked
+        //    // manually pick the top 3 (or fewer) artists by track count
+        //    int topN = Math.Min(3, knownArtists);
+        //    string[] topNames = new string[topN];
+        //    int[] topCounts = new int[topN];
+        //    bool[] used = new bool[knownArtists]; // marks artists already picked
 
-            int rank = 0;
-            for (rank = 0; rank < topN; rank++)
-            {
-                int bestIndex = -1;
-                int a = 0;
-                for (a = 0; a < knownArtists; a++)
-                {
-                    if (used[a])
-                        continue; // already picked for an earlier rank
-                    if (bestIndex == -1 || artistCounts[a] > artistCounts[bestIndex])
-                        bestIndex = a; // new best candidate for this rank
-                }
-                used[bestIndex] = true;              // mark as picked
-                topNames[rank] = artistNames[bestIndex];
-                topCounts[rank] = artistCounts[bestIndex];
-            }
+        //    int rank = 0;
+        //    for (rank = 0; rank < topN; rank++)
+        //    {
+        //        int bestIndex = -1;
+        //        int a = 0;
+        //        for (a = 0; a < knownArtists; a++)
+        //        {
+        //            if (used[a])
+        //                continue; // already picked for an earlier rank
+        //            if (bestIndex == -1 || artistCounts[a] > artistCounts[bestIndex])
+        //                bestIndex = a; // new best candidate for this rank
+        //        }
+        //        used[bestIndex] = true;              // mark as picked
+        //        topNames[rank] = artistNames[bestIndex];
+        //        topCounts[rank] = artistCounts[bestIndex];
+        //    }
 
-            lblStatArtistValue.Text = topNames[0]; // #1 artist name
-            lblStatArtistSub.Text = topCounts[0] + (topCounts[0] == 1 ? " track" : " tracks"); // #1 track count
+        //    lblStatArtistValue.Text = topNames[0]; // #1 artist name
+        //    lblStatArtistSub.Text = topCounts[0] + (topCounts[0] == 1 ? " track" : " tracks"); // #1 track count
 
-            int maxCount = topCounts[0] == 0 ? 1 : topCounts[0]; // avoid divide-by-zero when scaling bars
-            const int maxBarWidth = 188; // width representing 100%
-            for (rank = 0; rank < 3; rank++)
-            {
-                if (rank < topN)
-                {
-                    nameLabels[rank].Visible = true;
-                    barBgs[rank].Visible = true;
-                    barFills[rank].Visible = true;
-                    nameLabels[rank].Text = topNames[rank]; // artist name for this rank
-                    int width = Math.Max(6, (int)Math.Round((topCounts[rank] / (double)maxCount) * maxBarWidth)); // scaled bar width
-                    barFills[rank].Size = new Size(width, barFills[rank].Size.Height);
-                }
-                else
-                {
-                    // fewer than 3 artists exist, hide the unused row
-                    nameLabels[rank].Visible = false;
-                    barBgs[rank].Visible = false;
-                    barFills[rank].Visible = false;
-                }
-            }
-        }
+        //    int maxCount = topCounts[0] == 0 ? 1 : topCounts[0]; // avoid divide-by-zero when scaling bars
+        //    const int maxBarWidth = 188; // width representing 100%
+        //    for (rank = 0; rank < 3; rank++)
+        //    {
+        //        if (rank < topN)
+        //        {
+        //            nameLabels[rank].Visible = true;
+        //            barBgs[rank].Visible = true;
+        //            barFills[rank].Visible = true;
+        //            nameLabels[rank].Text = topNames[rank]; // artist name for this rank
+        //            int width = Math.Max(6, (int)Math.Round((topCounts[rank] / (double)maxCount) * maxBarWidth)); // scaled bar width
+        //            barFills[rank].Size = new Size(width, barFills[rank].Size.Height);
+        //        }
+        //        else
+        //        {
+        //            // fewer than 3 artists exist, hide the unused row
+        //            nameLabels[rank].Visible = false;
+        //            barBgs[rank].Visible = false;
+        //            barFills[rank].Visible = false;
+        //        }
+        //    }
+        //}
 
         // Builds one sidebar row control for a single playlist
         private Panel BuildNavRow(string title, int trackCount, string filePath, int yPosition)
@@ -1748,6 +1749,12 @@ namespace Byte_me___Group_2
         {
             deletePlaylist(lblPlaylistName.Text, Path.Combine(playlistsFolder, lblPlaylistName.Text + ".txt"));
             btnBackHome_Click(sender, e);
+        }
+
+        //Closes all the open form when you press the red x
+        private void Home_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

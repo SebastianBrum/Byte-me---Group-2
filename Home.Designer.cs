@@ -217,7 +217,7 @@ namespace Byte_me___Group_2
             this.pnlSidebar.Controls.Add(this.btnNewPlaylistSidebar);
             this.pnlSidebar.Controls.Add(this.btnUploadSongSidebar);
             this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
-            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(300, 1000);
             this.pnlSidebar.TabIndex = 0;
@@ -288,7 +288,7 @@ namespace Byte_me___Group_2
             this.pnlNavAllPlaylists.Controls.Add(this.lblNavAllPlaylistsCount);
             this.pnlNavAllPlaylists.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlNavAllPlaylists.Location = new System.Drawing.Point(15, 135);
-            this.pnlNavAllPlaylists.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlNavAllPlaylists.Margin = new System.Windows.Forms.Padding(4);
             this.pnlNavAllPlaylists.Name = "pnlNavAllPlaylists";
             this.pnlNavAllPlaylists.Size = new System.Drawing.Size(270, 48);
             this.pnlNavAllPlaylists.TabIndex = 3;
@@ -327,7 +327,7 @@ namespace Byte_me___Group_2
             this.pnlNavFavourites.Controls.Add(this.lblNavFavouritesCount);
             this.pnlNavFavourites.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlNavFavourites.Location = new System.Drawing.Point(15, 188);
-            this.pnlNavFavourites.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlNavFavourites.Margin = new System.Windows.Forms.Padding(4);
             this.pnlNavFavourites.Name = "pnlNavFavourites";
             this.pnlNavFavourites.Size = new System.Drawing.Size(270, 45);
             this.pnlNavFavourites.TabIndex = 4;
@@ -377,7 +377,7 @@ namespace Byte_me___Group_2
             this.pnlNavLateNightDrive.Controls.Add(this.lblNavLateNightDriveCount);
             this.pnlNavLateNightDrive.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlNavLateNightDrive.Location = new System.Drawing.Point(15, 280);
-            this.pnlNavLateNightDrive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlNavLateNightDrive.Margin = new System.Windows.Forms.Padding(4);
             this.pnlNavLateNightDrive.Name = "pnlNavLateNightDrive";
             this.pnlNavLateNightDrive.Size = new System.Drawing.Size(270, 40);
             this.pnlNavLateNightDrive.TabIndex = 6;
@@ -415,7 +415,7 @@ namespace Byte_me___Group_2
             this.pnlNavFocusFlow.Controls.Add(this.lblNavFocusFlowCount);
             this.pnlNavFocusFlow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlNavFocusFlow.Location = new System.Drawing.Point(15, 322);
-            this.pnlNavFocusFlow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlNavFocusFlow.Margin = new System.Windows.Forms.Padding(4);
             this.pnlNavFocusFlow.Name = "pnlNavFocusFlow";
             this.pnlNavFocusFlow.Size = new System.Drawing.Size(270, 40);
             this.pnlNavFocusFlow.TabIndex = 7;
@@ -453,7 +453,7 @@ namespace Byte_me___Group_2
             this.pnlNavSundaySoul.Controls.Add(this.lblNavSundaySoulCount);
             this.pnlNavSundaySoul.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlNavSundaySoul.Location = new System.Drawing.Point(15, 365);
-            this.pnlNavSundaySoul.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlNavSundaySoul.Margin = new System.Windows.Forms.Padding(4);
             this.pnlNavSundaySoul.Name = "pnlNavSundaySoul";
             this.pnlNavSundaySoul.Size = new System.Drawing.Size(270, 40);
             this.pnlNavSundaySoul.TabIndex = 8;
@@ -491,7 +491,7 @@ namespace Byte_me___Group_2
             this.pnlNavGymPulse.Controls.Add(this.lblNavGymPulseCount);
             this.pnlNavGymPulse.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlNavGymPulse.Location = new System.Drawing.Point(15, 408);
-            this.pnlNavGymPulse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlNavGymPulse.Margin = new System.Windows.Forms.Padding(4);
             this.pnlNavGymPulse.Name = "pnlNavGymPulse";
             this.pnlNavGymPulse.Size = new System.Drawing.Size(270, 40);
             this.pnlNavGymPulse.TabIndex = 9;
@@ -529,7 +529,7 @@ namespace Byte_me___Group_2
             this.pnlNavAcousticCorner.Controls.Add(this.lblNavAcousticCornerCount);
             this.pnlNavAcousticCorner.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlNavAcousticCorner.Location = new System.Drawing.Point(15, 450);
-            this.pnlNavAcousticCorner.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlNavAcousticCorner.Margin = new System.Windows.Forms.Padding(4);
             this.pnlNavAcousticCorner.Name = "pnlNavAcousticCorner";
             this.pnlNavAcousticCorner.Size = new System.Drawing.Size(270, 40);
             this.pnlNavAcousticCorner.TabIndex = 10;
@@ -567,7 +567,7 @@ namespace Byte_me___Group_2
             this.pnlNavThrowback2000s.Controls.Add(this.lblNavThrowback2000sCount);
             this.pnlNavThrowback2000s.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlNavThrowback2000s.Location = new System.Drawing.Point(15, 492);
-            this.pnlNavThrowback2000s.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlNavThrowback2000s.Margin = new System.Windows.Forms.Padding(4);
             this.pnlNavThrowback2000s.Name = "pnlNavThrowback2000s";
             this.pnlNavThrowback2000s.Size = new System.Drawing.Size(270, 40);
             this.pnlNavThrowback2000s.TabIndex = 11;
@@ -606,7 +606,7 @@ namespace Byte_me___Group_2
             this.btnNewPlaylistSidebar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnNewPlaylistSidebar.ForeColor = System.Drawing.Color.White;
             this.btnNewPlaylistSidebar.Location = new System.Drawing.Point(15, 875);
-            this.btnNewPlaylistSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNewPlaylistSidebar.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewPlaylistSidebar.Name = "btnNewPlaylistSidebar";
             this.btnNewPlaylistSidebar.Size = new System.Drawing.Size(270, 50);
             this.btnNewPlaylistSidebar.TabIndex = 12;
@@ -622,7 +622,7 @@ namespace Byte_me___Group_2
             this.btnUploadSongSidebar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnUploadSongSidebar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
             this.btnUploadSongSidebar.Location = new System.Drawing.Point(15, 932);
-            this.btnUploadSongSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUploadSongSidebar.Margin = new System.Windows.Forms.Padding(4);
             this.btnUploadSongSidebar.Name = "btnUploadSongSidebar";
             this.btnUploadSongSidebar.Size = new System.Drawing.Size(270, 45);
             this.btnUploadSongSidebar.TabIndex = 13;
@@ -636,7 +636,7 @@ namespace Byte_me___Group_2
             | System.Windows.Forms.AnchorStyles.Left)));
             this.pnlSidebarDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.pnlSidebarDivider.Location = new System.Drawing.Point(300, 0);
-            this.pnlSidebarDivider.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlSidebarDivider.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSidebarDivider.Name = "pnlSidebarDivider";
             this.pnlSidebarDivider.Size = new System.Drawing.Size(1, 1000);
             this.pnlSidebarDivider.TabIndex = 1;
@@ -647,7 +647,7 @@ namespace Byte_me___Group_2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlTopBarDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.pnlTopBarDivider.Location = new System.Drawing.Point(301, 90);
-            this.pnlTopBarDivider.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlTopBarDivider.Margin = new System.Windows.Forms.Padding(4);
             this.pnlTopBarDivider.Name = "pnlTopBarDivider";
             this.pnlTopBarDivider.Size = new System.Drawing.Size(1399, 1);
             this.pnlTopBarDivider.TabIndex = 3;
@@ -662,7 +662,7 @@ namespace Byte_me___Group_2
             this.flpPlaylists.Controls.Add(this.pnlPlaylistCard5);
             this.flpPlaylists.Controls.Add(this.pnlPlaylistCard6);
             this.flpPlaylists.Location = new System.Drawing.Point(4, 408);
-            this.flpPlaylists.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flpPlaylists.Margin = new System.Windows.Forms.Padding(4);
             this.flpPlaylists.Name = "flpPlaylists";
             this.flpPlaylists.Size = new System.Drawing.Size(1125, 588);
             this.flpPlaylists.TabIndex = 8;
@@ -976,7 +976,7 @@ namespace Byte_me___Group_2
             this.btnNewPlaylistMain.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnNewPlaylistMain.ForeColor = System.Drawing.Color.White;
             this.btnNewPlaylistMain.Location = new System.Drawing.Point(958, 335);
-            this.btnNewPlaylistMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNewPlaylistMain.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewPlaylistMain.Name = "btnNewPlaylistMain";
             this.btnNewPlaylistMain.Size = new System.Drawing.Size(188, 45);
             this.btnNewPlaylistMain.TabIndex = 7;
@@ -993,7 +993,7 @@ namespace Byte_me___Group_2
             this.btnUploadSongMain.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnUploadSongMain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
             this.btnUploadSongMain.Location = new System.Drawing.Point(770, 335);
-            this.btnUploadSongMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUploadSongMain.Margin = new System.Windows.Forms.Padding(4);
             this.btnUploadSongMain.Name = "btnUploadSongMain";
             this.btnUploadSongMain.Size = new System.Drawing.Size(162, 45);
             this.btnUploadSongMain.TabIndex = 6;
@@ -1030,7 +1030,7 @@ namespace Byte_me___Group_2
             this.pnlStatArtist.Controls.Add(this.pnlArtistBarBg3);
             this.pnlStatArtist.Controls.Add(this.pnlArtistBarFill3);
             this.pnlStatArtist.Location = new System.Drawing.Point(770, 135);
-            this.pnlStatArtist.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlStatArtist.Margin = new System.Windows.Forms.Padding(4);
             this.pnlStatArtist.Name = "pnlStatArtist";
             this.pnlStatArtist.Size = new System.Drawing.Size(350, 174);
             this.pnlStatArtist.TabIndex = 4;
@@ -1096,7 +1096,7 @@ namespace Byte_me___Group_2
             // 
             this.pnlArtistBarBg1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(233)))), ((int)(((byte)(254)))));
             this.pnlArtistBarBg1.Location = new System.Drawing.Point(115, 109);
-            this.pnlArtistBarBg1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlArtistBarBg1.Margin = new System.Windows.Forms.Padding(4);
             this.pnlArtistBarBg1.Name = "pnlArtistBarBg1";
             this.pnlArtistBarBg1.Size = new System.Drawing.Size(188, 10);
             this.pnlArtistBarBg1.TabIndex = 5;
@@ -1105,7 +1105,7 @@ namespace Byte_me___Group_2
             // 
             this.pnlArtistBarFill1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
             this.pnlArtistBarFill1.Location = new System.Drawing.Point(115, 109);
-            this.pnlArtistBarFill1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlArtistBarFill1.Margin = new System.Windows.Forms.Padding(4);
             this.pnlArtistBarFill1.Name = "pnlArtistBarFill1";
             this.pnlArtistBarFill1.Size = new System.Drawing.Size(188, 10);
             this.pnlArtistBarFill1.TabIndex = 6;
@@ -1125,7 +1125,7 @@ namespace Byte_me___Group_2
             // 
             this.pnlArtistBarBg2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(233)))), ((int)(((byte)(254)))));
             this.pnlArtistBarBg2.Location = new System.Drawing.Point(115, 131);
-            this.pnlArtistBarBg2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlArtistBarBg2.Margin = new System.Windows.Forms.Padding(4);
             this.pnlArtistBarBg2.Name = "pnlArtistBarBg2";
             this.pnlArtistBarBg2.Size = new System.Drawing.Size(188, 10);
             this.pnlArtistBarBg2.TabIndex = 8;
@@ -1134,7 +1134,7 @@ namespace Byte_me___Group_2
             // 
             this.pnlArtistBarFill2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
             this.pnlArtistBarFill2.Location = new System.Drawing.Point(115, 131);
-            this.pnlArtistBarFill2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlArtistBarFill2.Margin = new System.Windows.Forms.Padding(4);
             this.pnlArtistBarFill2.Name = "pnlArtistBarFill2";
             this.pnlArtistBarFill2.Size = new System.Drawing.Size(140, 10);
             this.pnlArtistBarFill2.TabIndex = 9;
@@ -1154,7 +1154,7 @@ namespace Byte_me___Group_2
             // 
             this.pnlArtistBarBg3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(233)))), ((int)(((byte)(254)))));
             this.pnlArtistBarBg3.Location = new System.Drawing.Point(115, 154);
-            this.pnlArtistBarBg3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlArtistBarBg3.Margin = new System.Windows.Forms.Padding(4);
             this.pnlArtistBarBg3.Name = "pnlArtistBarBg3";
             this.pnlArtistBarBg3.Size = new System.Drawing.Size(188, 10);
             this.pnlArtistBarBg3.TabIndex = 11;
@@ -1163,7 +1163,7 @@ namespace Byte_me___Group_2
             // 
             this.pnlArtistBarFill3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
             this.pnlArtistBarFill3.Location = new System.Drawing.Point(115, 154);
-            this.pnlArtistBarFill3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlArtistBarFill3.Margin = new System.Windows.Forms.Padding(4);
             this.pnlArtistBarFill3.Name = "pnlArtistBarFill3";
             this.pnlArtistBarFill3.Size = new System.Drawing.Size(85, 10);
             this.pnlArtistBarFill3.TabIndex = 12;
@@ -1178,7 +1178,7 @@ namespace Byte_me___Group_2
             this.pnlStatTracks.Controls.Add(this.lblStatTracksSub);
             this.pnlStatTracks.Controls.Add(this.lblStatTracksTrendIcon);
             this.pnlStatTracks.Location = new System.Drawing.Point(392, 135);
-            this.pnlStatTracks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlStatTracks.Margin = new System.Windows.Forms.Padding(4);
             this.pnlStatTracks.Name = "pnlStatTracks";
             this.pnlStatTracks.Size = new System.Drawing.Size(350, 174);
             this.pnlStatTracks.TabIndex = 3;
@@ -1256,7 +1256,7 @@ namespace Byte_me___Group_2
             this.pnlStatPlaylists.Controls.Add(this.pnlBarPlaylists5);
             this.pnlStatPlaylists.Controls.Add(this.pnlBarPlaylists6);
             this.pnlStatPlaylists.Location = new System.Drawing.Point(21, 135);
-            this.pnlStatPlaylists.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlStatPlaylists.Margin = new System.Windows.Forms.Padding(4);
             this.pnlStatPlaylists.Name = "pnlStatPlaylists";
             this.pnlStatPlaylists.Size = new System.Drawing.Size(350, 174);
             this.pnlStatPlaylists.TabIndex = 2;
@@ -1311,7 +1311,7 @@ namespace Byte_me___Group_2
             // 
             this.pnlBarPlaylists1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(214)))), ((int)(((byte)(254)))));
             this.pnlBarPlaylists1.Location = new System.Drawing.Point(20, 152);
-            this.pnlBarPlaylists1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlBarPlaylists1.Margin = new System.Windows.Forms.Padding(4);
             this.pnlBarPlaylists1.Name = "pnlBarPlaylists1";
             this.pnlBarPlaylists1.Size = new System.Drawing.Size(25, 10);
             this.pnlBarPlaylists1.TabIndex = 4;
@@ -1320,7 +1320,7 @@ namespace Byte_me___Group_2
             // 
             this.pnlBarPlaylists2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(214)))), ((int)(((byte)(254)))));
             this.pnlBarPlaylists2.Location = new System.Drawing.Point(52, 148);
-            this.pnlBarPlaylists2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlBarPlaylists2.Margin = new System.Windows.Forms.Padding(4);
             this.pnlBarPlaylists2.Name = "pnlBarPlaylists2";
             this.pnlBarPlaylists2.Size = new System.Drawing.Size(25, 15);
             this.pnlBarPlaylists2.TabIndex = 5;
@@ -1329,7 +1329,7 @@ namespace Byte_me___Group_2
             // 
             this.pnlBarPlaylists3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(214)))), ((int)(((byte)(254)))));
             this.pnlBarPlaylists3.Location = new System.Drawing.Point(85, 150);
-            this.pnlBarPlaylists3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlBarPlaylists3.Margin = new System.Windows.Forms.Padding(4);
             this.pnlBarPlaylists3.Name = "pnlBarPlaylists3";
             this.pnlBarPlaylists3.Size = new System.Drawing.Size(25, 12);
             this.pnlBarPlaylists3.TabIndex = 6;
@@ -1338,7 +1338,7 @@ namespace Byte_me___Group_2
             // 
             this.pnlBarPlaylists4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(214)))), ((int)(((byte)(254)))));
             this.pnlBarPlaylists4.Location = new System.Drawing.Point(118, 145);
-            this.pnlBarPlaylists4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlBarPlaylists4.Margin = new System.Windows.Forms.Padding(4);
             this.pnlBarPlaylists4.Name = "pnlBarPlaylists4";
             this.pnlBarPlaylists4.Size = new System.Drawing.Size(25, 18);
             this.pnlBarPlaylists4.TabIndex = 7;
@@ -1347,7 +1347,7 @@ namespace Byte_me___Group_2
             // 
             this.pnlBarPlaylists5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(214)))), ((int)(((byte)(254)))));
             this.pnlBarPlaylists5.Location = new System.Drawing.Point(150, 140);
-            this.pnlBarPlaylists5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlBarPlaylists5.Margin = new System.Windows.Forms.Padding(4);
             this.pnlBarPlaylists5.Name = "pnlBarPlaylists5";
             this.pnlBarPlaylists5.Size = new System.Drawing.Size(25, 22);
             this.pnlBarPlaylists5.TabIndex = 8;
@@ -1356,7 +1356,7 @@ namespace Byte_me___Group_2
             // 
             this.pnlBarPlaylists6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
             this.pnlBarPlaylists6.Location = new System.Drawing.Point(182, 122);
-            this.pnlBarPlaylists6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlBarPlaylists6.Margin = new System.Windows.Forms.Padding(4);
             this.pnlBarPlaylists6.Name = "pnlBarPlaylists6";
             this.pnlBarPlaylists6.Size = new System.Drawing.Size(25, 40);
             this.pnlBarPlaylists6.TabIndex = 9;
@@ -1367,7 +1367,7 @@ namespace Byte_me___Group_2
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
             this.txtSearch.Location = new System.Drawing.Point(648, 22);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(324, 27);
             this.txtSearch.TabIndex = 2;
@@ -1678,7 +1678,7 @@ namespace Byte_me___Group_2
             // pbxPlaylistCoverPhoto
             // 
             this.pbxPlaylistCoverPhoto.Location = new System.Drawing.Point(15, 11);
-            this.pbxPlaylistCoverPhoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbxPlaylistCoverPhoto.Margin = new System.Windows.Forms.Padding(4);
             this.pbxPlaylistCoverPhoto.Name = "pbxPlaylistCoverPhoto";
             this.pbxPlaylistCoverPhoto.Size = new System.Drawing.Size(68, 59);
             this.pbxPlaylistCoverPhoto.TabIndex = 12;
@@ -1812,7 +1812,7 @@ namespace Byte_me___Group_2
             this.pnlMainContent.Controls.Add(this.btnNewPlaylistMain);
             this.pnlMainContent.Controls.Add(this.flpPlaylists);
             this.pnlMainContent.Location = new System.Drawing.Point(304, 0);
-            this.pnlMainContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlMainContent.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMainContent.Name = "pnlMainContent";
             this.pnlMainContent.Size = new System.Drawing.Size(1399, 1000);
             this.pnlMainContent.TabIndex = 4;
@@ -1832,11 +1832,12 @@ namespace Byte_me___Group_2
             this.Controls.Add(this.pnlSidebarDivider);
             this.Controls.Add(this.pnlTopBarDivider);
             this.Controls.Add(this.pnlMainContent);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1246, 812);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Playlist Manager - Home";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Home_FormClosing);
             this.pnlSidebar.ResumeLayout(false);
             this.pnlNavAllPlaylists.ResumeLayout(false);
             this.pnlNavFavourites.ResumeLayout(false);
