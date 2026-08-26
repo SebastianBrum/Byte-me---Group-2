@@ -217,16 +217,17 @@ namespace Byte_me___Group_2
             this.pnlSidebar.Controls.Add(this.btnNewPlaylistSidebar);
             this.pnlSidebar.Controls.Add(this.btnUploadSongSidebar);
             this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
+            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.Size = new System.Drawing.Size(240, 800);
+            this.pnlSidebar.Size = new System.Drawing.Size(300, 1000);
             this.pnlSidebar.TabIndex = 0;
             // 
             // btnChangeCoverPhoto
             // 
-            this.btnChangeCoverPhoto.Location = new System.Drawing.Point(6, 618);
+            this.btnChangeCoverPhoto.Location = new System.Drawing.Point(8, 772);
             this.btnChangeCoverPhoto.Margin = new System.Windows.Forms.Padding(2);
             this.btnChangeCoverPhoto.Name = "btnChangeCoverPhoto";
-            this.btnChangeCoverPhoto.Size = new System.Drawing.Size(228, 37);
+            this.btnChangeCoverPhoto.Size = new System.Drawing.Size(285, 46);
             this.btnChangeCoverPhoto.TabIndex = 15;
             this.btnChangeCoverPhoto.Text = "Change Cover";
             this.btnChangeCoverPhoto.UseVisualStyleBackColor = true;
@@ -235,10 +236,10 @@ namespace Byte_me___Group_2
             // 
             // btnNewPlaylist
             // 
-            this.btnNewPlaylist.Location = new System.Drawing.Point(6, 568);
+            this.btnNewPlaylist.Location = new System.Drawing.Point(8, 710);
             this.btnNewPlaylist.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewPlaylist.Name = "btnNewPlaylist";
-            this.btnNewPlaylist.Size = new System.Drawing.Size(228, 39);
+            this.btnNewPlaylist.Size = new System.Drawing.Size(285, 49);
             this.btnNewPlaylist.TabIndex = 14;
             this.btnNewPlaylist.Text = " + New Playlist";
             this.btnNewPlaylist.UseVisualStyleBackColor = true;
@@ -250,9 +251,10 @@ namespace Byte_me___Group_2
             this.lblLogoIcon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
             this.lblLogoIcon.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblLogoIcon.ForeColor = System.Drawing.Color.White;
-            this.lblLogoIcon.Location = new System.Drawing.Point(20, 20);
+            this.lblLogoIcon.Location = new System.Drawing.Point(25, 25);
+            this.lblLogoIcon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLogoIcon.Name = "lblLogoIcon";
-            this.lblLogoIcon.Size = new System.Drawing.Size(36, 36);
+            this.lblLogoIcon.Size = new System.Drawing.Size(45, 45);
             this.lblLogoIcon.TabIndex = 0;
             this.lblLogoIcon.Text = "♪";
             this.lblLogoIcon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -261,9 +263,10 @@ namespace Byte_me___Group_2
             // 
             this.lblBrandName.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblBrandName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(55)))));
-            this.lblBrandName.Location = new System.Drawing.Point(68, 29);
+            this.lblBrandName.Location = new System.Drawing.Point(85, 36);
+            this.lblBrandName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBrandName.Name = "lblBrandName";
-            this.lblBrandName.Size = new System.Drawing.Size(160, 20);
+            this.lblBrandName.Size = new System.Drawing.Size(200, 25);
             this.lblBrandName.TabIndex = 1;
             this.lblBrandName.Text = "Playlist Manager";
             // 
@@ -271,9 +274,10 @@ namespace Byte_me___Group_2
             // 
             this.lblLibraryHeader.Font = new System.Drawing.Font("Segoe UI", 7.5F, System.Drawing.FontStyle.Bold);
             this.lblLibraryHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.lblLibraryHeader.Location = new System.Drawing.Point(24, 86);
+            this.lblLibraryHeader.Location = new System.Drawing.Point(30, 108);
+            this.lblLibraryHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLibraryHeader.Name = "lblLibraryHeader";
-            this.lblLibraryHeader.Size = new System.Drawing.Size(120, 16);
+            this.lblLibraryHeader.Size = new System.Drawing.Size(150, 20);
             this.lblLibraryHeader.TabIndex = 2;
             this.lblLibraryHeader.Text = "LIBRARY";
             // 
@@ -283,9 +287,10 @@ namespace Byte_me___Group_2
             this.pnlNavAllPlaylists.Controls.Add(this.lblNavAllPlaylistsText);
             this.pnlNavAllPlaylists.Controls.Add(this.lblNavAllPlaylistsCount);
             this.pnlNavAllPlaylists.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlNavAllPlaylists.Location = new System.Drawing.Point(12, 108);
+            this.pnlNavAllPlaylists.Location = new System.Drawing.Point(15, 135);
+            this.pnlNavAllPlaylists.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlNavAllPlaylists.Name = "pnlNavAllPlaylists";
-            this.pnlNavAllPlaylists.Size = new System.Drawing.Size(216, 38);
+            this.pnlNavAllPlaylists.Size = new System.Drawing.Size(270, 48);
             this.pnlNavAllPlaylists.TabIndex = 3;
             this.pnlNavAllPlaylists.Click += new System.EventHandler(this.pnlNavAllPlaylists_Click);
             // 
@@ -293,9 +298,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavAllPlaylistsText.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblNavAllPlaylistsText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
-            this.lblNavAllPlaylistsText.Location = new System.Drawing.Point(12, 10);
+            this.lblNavAllPlaylistsText.Location = new System.Drawing.Point(15, 12);
+            this.lblNavAllPlaylistsText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavAllPlaylistsText.Name = "lblNavAllPlaylistsText";
-            this.lblNavAllPlaylistsText.Size = new System.Drawing.Size(160, 18);
+            this.lblNavAllPlaylistsText.Size = new System.Drawing.Size(200, 22);
             this.lblNavAllPlaylistsText.TabIndex = 0;
             this.lblNavAllPlaylistsText.Text = "≡   All playlists";
             this.lblNavAllPlaylistsText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -305,9 +311,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavAllPlaylistsCount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblNavAllPlaylistsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
-            this.lblNavAllPlaylistsCount.Location = new System.Drawing.Point(184, 10);
+            this.lblNavAllPlaylistsCount.Location = new System.Drawing.Point(230, 12);
+            this.lblNavAllPlaylistsCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavAllPlaylistsCount.Name = "lblNavAllPlaylistsCount";
-            this.lblNavAllPlaylistsCount.Size = new System.Drawing.Size(24, 18);
+            this.lblNavAllPlaylistsCount.Size = new System.Drawing.Size(30, 22);
             this.lblNavAllPlaylistsCount.TabIndex = 1;
             this.lblNavAllPlaylistsCount.Text = "6";
             this.lblNavAllPlaylistsCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -319,9 +326,10 @@ namespace Byte_me___Group_2
             this.pnlNavFavourites.Controls.Add(this.lblNavFavouritesText);
             this.pnlNavFavourites.Controls.Add(this.lblNavFavouritesCount);
             this.pnlNavFavourites.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlNavFavourites.Location = new System.Drawing.Point(12, 150);
+            this.pnlNavFavourites.Location = new System.Drawing.Point(15, 188);
+            this.pnlNavFavourites.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlNavFavourites.Name = "pnlNavFavourites";
-            this.pnlNavFavourites.Size = new System.Drawing.Size(216, 36);
+            this.pnlNavFavourites.Size = new System.Drawing.Size(270, 45);
             this.pnlNavFavourites.TabIndex = 4;
             this.pnlNavFavourites.Click += new System.EventHandler(this.pnlNavFavourites_Click);
             // 
@@ -329,9 +337,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavFavouritesText.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavFavouritesText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.lblNavFavouritesText.Location = new System.Drawing.Point(12, 9);
+            this.lblNavFavouritesText.Location = new System.Drawing.Point(15, 11);
+            this.lblNavFavouritesText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavFavouritesText.Name = "lblNavFavouritesText";
-            this.lblNavFavouritesText.Size = new System.Drawing.Size(160, 18);
+            this.lblNavFavouritesText.Size = new System.Drawing.Size(200, 22);
             this.lblNavFavouritesText.TabIndex = 0;
             this.lblNavFavouritesText.Text = "♡   Favourites";
             this.lblNavFavouritesText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -341,9 +350,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavFavouritesCount.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavFavouritesCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.lblNavFavouritesCount.Location = new System.Drawing.Point(184, 9);
+            this.lblNavFavouritesCount.Location = new System.Drawing.Point(230, 11);
+            this.lblNavFavouritesCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavFavouritesCount.Name = "lblNavFavouritesCount";
-            this.lblNavFavouritesCount.Size = new System.Drawing.Size(24, 18);
+            this.lblNavFavouritesCount.Size = new System.Drawing.Size(30, 22);
             this.lblNavFavouritesCount.TabIndex = 1;
             this.lblNavFavouritesCount.Text = "8";
             this.lblNavFavouritesCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -353,9 +363,10 @@ namespace Byte_me___Group_2
             // 
             this.lblYourPlaylistsHeader.Font = new System.Drawing.Font("Segoe UI", 7.5F, System.Drawing.FontStyle.Bold);
             this.lblYourPlaylistsHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.lblYourPlaylistsHeader.Location = new System.Drawing.Point(24, 200);
+            this.lblYourPlaylistsHeader.Location = new System.Drawing.Point(30, 250);
+            this.lblYourPlaylistsHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblYourPlaylistsHeader.Name = "lblYourPlaylistsHeader";
-            this.lblYourPlaylistsHeader.Size = new System.Drawing.Size(150, 16);
+            this.lblYourPlaylistsHeader.Size = new System.Drawing.Size(188, 20);
             this.lblYourPlaylistsHeader.TabIndex = 5;
             this.lblYourPlaylistsHeader.Text = "YOUR PLAYLISTS";
             // 
@@ -365,9 +376,10 @@ namespace Byte_me___Group_2
             this.pnlNavLateNightDrive.Controls.Add(this.lblNavLateNightDriveText);
             this.pnlNavLateNightDrive.Controls.Add(this.lblNavLateNightDriveCount);
             this.pnlNavLateNightDrive.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlNavLateNightDrive.Location = new System.Drawing.Point(12, 224);
+            this.pnlNavLateNightDrive.Location = new System.Drawing.Point(15, 280);
+            this.pnlNavLateNightDrive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlNavLateNightDrive.Name = "pnlNavLateNightDrive";
-            this.pnlNavLateNightDrive.Size = new System.Drawing.Size(216, 32);
+            this.pnlNavLateNightDrive.Size = new System.Drawing.Size(270, 40);
             this.pnlNavLateNightDrive.TabIndex = 6;
             this.pnlNavLateNightDrive.Tag = "Late Night Drive";
             this.pnlNavLateNightDrive.Click += new System.EventHandler(this.pnlPlaylistNavRow_Click);
@@ -376,9 +388,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavLateNightDriveText.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavLateNightDriveText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.lblNavLateNightDriveText.Location = new System.Drawing.Point(12, 8);
+            this.lblNavLateNightDriveText.Location = new System.Drawing.Point(15, 10);
+            this.lblNavLateNightDriveText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavLateNightDriveText.Name = "lblNavLateNightDriveText";
-            this.lblNavLateNightDriveText.Size = new System.Drawing.Size(160, 18);
+            this.lblNavLateNightDriveText.Size = new System.Drawing.Size(200, 22);
             this.lblNavLateNightDriveText.TabIndex = 0;
             this.lblNavLateNightDriveText.Text = "♫   Late Night Drive";
             this.lblNavLateNightDriveText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -387,9 +400,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavLateNightDriveCount.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavLateNightDriveCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.lblNavLateNightDriveCount.Location = new System.Drawing.Point(184, 7);
+            this.lblNavLateNightDriveCount.Location = new System.Drawing.Point(230, 9);
+            this.lblNavLateNightDriveCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavLateNightDriveCount.Name = "lblNavLateNightDriveCount";
-            this.lblNavLateNightDriveCount.Size = new System.Drawing.Size(24, 18);
+            this.lblNavLateNightDriveCount.Size = new System.Drawing.Size(30, 22);
             this.lblNavLateNightDriveCount.TabIndex = 1;
             this.lblNavLateNightDriveCount.Text = "8";
             this.lblNavLateNightDriveCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -400,9 +414,10 @@ namespace Byte_me___Group_2
             this.pnlNavFocusFlow.Controls.Add(this.lblNavFocusFlowText);
             this.pnlNavFocusFlow.Controls.Add(this.lblNavFocusFlowCount);
             this.pnlNavFocusFlow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlNavFocusFlow.Location = new System.Drawing.Point(12, 258);
+            this.pnlNavFocusFlow.Location = new System.Drawing.Point(15, 322);
+            this.pnlNavFocusFlow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlNavFocusFlow.Name = "pnlNavFocusFlow";
-            this.pnlNavFocusFlow.Size = new System.Drawing.Size(216, 32);
+            this.pnlNavFocusFlow.Size = new System.Drawing.Size(270, 40);
             this.pnlNavFocusFlow.TabIndex = 7;
             this.pnlNavFocusFlow.Tag = "Focus Flow";
             this.pnlNavFocusFlow.Click += new System.EventHandler(this.pnlPlaylistNavRow_Click);
@@ -411,9 +426,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavFocusFlowText.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavFocusFlowText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.lblNavFocusFlowText.Location = new System.Drawing.Point(12, 7);
+            this.lblNavFocusFlowText.Location = new System.Drawing.Point(15, 9);
+            this.lblNavFocusFlowText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavFocusFlowText.Name = "lblNavFocusFlowText";
-            this.lblNavFocusFlowText.Size = new System.Drawing.Size(160, 18);
+            this.lblNavFocusFlowText.Size = new System.Drawing.Size(200, 22);
             this.lblNavFocusFlowText.TabIndex = 0;
             this.lblNavFocusFlowText.Text = "♫   Focus Flow";
             this.lblNavFocusFlowText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -422,9 +438,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavFocusFlowCount.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavFocusFlowCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.lblNavFocusFlowCount.Location = new System.Drawing.Point(184, 7);
+            this.lblNavFocusFlowCount.Location = new System.Drawing.Point(230, 9);
+            this.lblNavFocusFlowCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavFocusFlowCount.Name = "lblNavFocusFlowCount";
-            this.lblNavFocusFlowCount.Size = new System.Drawing.Size(24, 18);
+            this.lblNavFocusFlowCount.Size = new System.Drawing.Size(30, 22);
             this.lblNavFocusFlowCount.TabIndex = 1;
             this.lblNavFocusFlowCount.Text = "4";
             this.lblNavFocusFlowCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -435,9 +452,10 @@ namespace Byte_me___Group_2
             this.pnlNavSundaySoul.Controls.Add(this.lblNavSundaySoulText);
             this.pnlNavSundaySoul.Controls.Add(this.lblNavSundaySoulCount);
             this.pnlNavSundaySoul.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlNavSundaySoul.Location = new System.Drawing.Point(12, 292);
+            this.pnlNavSundaySoul.Location = new System.Drawing.Point(15, 365);
+            this.pnlNavSundaySoul.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlNavSundaySoul.Name = "pnlNavSundaySoul";
-            this.pnlNavSundaySoul.Size = new System.Drawing.Size(216, 32);
+            this.pnlNavSundaySoul.Size = new System.Drawing.Size(270, 40);
             this.pnlNavSundaySoul.TabIndex = 8;
             this.pnlNavSundaySoul.Tag = "Sunday Soul";
             this.pnlNavSundaySoul.Click += new System.EventHandler(this.pnlPlaylistNavRow_Click);
@@ -446,9 +464,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavSundaySoulText.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavSundaySoulText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.lblNavSundaySoulText.Location = new System.Drawing.Point(12, 7);
+            this.lblNavSundaySoulText.Location = new System.Drawing.Point(15, 9);
+            this.lblNavSundaySoulText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavSundaySoulText.Name = "lblNavSundaySoulText";
-            this.lblNavSundaySoulText.Size = new System.Drawing.Size(160, 18);
+            this.lblNavSundaySoulText.Size = new System.Drawing.Size(200, 22);
             this.lblNavSundaySoulText.TabIndex = 0;
             this.lblNavSundaySoulText.Text = "♫   Sunday Soul";
             this.lblNavSundaySoulText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -457,9 +476,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavSundaySoulCount.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavSundaySoulCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.lblNavSundaySoulCount.Location = new System.Drawing.Point(184, 7);
+            this.lblNavSundaySoulCount.Location = new System.Drawing.Point(230, 9);
+            this.lblNavSundaySoulCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavSundaySoulCount.Name = "lblNavSundaySoulCount";
-            this.lblNavSundaySoulCount.Size = new System.Drawing.Size(24, 18);
+            this.lblNavSundaySoulCount.Size = new System.Drawing.Size(30, 22);
             this.lblNavSundaySoulCount.TabIndex = 1;
             this.lblNavSundaySoulCount.Text = "5";
             this.lblNavSundaySoulCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -470,9 +490,10 @@ namespace Byte_me___Group_2
             this.pnlNavGymPulse.Controls.Add(this.lblNavGymPulseText);
             this.pnlNavGymPulse.Controls.Add(this.lblNavGymPulseCount);
             this.pnlNavGymPulse.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlNavGymPulse.Location = new System.Drawing.Point(12, 326);
+            this.pnlNavGymPulse.Location = new System.Drawing.Point(15, 408);
+            this.pnlNavGymPulse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlNavGymPulse.Name = "pnlNavGymPulse";
-            this.pnlNavGymPulse.Size = new System.Drawing.Size(216, 32);
+            this.pnlNavGymPulse.Size = new System.Drawing.Size(270, 40);
             this.pnlNavGymPulse.TabIndex = 9;
             this.pnlNavGymPulse.Tag = "Gym Pulse";
             this.pnlNavGymPulse.Click += new System.EventHandler(this.pnlPlaylistNavRow_Click);
@@ -481,9 +502,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavGymPulseText.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavGymPulseText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.lblNavGymPulseText.Location = new System.Drawing.Point(12, 7);
+            this.lblNavGymPulseText.Location = new System.Drawing.Point(15, 9);
+            this.lblNavGymPulseText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavGymPulseText.Name = "lblNavGymPulseText";
-            this.lblNavGymPulseText.Size = new System.Drawing.Size(160, 18);
+            this.lblNavGymPulseText.Size = new System.Drawing.Size(200, 22);
             this.lblNavGymPulseText.TabIndex = 0;
             this.lblNavGymPulseText.Text = "♫   Gym Pulse";
             this.lblNavGymPulseText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -492,9 +514,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavGymPulseCount.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavGymPulseCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.lblNavGymPulseCount.Location = new System.Drawing.Point(184, 7);
+            this.lblNavGymPulseCount.Location = new System.Drawing.Point(230, 9);
+            this.lblNavGymPulseCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavGymPulseCount.Name = "lblNavGymPulseCount";
-            this.lblNavGymPulseCount.Size = new System.Drawing.Size(24, 18);
+            this.lblNavGymPulseCount.Size = new System.Drawing.Size(30, 22);
             this.lblNavGymPulseCount.TabIndex = 1;
             this.lblNavGymPulseCount.Text = "6";
             this.lblNavGymPulseCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -505,9 +528,10 @@ namespace Byte_me___Group_2
             this.pnlNavAcousticCorner.Controls.Add(this.lblNavAcousticCornerText);
             this.pnlNavAcousticCorner.Controls.Add(this.lblNavAcousticCornerCount);
             this.pnlNavAcousticCorner.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlNavAcousticCorner.Location = new System.Drawing.Point(12, 360);
+            this.pnlNavAcousticCorner.Location = new System.Drawing.Point(15, 450);
+            this.pnlNavAcousticCorner.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlNavAcousticCorner.Name = "pnlNavAcousticCorner";
-            this.pnlNavAcousticCorner.Size = new System.Drawing.Size(216, 32);
+            this.pnlNavAcousticCorner.Size = new System.Drawing.Size(270, 40);
             this.pnlNavAcousticCorner.TabIndex = 10;
             this.pnlNavAcousticCorner.Tag = "Acoustic Corner";
             this.pnlNavAcousticCorner.Click += new System.EventHandler(this.pnlPlaylistNavRow_Click);
@@ -516,9 +540,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavAcousticCornerText.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavAcousticCornerText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.lblNavAcousticCornerText.Location = new System.Drawing.Point(12, 7);
+            this.lblNavAcousticCornerText.Location = new System.Drawing.Point(15, 9);
+            this.lblNavAcousticCornerText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavAcousticCornerText.Name = "lblNavAcousticCornerText";
-            this.lblNavAcousticCornerText.Size = new System.Drawing.Size(160, 18);
+            this.lblNavAcousticCornerText.Size = new System.Drawing.Size(200, 22);
             this.lblNavAcousticCornerText.TabIndex = 0;
             this.lblNavAcousticCornerText.Text = "♫   Acoustic Corner";
             this.lblNavAcousticCornerText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -527,9 +552,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavAcousticCornerCount.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavAcousticCornerCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.lblNavAcousticCornerCount.Location = new System.Drawing.Point(184, 7);
+            this.lblNavAcousticCornerCount.Location = new System.Drawing.Point(230, 9);
+            this.lblNavAcousticCornerCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavAcousticCornerCount.Name = "lblNavAcousticCornerCount";
-            this.lblNavAcousticCornerCount.Size = new System.Drawing.Size(24, 18);
+            this.lblNavAcousticCornerCount.Size = new System.Drawing.Size(30, 22);
             this.lblNavAcousticCornerCount.TabIndex = 1;
             this.lblNavAcousticCornerCount.Text = "3";
             this.lblNavAcousticCornerCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -540,9 +566,10 @@ namespace Byte_me___Group_2
             this.pnlNavThrowback2000s.Controls.Add(this.lblNavThrowback2000sText);
             this.pnlNavThrowback2000s.Controls.Add(this.lblNavThrowback2000sCount);
             this.pnlNavThrowback2000s.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlNavThrowback2000s.Location = new System.Drawing.Point(12, 394);
+            this.pnlNavThrowback2000s.Location = new System.Drawing.Point(15, 492);
+            this.pnlNavThrowback2000s.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlNavThrowback2000s.Name = "pnlNavThrowback2000s";
-            this.pnlNavThrowback2000s.Size = new System.Drawing.Size(216, 32);
+            this.pnlNavThrowback2000s.Size = new System.Drawing.Size(270, 40);
             this.pnlNavThrowback2000s.TabIndex = 11;
             this.pnlNavThrowback2000s.Tag = "Throwback 2000s";
             this.pnlNavThrowback2000s.Click += new System.EventHandler(this.pnlPlaylistNavRow_Click);
@@ -551,9 +578,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavThrowback2000sText.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavThrowback2000sText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.lblNavThrowback2000sText.Location = new System.Drawing.Point(12, 7);
+            this.lblNavThrowback2000sText.Location = new System.Drawing.Point(15, 9);
+            this.lblNavThrowback2000sText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavThrowback2000sText.Name = "lblNavThrowback2000sText";
-            this.lblNavThrowback2000sText.Size = new System.Drawing.Size(160, 18);
+            this.lblNavThrowback2000sText.Size = new System.Drawing.Size(200, 22);
             this.lblNavThrowback2000sText.TabIndex = 0;
             this.lblNavThrowback2000sText.Text = "♫   Throwback 2000s";
             this.lblNavThrowback2000sText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -562,9 +590,10 @@ namespace Byte_me___Group_2
             // 
             this.lblNavThrowback2000sCount.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblNavThrowback2000sCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.lblNavThrowback2000sCount.Location = new System.Drawing.Point(184, 7);
+            this.lblNavThrowback2000sCount.Location = new System.Drawing.Point(230, 9);
+            this.lblNavThrowback2000sCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNavThrowback2000sCount.Name = "lblNavThrowback2000sCount";
-            this.lblNavThrowback2000sCount.Size = new System.Drawing.Size(24, 18);
+            this.lblNavThrowback2000sCount.Size = new System.Drawing.Size(30, 22);
             this.lblNavThrowback2000sCount.TabIndex = 1;
             this.lblNavThrowback2000sCount.Text = "4";
             this.lblNavThrowback2000sCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -576,9 +605,10 @@ namespace Byte_me___Group_2
             this.btnNewPlaylistSidebar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewPlaylistSidebar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnNewPlaylistSidebar.ForeColor = System.Drawing.Color.White;
-            this.btnNewPlaylistSidebar.Location = new System.Drawing.Point(12, 700);
+            this.btnNewPlaylistSidebar.Location = new System.Drawing.Point(15, 875);
+            this.btnNewPlaylistSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNewPlaylistSidebar.Name = "btnNewPlaylistSidebar";
-            this.btnNewPlaylistSidebar.Size = new System.Drawing.Size(216, 40);
+            this.btnNewPlaylistSidebar.Size = new System.Drawing.Size(270, 50);
             this.btnNewPlaylistSidebar.TabIndex = 12;
             this.btnNewPlaylistSidebar.Text = "+  New Playlist";
             this.btnNewPlaylistSidebar.UseVisualStyleBackColor = false;
@@ -591,9 +621,10 @@ namespace Byte_me___Group_2
             this.btnUploadSongSidebar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUploadSongSidebar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnUploadSongSidebar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.btnUploadSongSidebar.Location = new System.Drawing.Point(12, 746);
+            this.btnUploadSongSidebar.Location = new System.Drawing.Point(15, 932);
+            this.btnUploadSongSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUploadSongSidebar.Name = "btnUploadSongSidebar";
-            this.btnUploadSongSidebar.Size = new System.Drawing.Size(216, 36);
+            this.btnUploadSongSidebar.Size = new System.Drawing.Size(270, 45);
             this.btnUploadSongSidebar.TabIndex = 13;
             this.btnUploadSongSidebar.Text = "↓  Upload Song";
             this.btnUploadSongSidebar.UseVisualStyleBackColor = false;
@@ -604,9 +635,10 @@ namespace Byte_me___Group_2
             this.pnlSidebarDivider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.pnlSidebarDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.pnlSidebarDivider.Location = new System.Drawing.Point(240, 0);
+            this.pnlSidebarDivider.Location = new System.Drawing.Point(300, 0);
+            this.pnlSidebarDivider.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlSidebarDivider.Name = "pnlSidebarDivider";
-            this.pnlSidebarDivider.Size = new System.Drawing.Size(1, 800);
+            this.pnlSidebarDivider.Size = new System.Drawing.Size(1, 1000);
             this.pnlSidebarDivider.TabIndex = 1;
             // 
             // pnlTopBarDivider
@@ -614,9 +646,10 @@ namespace Byte_me___Group_2
             this.pnlTopBarDivider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlTopBarDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.pnlTopBarDivider.Location = new System.Drawing.Point(241, 72);
+            this.pnlTopBarDivider.Location = new System.Drawing.Point(301, 90);
+            this.pnlTopBarDivider.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlTopBarDivider.Name = "pnlTopBarDivider";
-            this.pnlTopBarDivider.Size = new System.Drawing.Size(1119, 1);
+            this.pnlTopBarDivider.Size = new System.Drawing.Size(1399, 1);
             this.pnlTopBarDivider.TabIndex = 3;
             // 
             // flpPlaylists
@@ -628,9 +661,10 @@ namespace Byte_me___Group_2
             this.flpPlaylists.Controls.Add(this.pnlPlaylistCard4);
             this.flpPlaylists.Controls.Add(this.pnlPlaylistCard5);
             this.flpPlaylists.Controls.Add(this.pnlPlaylistCard6);
-            this.flpPlaylists.Location = new System.Drawing.Point(3, 326);
+            this.flpPlaylists.Location = new System.Drawing.Point(4, 408);
+            this.flpPlaylists.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flpPlaylists.Name = "flpPlaylists";
-            this.flpPlaylists.Size = new System.Drawing.Size(900, 470);
+            this.flpPlaylists.Size = new System.Drawing.Size(1125, 588);
             this.flpPlaylists.TabIndex = 8;
             // 
             // pnlPlaylistCard1
@@ -641,9 +675,9 @@ namespace Byte_me___Group_2
             this.pnlPlaylistCard1.Controls.Add(this.lblPlaylistCount1);
             this.pnlPlaylistCard1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlPlaylistCard1.Location = new System.Drawing.Point(0, 0);
-            this.pnlPlaylistCard1.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            this.pnlPlaylistCard1.Margin = new System.Windows.Forms.Padding(0, 0, 25, 25);
             this.pnlPlaylistCard1.Name = "pnlPlaylistCard1";
-            this.pnlPlaylistCard1.Size = new System.Drawing.Size(204, 210);
+            this.pnlPlaylistCard1.Size = new System.Drawing.Size(255, 262);
             this.pnlPlaylistCard1.TabIndex = 0;
             this.pnlPlaylistCard1.Tag = "Late Night Drive";
             this.pnlPlaylistCard1.Click += new System.EventHandler(this.pnlPlaylistCard_Click);
@@ -654,8 +688,9 @@ namespace Byte_me___Group_2
             this.lblPlaylistCover1.Font = new System.Drawing.Font("Segoe UI", 26F);
             this.lblPlaylistCover1.ForeColor = System.Drawing.Color.White;
             this.lblPlaylistCover1.Location = new System.Drawing.Point(0, 0);
+            this.lblPlaylistCover1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistCover1.Name = "lblPlaylistCover1";
-            this.lblPlaylistCover1.Size = new System.Drawing.Size(204, 140);
+            this.lblPlaylistCover1.Size = new System.Drawing.Size(255, 175);
             this.lblPlaylistCover1.TabIndex = 0;
             this.lblPlaylistCover1.Text = "♫";
             this.lblPlaylistCover1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -664,9 +699,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistTitle1.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblPlaylistTitle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.lblPlaylistTitle1.Location = new System.Drawing.Point(10, 150);
+            this.lblPlaylistTitle1.Location = new System.Drawing.Point(12, 188);
+            this.lblPlaylistTitle1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistTitle1.Name = "lblPlaylistTitle1";
-            this.lblPlaylistTitle1.Size = new System.Drawing.Size(184, 18);
+            this.lblPlaylistTitle1.Size = new System.Drawing.Size(230, 22);
             this.lblPlaylistTitle1.TabIndex = 1;
             this.lblPlaylistTitle1.Text = "Late Night Drive";
             // 
@@ -674,9 +710,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistCount1.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblPlaylistCount1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblPlaylistCount1.Location = new System.Drawing.Point(10, 170);
+            this.lblPlaylistCount1.Location = new System.Drawing.Point(12, 212);
+            this.lblPlaylistCount1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistCount1.Name = "lblPlaylistCount1";
-            this.lblPlaylistCount1.Size = new System.Drawing.Size(120, 16);
+            this.lblPlaylistCount1.Size = new System.Drawing.Size(150, 20);
             this.lblPlaylistCount1.TabIndex = 2;
             this.lblPlaylistCount1.Text = "8 tracks";
             // 
@@ -687,10 +724,10 @@ namespace Byte_me___Group_2
             this.pnlPlaylistCard2.Controls.Add(this.lblPlaylistTitle2);
             this.pnlPlaylistCard2.Controls.Add(this.lblPlaylistCount2);
             this.pnlPlaylistCard2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlPlaylistCard2.Location = new System.Drawing.Point(224, 0);
-            this.pnlPlaylistCard2.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            this.pnlPlaylistCard2.Location = new System.Drawing.Point(280, 0);
+            this.pnlPlaylistCard2.Margin = new System.Windows.Forms.Padding(0, 0, 25, 25);
             this.pnlPlaylistCard2.Name = "pnlPlaylistCard2";
-            this.pnlPlaylistCard2.Size = new System.Drawing.Size(204, 210);
+            this.pnlPlaylistCard2.Size = new System.Drawing.Size(255, 262);
             this.pnlPlaylistCard2.TabIndex = 1;
             this.pnlPlaylistCard2.Tag = "Focus Flow";
             this.pnlPlaylistCard2.Click += new System.EventHandler(this.pnlPlaylistCard_Click);
@@ -701,8 +738,9 @@ namespace Byte_me___Group_2
             this.lblPlaylistCover2.Font = new System.Drawing.Font("Segoe UI", 26F);
             this.lblPlaylistCover2.ForeColor = System.Drawing.Color.White;
             this.lblPlaylistCover2.Location = new System.Drawing.Point(0, 0);
+            this.lblPlaylistCover2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistCover2.Name = "lblPlaylistCover2";
-            this.lblPlaylistCover2.Size = new System.Drawing.Size(204, 140);
+            this.lblPlaylistCover2.Size = new System.Drawing.Size(255, 175);
             this.lblPlaylistCover2.TabIndex = 0;
             this.lblPlaylistCover2.Text = "♫";
             this.lblPlaylistCover2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -711,9 +749,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistTitle2.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblPlaylistTitle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.lblPlaylistTitle2.Location = new System.Drawing.Point(10, 150);
+            this.lblPlaylistTitle2.Location = new System.Drawing.Point(12, 188);
+            this.lblPlaylistTitle2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistTitle2.Name = "lblPlaylistTitle2";
-            this.lblPlaylistTitle2.Size = new System.Drawing.Size(184, 18);
+            this.lblPlaylistTitle2.Size = new System.Drawing.Size(230, 22);
             this.lblPlaylistTitle2.TabIndex = 1;
             this.lblPlaylistTitle2.Text = "Focus Flow";
             // 
@@ -721,9 +760,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistCount2.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblPlaylistCount2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblPlaylistCount2.Location = new System.Drawing.Point(10, 170);
+            this.lblPlaylistCount2.Location = new System.Drawing.Point(12, 212);
+            this.lblPlaylistCount2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistCount2.Name = "lblPlaylistCount2";
-            this.lblPlaylistCount2.Size = new System.Drawing.Size(120, 16);
+            this.lblPlaylistCount2.Size = new System.Drawing.Size(150, 20);
             this.lblPlaylistCount2.TabIndex = 2;
             this.lblPlaylistCount2.Text = "4 tracks";
             // 
@@ -734,10 +774,10 @@ namespace Byte_me___Group_2
             this.pnlPlaylistCard3.Controls.Add(this.lblPlaylistTitle3);
             this.pnlPlaylistCard3.Controls.Add(this.lblPlaylistCount3);
             this.pnlPlaylistCard3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlPlaylistCard3.Location = new System.Drawing.Point(448, 0);
-            this.pnlPlaylistCard3.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            this.pnlPlaylistCard3.Location = new System.Drawing.Point(560, 0);
+            this.pnlPlaylistCard3.Margin = new System.Windows.Forms.Padding(0, 0, 25, 25);
             this.pnlPlaylistCard3.Name = "pnlPlaylistCard3";
-            this.pnlPlaylistCard3.Size = new System.Drawing.Size(204, 210);
+            this.pnlPlaylistCard3.Size = new System.Drawing.Size(255, 262);
             this.pnlPlaylistCard3.TabIndex = 2;
             this.pnlPlaylistCard3.Tag = "Sunday Soul";
             this.pnlPlaylistCard3.Click += new System.EventHandler(this.pnlPlaylistCard_Click);
@@ -748,8 +788,9 @@ namespace Byte_me___Group_2
             this.lblPlaylistCover3.Font = new System.Drawing.Font("Segoe UI", 26F);
             this.lblPlaylistCover3.ForeColor = System.Drawing.Color.White;
             this.lblPlaylistCover3.Location = new System.Drawing.Point(0, 0);
+            this.lblPlaylistCover3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistCover3.Name = "lblPlaylistCover3";
-            this.lblPlaylistCover3.Size = new System.Drawing.Size(204, 140);
+            this.lblPlaylistCover3.Size = new System.Drawing.Size(255, 175);
             this.lblPlaylistCover3.TabIndex = 0;
             this.lblPlaylistCover3.Text = "♫";
             this.lblPlaylistCover3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -758,9 +799,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistTitle3.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblPlaylistTitle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.lblPlaylistTitle3.Location = new System.Drawing.Point(10, 150);
+            this.lblPlaylistTitle3.Location = new System.Drawing.Point(12, 188);
+            this.lblPlaylistTitle3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistTitle3.Name = "lblPlaylistTitle3";
-            this.lblPlaylistTitle3.Size = new System.Drawing.Size(184, 18);
+            this.lblPlaylistTitle3.Size = new System.Drawing.Size(230, 22);
             this.lblPlaylistTitle3.TabIndex = 1;
             this.lblPlaylistTitle3.Text = "Sunday Soul";
             // 
@@ -768,9 +810,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistCount3.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblPlaylistCount3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblPlaylistCount3.Location = new System.Drawing.Point(10, 170);
+            this.lblPlaylistCount3.Location = new System.Drawing.Point(12, 212);
+            this.lblPlaylistCount3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistCount3.Name = "lblPlaylistCount3";
-            this.lblPlaylistCount3.Size = new System.Drawing.Size(120, 16);
+            this.lblPlaylistCount3.Size = new System.Drawing.Size(150, 20);
             this.lblPlaylistCount3.TabIndex = 2;
             this.lblPlaylistCount3.Text = "5 tracks";
             // 
@@ -781,10 +824,10 @@ namespace Byte_me___Group_2
             this.pnlPlaylistCard4.Controls.Add(this.lblPlaylistTitle4);
             this.pnlPlaylistCard4.Controls.Add(this.lblPlaylistCount4);
             this.pnlPlaylistCard4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlPlaylistCard4.Location = new System.Drawing.Point(672, 0);
-            this.pnlPlaylistCard4.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            this.pnlPlaylistCard4.Location = new System.Drawing.Point(840, 0);
+            this.pnlPlaylistCard4.Margin = new System.Windows.Forms.Padding(0, 0, 25, 25);
             this.pnlPlaylistCard4.Name = "pnlPlaylistCard4";
-            this.pnlPlaylistCard4.Size = new System.Drawing.Size(204, 210);
+            this.pnlPlaylistCard4.Size = new System.Drawing.Size(255, 262);
             this.pnlPlaylistCard4.TabIndex = 3;
             this.pnlPlaylistCard4.Tag = "Gym Pulse";
             this.pnlPlaylistCard4.Click += new System.EventHandler(this.pnlPlaylistCard_Click);
@@ -795,8 +838,9 @@ namespace Byte_me___Group_2
             this.lblPlaylistCover4.Font = new System.Drawing.Font("Segoe UI", 26F);
             this.lblPlaylistCover4.ForeColor = System.Drawing.Color.White;
             this.lblPlaylistCover4.Location = new System.Drawing.Point(0, 0);
+            this.lblPlaylistCover4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistCover4.Name = "lblPlaylistCover4";
-            this.lblPlaylistCover4.Size = new System.Drawing.Size(204, 140);
+            this.lblPlaylistCover4.Size = new System.Drawing.Size(255, 175);
             this.lblPlaylistCover4.TabIndex = 0;
             this.lblPlaylistCover4.Text = "♫";
             this.lblPlaylistCover4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -805,9 +849,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistTitle4.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblPlaylistTitle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.lblPlaylistTitle4.Location = new System.Drawing.Point(10, 150);
+            this.lblPlaylistTitle4.Location = new System.Drawing.Point(12, 188);
+            this.lblPlaylistTitle4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistTitle4.Name = "lblPlaylistTitle4";
-            this.lblPlaylistTitle4.Size = new System.Drawing.Size(184, 18);
+            this.lblPlaylistTitle4.Size = new System.Drawing.Size(230, 22);
             this.lblPlaylistTitle4.TabIndex = 1;
             this.lblPlaylistTitle4.Text = "Gym Pulse";
             // 
@@ -815,9 +860,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistCount4.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblPlaylistCount4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblPlaylistCount4.Location = new System.Drawing.Point(10, 170);
+            this.lblPlaylistCount4.Location = new System.Drawing.Point(12, 212);
+            this.lblPlaylistCount4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistCount4.Name = "lblPlaylistCount4";
-            this.lblPlaylistCount4.Size = new System.Drawing.Size(120, 16);
+            this.lblPlaylistCount4.Size = new System.Drawing.Size(150, 20);
             this.lblPlaylistCount4.TabIndex = 2;
             this.lblPlaylistCount4.Text = "6 tracks";
             // 
@@ -828,10 +874,10 @@ namespace Byte_me___Group_2
             this.pnlPlaylistCard5.Controls.Add(this.lblPlaylistTitle5);
             this.pnlPlaylistCard5.Controls.Add(this.lblPlaylistCount5);
             this.pnlPlaylistCard5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlPlaylistCard5.Location = new System.Drawing.Point(0, 230);
-            this.pnlPlaylistCard5.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            this.pnlPlaylistCard5.Location = new System.Drawing.Point(0, 287);
+            this.pnlPlaylistCard5.Margin = new System.Windows.Forms.Padding(0, 0, 25, 25);
             this.pnlPlaylistCard5.Name = "pnlPlaylistCard5";
-            this.pnlPlaylistCard5.Size = new System.Drawing.Size(204, 210);
+            this.pnlPlaylistCard5.Size = new System.Drawing.Size(255, 262);
             this.pnlPlaylistCard5.TabIndex = 4;
             this.pnlPlaylistCard5.Tag = "Acoustic Corner";
             this.pnlPlaylistCard5.Click += new System.EventHandler(this.pnlPlaylistCard_Click);
@@ -842,8 +888,9 @@ namespace Byte_me___Group_2
             this.lblPlaylistCover5.Font = new System.Drawing.Font("Segoe UI", 26F);
             this.lblPlaylistCover5.ForeColor = System.Drawing.Color.White;
             this.lblPlaylistCover5.Location = new System.Drawing.Point(0, 0);
+            this.lblPlaylistCover5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistCover5.Name = "lblPlaylistCover5";
-            this.lblPlaylistCover5.Size = new System.Drawing.Size(204, 140);
+            this.lblPlaylistCover5.Size = new System.Drawing.Size(255, 175);
             this.lblPlaylistCover5.TabIndex = 0;
             this.lblPlaylistCover5.Text = "♫";
             this.lblPlaylistCover5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -852,9 +899,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistTitle5.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblPlaylistTitle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.lblPlaylistTitle5.Location = new System.Drawing.Point(10, 150);
+            this.lblPlaylistTitle5.Location = new System.Drawing.Point(12, 188);
+            this.lblPlaylistTitle5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistTitle5.Name = "lblPlaylistTitle5";
-            this.lblPlaylistTitle5.Size = new System.Drawing.Size(184, 18);
+            this.lblPlaylistTitle5.Size = new System.Drawing.Size(230, 22);
             this.lblPlaylistTitle5.TabIndex = 1;
             this.lblPlaylistTitle5.Text = "Acoustic Corner";
             // 
@@ -862,9 +910,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistCount5.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblPlaylistCount5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblPlaylistCount5.Location = new System.Drawing.Point(10, 170);
+            this.lblPlaylistCount5.Location = new System.Drawing.Point(12, 212);
+            this.lblPlaylistCount5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistCount5.Name = "lblPlaylistCount5";
-            this.lblPlaylistCount5.Size = new System.Drawing.Size(120, 16);
+            this.lblPlaylistCount5.Size = new System.Drawing.Size(150, 20);
             this.lblPlaylistCount5.TabIndex = 2;
             this.lblPlaylistCount5.Text = "3 tracks";
             // 
@@ -875,10 +924,10 @@ namespace Byte_me___Group_2
             this.pnlPlaylistCard6.Controls.Add(this.lblPlaylistTitle6);
             this.pnlPlaylistCard6.Controls.Add(this.lblPlaylistCount6);
             this.pnlPlaylistCard6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlPlaylistCard6.Location = new System.Drawing.Point(224, 230);
-            this.pnlPlaylistCard6.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            this.pnlPlaylistCard6.Location = new System.Drawing.Point(280, 287);
+            this.pnlPlaylistCard6.Margin = new System.Windows.Forms.Padding(0, 0, 25, 25);
             this.pnlPlaylistCard6.Name = "pnlPlaylistCard6";
-            this.pnlPlaylistCard6.Size = new System.Drawing.Size(204, 210);
+            this.pnlPlaylistCard6.Size = new System.Drawing.Size(255, 262);
             this.pnlPlaylistCard6.TabIndex = 5;
             this.pnlPlaylistCard6.Tag = "Throwback 2000s";
             this.pnlPlaylistCard6.Click += new System.EventHandler(this.pnlPlaylistCard_Click);
@@ -889,8 +938,9 @@ namespace Byte_me___Group_2
             this.lblPlaylistCover6.Font = new System.Drawing.Font("Segoe UI", 26F);
             this.lblPlaylistCover6.ForeColor = System.Drawing.Color.White;
             this.lblPlaylistCover6.Location = new System.Drawing.Point(0, 0);
+            this.lblPlaylistCover6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistCover6.Name = "lblPlaylistCover6";
-            this.lblPlaylistCover6.Size = new System.Drawing.Size(204, 140);
+            this.lblPlaylistCover6.Size = new System.Drawing.Size(255, 175);
             this.lblPlaylistCover6.TabIndex = 0;
             this.lblPlaylistCover6.Text = "♫";
             this.lblPlaylistCover6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -899,9 +949,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistTitle6.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblPlaylistTitle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.lblPlaylistTitle6.Location = new System.Drawing.Point(10, 150);
+            this.lblPlaylistTitle6.Location = new System.Drawing.Point(12, 188);
+            this.lblPlaylistTitle6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistTitle6.Name = "lblPlaylistTitle6";
-            this.lblPlaylistTitle6.Size = new System.Drawing.Size(184, 18);
+            this.lblPlaylistTitle6.Size = new System.Drawing.Size(230, 22);
             this.lblPlaylistTitle6.TabIndex = 1;
             this.lblPlaylistTitle6.Text = "Throwback 2000s";
             // 
@@ -909,9 +960,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistCount6.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblPlaylistCount6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblPlaylistCount6.Location = new System.Drawing.Point(10, 170);
+            this.lblPlaylistCount6.Location = new System.Drawing.Point(12, 212);
+            this.lblPlaylistCount6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistCount6.Name = "lblPlaylistCount6";
-            this.lblPlaylistCount6.Size = new System.Drawing.Size(120, 16);
+            this.lblPlaylistCount6.Size = new System.Drawing.Size(150, 20);
             this.lblPlaylistCount6.TabIndex = 2;
             this.lblPlaylistCount6.Text = "4 tracks";
             // 
@@ -923,9 +975,10 @@ namespace Byte_me___Group_2
             this.btnNewPlaylistMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewPlaylistMain.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnNewPlaylistMain.ForeColor = System.Drawing.Color.White;
-            this.btnNewPlaylistMain.Location = new System.Drawing.Point(766, 268);
+            this.btnNewPlaylistMain.Location = new System.Drawing.Point(958, 335);
+            this.btnNewPlaylistMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNewPlaylistMain.Name = "btnNewPlaylistMain";
-            this.btnNewPlaylistMain.Size = new System.Drawing.Size(150, 36);
+            this.btnNewPlaylistMain.Size = new System.Drawing.Size(188, 45);
             this.btnNewPlaylistMain.TabIndex = 7;
             this.btnNewPlaylistMain.Text = "+  New Playlist";
             this.btnNewPlaylistMain.UseVisualStyleBackColor = false;
@@ -939,9 +992,10 @@ namespace Byte_me___Group_2
             this.btnUploadSongMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUploadSongMain.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnUploadSongMain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.btnUploadSongMain.Location = new System.Drawing.Point(616, 268);
+            this.btnUploadSongMain.Location = new System.Drawing.Point(770, 335);
+            this.btnUploadSongMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUploadSongMain.Name = "btnUploadSongMain";
-            this.btnUploadSongMain.Size = new System.Drawing.Size(130, 36);
+            this.btnUploadSongMain.Size = new System.Drawing.Size(162, 45);
             this.btnUploadSongMain.TabIndex = 6;
             this.btnUploadSongMain.Text = "↓  Upload Song";
             this.btnUploadSongMain.UseVisualStyleBackColor = false;
@@ -951,9 +1005,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistsSectionHeader.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
             this.lblPlaylistsSectionHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.lblPlaylistsSectionHeader.Location = new System.Drawing.Point(26, 278);
+            this.lblPlaylistsSectionHeader.Location = new System.Drawing.Point(32, 348);
+            this.lblPlaylistsSectionHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlaylistsSectionHeader.Name = "lblPlaylistsSectionHeader";
-            this.lblPlaylistsSectionHeader.Size = new System.Drawing.Size(220, 26);
+            this.lblPlaylistsSectionHeader.Size = new System.Drawing.Size(275, 32);
             this.lblPlaylistsSectionHeader.TabIndex = 5;
             this.lblPlaylistsSectionHeader.Text = "Your playlists";
             // 
@@ -974,18 +1029,20 @@ namespace Byte_me___Group_2
             this.pnlStatArtist.Controls.Add(this.lblArtistName3);
             this.pnlStatArtist.Controls.Add(this.pnlArtistBarBg3);
             this.pnlStatArtist.Controls.Add(this.pnlArtistBarFill3);
-            this.pnlStatArtist.Location = new System.Drawing.Point(616, 108);
+            this.pnlStatArtist.Location = new System.Drawing.Point(770, 135);
+            this.pnlStatArtist.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlStatArtist.Name = "pnlStatArtist";
-            this.pnlStatArtist.Size = new System.Drawing.Size(280, 140);
+            this.pnlStatArtist.Size = new System.Drawing.Size(350, 174);
             this.pnlStatArtist.TabIndex = 4;
             // 
             // lblStatArtistCaption
             // 
             this.lblStatArtistCaption.Font = new System.Drawing.Font("Segoe UI", 7.5F, System.Drawing.FontStyle.Bold);
             this.lblStatArtistCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblStatArtistCaption.Location = new System.Drawing.Point(16, 14);
+            this.lblStatArtistCaption.Location = new System.Drawing.Point(20, 18);
+            this.lblStatArtistCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatArtistCaption.Name = "lblStatArtistCaption";
-            this.lblStatArtistCaption.Size = new System.Drawing.Size(160, 14);
+            this.lblStatArtistCaption.Size = new System.Drawing.Size(200, 18);
             this.lblStatArtistCaption.TabIndex = 0;
             this.lblStatArtistCaption.Text = "TOP ARTIST";
             // 
@@ -994,9 +1051,10 @@ namespace Byte_me___Group_2
             this.lblStatArtistIcon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(233)))), ((int)(((byte)(254)))));
             this.lblStatArtistIcon.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.lblStatArtistIcon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
-            this.lblStatArtistIcon.Location = new System.Drawing.Point(234, 12);
+            this.lblStatArtistIcon.Location = new System.Drawing.Point(292, 15);
+            this.lblStatArtistIcon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatArtistIcon.Name = "lblStatArtistIcon";
-            this.lblStatArtistIcon.Size = new System.Drawing.Size(28, 28);
+            this.lblStatArtistIcon.Size = new System.Drawing.Size(35, 35);
             this.lblStatArtistIcon.TabIndex = 1;
             this.lblStatArtistIcon.Text = "☺";
             this.lblStatArtistIcon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1005,9 +1063,10 @@ namespace Byte_me___Group_2
             // 
             this.lblStatArtistValue.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
             this.lblStatArtistValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.lblStatArtistValue.Location = new System.Drawing.Point(14, 36);
+            this.lblStatArtistValue.Location = new System.Drawing.Point(18, 45);
+            this.lblStatArtistValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatArtistValue.Name = "lblStatArtistValue";
-            this.lblStatArtistValue.Size = new System.Drawing.Size(200, 22);
+            this.lblStatArtistValue.Size = new System.Drawing.Size(250, 28);
             this.lblStatArtistValue.TabIndex = 2;
             this.lblStatArtistValue.Text = "Vela Kane";
             // 
@@ -1015,9 +1074,10 @@ namespace Byte_me___Group_2
             // 
             this.lblStatArtistSub.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblStatArtistSub.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
-            this.lblStatArtistSub.Location = new System.Drawing.Point(16, 60);
+            this.lblStatArtistSub.Location = new System.Drawing.Point(20, 75);
+            this.lblStatArtistSub.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatArtistSub.Name = "lblStatArtistSub";
-            this.lblStatArtistSub.Size = new System.Drawing.Size(200, 16);
+            this.lblStatArtistSub.Size = new System.Drawing.Size(250, 20);
             this.lblStatArtistSub.TabIndex = 3;
             this.lblStatArtistSub.Text = "42 plays this week";
             // 
@@ -1025,78 +1085,87 @@ namespace Byte_me___Group_2
             // 
             this.lblArtistName1.Font = new System.Drawing.Font("Segoe UI", 7.5F);
             this.lblArtistName1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.lblArtistName1.Location = new System.Drawing.Point(16, 86);
+            this.lblArtistName1.Location = new System.Drawing.Point(20, 108);
+            this.lblArtistName1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblArtistName1.Name = "lblArtistName1";
-            this.lblArtistName1.Size = new System.Drawing.Size(72, 13);
+            this.lblArtistName1.Size = new System.Drawing.Size(90, 16);
             this.lblArtistName1.TabIndex = 4;
             this.lblArtistName1.Text = "Vela Kane";
             // 
             // pnlArtistBarBg1
             // 
             this.pnlArtistBarBg1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(233)))), ((int)(((byte)(254)))));
-            this.pnlArtistBarBg1.Location = new System.Drawing.Point(92, 87);
+            this.pnlArtistBarBg1.Location = new System.Drawing.Point(115, 109);
+            this.pnlArtistBarBg1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlArtistBarBg1.Name = "pnlArtistBarBg1";
-            this.pnlArtistBarBg1.Size = new System.Drawing.Size(150, 8);
+            this.pnlArtistBarBg1.Size = new System.Drawing.Size(188, 10);
             this.pnlArtistBarBg1.TabIndex = 5;
             // 
             // pnlArtistBarFill1
             // 
             this.pnlArtistBarFill1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
-            this.pnlArtistBarFill1.Location = new System.Drawing.Point(92, 87);
+            this.pnlArtistBarFill1.Location = new System.Drawing.Point(115, 109);
+            this.pnlArtistBarFill1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlArtistBarFill1.Name = "pnlArtistBarFill1";
-            this.pnlArtistBarFill1.Size = new System.Drawing.Size(150, 8);
+            this.pnlArtistBarFill1.Size = new System.Drawing.Size(188, 10);
             this.pnlArtistBarFill1.TabIndex = 6;
             // 
             // lblArtistName2
             // 
             this.lblArtistName2.Font = new System.Drawing.Font("Segoe UI", 7.5F);
             this.lblArtistName2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.lblArtistName2.Location = new System.Drawing.Point(16, 104);
+            this.lblArtistName2.Location = new System.Drawing.Point(20, 130);
+            this.lblArtistName2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblArtistName2.Name = "lblArtistName2";
-            this.lblArtistName2.Size = new System.Drawing.Size(72, 13);
+            this.lblArtistName2.Size = new System.Drawing.Size(90, 16);
             this.lblArtistName2.TabIndex = 7;
             this.lblArtistName2.Text = "Marigold Hush";
             // 
             // pnlArtistBarBg2
             // 
             this.pnlArtistBarBg2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(233)))), ((int)(((byte)(254)))));
-            this.pnlArtistBarBg2.Location = new System.Drawing.Point(92, 105);
+            this.pnlArtistBarBg2.Location = new System.Drawing.Point(115, 131);
+            this.pnlArtistBarBg2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlArtistBarBg2.Name = "pnlArtistBarBg2";
-            this.pnlArtistBarBg2.Size = new System.Drawing.Size(150, 8);
+            this.pnlArtistBarBg2.Size = new System.Drawing.Size(188, 10);
             this.pnlArtistBarBg2.TabIndex = 8;
             // 
             // pnlArtistBarFill2
             // 
             this.pnlArtistBarFill2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
-            this.pnlArtistBarFill2.Location = new System.Drawing.Point(92, 105);
+            this.pnlArtistBarFill2.Location = new System.Drawing.Point(115, 131);
+            this.pnlArtistBarFill2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlArtistBarFill2.Name = "pnlArtistBarFill2";
-            this.pnlArtistBarFill2.Size = new System.Drawing.Size(112, 8);
+            this.pnlArtistBarFill2.Size = new System.Drawing.Size(140, 10);
             this.pnlArtistBarFill2.TabIndex = 9;
             // 
             // lblArtistName3
             // 
             this.lblArtistName3.Font = new System.Drawing.Font("Segoe UI", 7.5F);
             this.lblArtistName3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.lblArtistName3.Location = new System.Drawing.Point(16, 122);
+            this.lblArtistName3.Location = new System.Drawing.Point(20, 152);
+            this.lblArtistName3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblArtistName3.Name = "lblArtistName3";
-            this.lblArtistName3.Size = new System.Drawing.Size(72, 13);
+            this.lblArtistName3.Size = new System.Drawing.Size(90, 16);
             this.lblArtistName3.TabIndex = 10;
             this.lblArtistName3.Text = "Aria Fenn";
             // 
             // pnlArtistBarBg3
             // 
             this.pnlArtistBarBg3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(233)))), ((int)(((byte)(254)))));
-            this.pnlArtistBarBg3.Location = new System.Drawing.Point(92, 123);
+            this.pnlArtistBarBg3.Location = new System.Drawing.Point(115, 154);
+            this.pnlArtistBarBg3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlArtistBarBg3.Name = "pnlArtistBarBg3";
-            this.pnlArtistBarBg3.Size = new System.Drawing.Size(150, 8);
+            this.pnlArtistBarBg3.Size = new System.Drawing.Size(188, 10);
             this.pnlArtistBarBg3.TabIndex = 11;
             // 
             // pnlArtistBarFill3
             // 
             this.pnlArtistBarFill3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
-            this.pnlArtistBarFill3.Location = new System.Drawing.Point(92, 123);
+            this.pnlArtistBarFill3.Location = new System.Drawing.Point(115, 154);
+            this.pnlArtistBarFill3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlArtistBarFill3.Name = "pnlArtistBarFill3";
-            this.pnlArtistBarFill3.Size = new System.Drawing.Size(68, 8);
+            this.pnlArtistBarFill3.Size = new System.Drawing.Size(85, 10);
             this.pnlArtistBarFill3.TabIndex = 12;
             // 
             // pnlStatTracks
@@ -1108,18 +1177,20 @@ namespace Byte_me___Group_2
             this.pnlStatTracks.Controls.Add(this.lblStatTracksValue);
             this.pnlStatTracks.Controls.Add(this.lblStatTracksSub);
             this.pnlStatTracks.Controls.Add(this.lblStatTracksTrendIcon);
-            this.pnlStatTracks.Location = new System.Drawing.Point(314, 108);
+            this.pnlStatTracks.Location = new System.Drawing.Point(392, 135);
+            this.pnlStatTracks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlStatTracks.Name = "pnlStatTracks";
-            this.pnlStatTracks.Size = new System.Drawing.Size(280, 140);
+            this.pnlStatTracks.Size = new System.Drawing.Size(350, 174);
             this.pnlStatTracks.TabIndex = 3;
             // 
             // lblStatTracksCaption
             // 
             this.lblStatTracksCaption.Font = new System.Drawing.Font("Segoe UI", 7.5F, System.Drawing.FontStyle.Bold);
             this.lblStatTracksCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblStatTracksCaption.Location = new System.Drawing.Point(16, 14);
+            this.lblStatTracksCaption.Location = new System.Drawing.Point(20, 18);
+            this.lblStatTracksCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatTracksCaption.Name = "lblStatTracksCaption";
-            this.lblStatTracksCaption.Size = new System.Drawing.Size(160, 14);
+            this.lblStatTracksCaption.Size = new System.Drawing.Size(200, 18);
             this.lblStatTracksCaption.TabIndex = 0;
             this.lblStatTracksCaption.Text = "TOTAL TRACKS";
             // 
@@ -1128,9 +1199,10 @@ namespace Byte_me___Group_2
             this.lblStatTracksIcon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(233)))), ((int)(((byte)(254)))));
             this.lblStatTracksIcon.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.lblStatTracksIcon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
-            this.lblStatTracksIcon.Location = new System.Drawing.Point(234, 12);
+            this.lblStatTracksIcon.Location = new System.Drawing.Point(292, 15);
+            this.lblStatTracksIcon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatTracksIcon.Name = "lblStatTracksIcon";
-            this.lblStatTracksIcon.Size = new System.Drawing.Size(28, 28);
+            this.lblStatTracksIcon.Size = new System.Drawing.Size(35, 35);
             this.lblStatTracksIcon.TabIndex = 1;
             this.lblStatTracksIcon.Text = "♪";
             this.lblStatTracksIcon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1139,9 +1211,10 @@ namespace Byte_me___Group_2
             // 
             this.lblStatTracksValue.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold);
             this.lblStatTracksValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.lblStatTracksValue.Location = new System.Drawing.Point(14, 36);
+            this.lblStatTracksValue.Location = new System.Drawing.Point(18, 45);
+            this.lblStatTracksValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatTracksValue.Name = "lblStatTracksValue";
-            this.lblStatTracksValue.Size = new System.Drawing.Size(90, 36);
+            this.lblStatTracksValue.Size = new System.Drawing.Size(112, 45);
             this.lblStatTracksValue.TabIndex = 2;
             this.lblStatTracksValue.Text = "30";
             // 
@@ -1149,9 +1222,10 @@ namespace Byte_me___Group_2
             // 
             this.lblStatTracksSub.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblStatTracksSub.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblStatTracksSub.Location = new System.Drawing.Point(16, 76);
+            this.lblStatTracksSub.Location = new System.Drawing.Point(20, 95);
+            this.lblStatTracksSub.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatTracksSub.Name = "lblStatTracksSub";
-            this.lblStatTracksSub.Size = new System.Drawing.Size(200, 16);
+            this.lblStatTracksSub.Size = new System.Drawing.Size(250, 20);
             this.lblStatTracksSub.TabIndex = 3;
             this.lblStatTracksSub.Text = "Across all playlists";
             // 
@@ -1159,9 +1233,10 @@ namespace Byte_me___Group_2
             // 
             this.lblStatTracksTrendIcon.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.lblStatTracksTrendIcon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
-            this.lblStatTracksTrendIcon.Location = new System.Drawing.Point(224, 90);
+            this.lblStatTracksTrendIcon.Location = new System.Drawing.Point(280, 112);
+            this.lblStatTracksTrendIcon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatTracksTrendIcon.Name = "lblStatTracksTrendIcon";
-            this.lblStatTracksTrendIcon.Size = new System.Drawing.Size(40, 34);
+            this.lblStatTracksTrendIcon.Size = new System.Drawing.Size(50, 42);
             this.lblStatTracksTrendIcon.TabIndex = 4;
             this.lblStatTracksTrendIcon.Text = "↗";
             this.lblStatTracksTrendIcon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1180,18 +1255,20 @@ namespace Byte_me___Group_2
             this.pnlStatPlaylists.Controls.Add(this.pnlBarPlaylists4);
             this.pnlStatPlaylists.Controls.Add(this.pnlBarPlaylists5);
             this.pnlStatPlaylists.Controls.Add(this.pnlBarPlaylists6);
-            this.pnlStatPlaylists.Location = new System.Drawing.Point(17, 108);
+            this.pnlStatPlaylists.Location = new System.Drawing.Point(21, 135);
+            this.pnlStatPlaylists.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlStatPlaylists.Name = "pnlStatPlaylists";
-            this.pnlStatPlaylists.Size = new System.Drawing.Size(280, 140);
+            this.pnlStatPlaylists.Size = new System.Drawing.Size(350, 174);
             this.pnlStatPlaylists.TabIndex = 2;
             // 
             // lblStatPlaylistsCaption
             // 
             this.lblStatPlaylistsCaption.Font = new System.Drawing.Font("Segoe UI", 7.5F, System.Drawing.FontStyle.Bold);
             this.lblStatPlaylistsCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblStatPlaylistsCaption.Location = new System.Drawing.Point(16, 14);
+            this.lblStatPlaylistsCaption.Location = new System.Drawing.Point(20, 18);
+            this.lblStatPlaylistsCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatPlaylistsCaption.Name = "lblStatPlaylistsCaption";
-            this.lblStatPlaylistsCaption.Size = new System.Drawing.Size(160, 14);
+            this.lblStatPlaylistsCaption.Size = new System.Drawing.Size(200, 18);
             this.lblStatPlaylistsCaption.TabIndex = 0;
             this.lblStatPlaylistsCaption.Text = "TOTAL PLAYLISTS";
             // 
@@ -1200,9 +1277,10 @@ namespace Byte_me___Group_2
             this.lblStatPlaylistsIcon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(233)))), ((int)(((byte)(254)))));
             this.lblStatPlaylistsIcon.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.lblStatPlaylistsIcon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
-            this.lblStatPlaylistsIcon.Location = new System.Drawing.Point(234, 12);
+            this.lblStatPlaylistsIcon.Location = new System.Drawing.Point(292, 15);
+            this.lblStatPlaylistsIcon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatPlaylistsIcon.Name = "lblStatPlaylistsIcon";
-            this.lblStatPlaylistsIcon.Size = new System.Drawing.Size(28, 28);
+            this.lblStatPlaylistsIcon.Size = new System.Drawing.Size(35, 35);
             this.lblStatPlaylistsIcon.TabIndex = 1;
             this.lblStatPlaylistsIcon.Text = "☰";
             this.lblStatPlaylistsIcon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1211,9 +1289,10 @@ namespace Byte_me___Group_2
             // 
             this.lblStatPlaylistsValue.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold);
             this.lblStatPlaylistsValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.lblStatPlaylistsValue.Location = new System.Drawing.Point(14, 36);
+            this.lblStatPlaylistsValue.Location = new System.Drawing.Point(18, 45);
+            this.lblStatPlaylistsValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatPlaylistsValue.Name = "lblStatPlaylistsValue";
-            this.lblStatPlaylistsValue.Size = new System.Drawing.Size(90, 36);
+            this.lblStatPlaylistsValue.Size = new System.Drawing.Size(112, 45);
             this.lblStatPlaylistsValue.TabIndex = 2;
             this.lblStatPlaylistsValue.Text = "6";
             // 
@@ -1221,58 +1300,65 @@ namespace Byte_me___Group_2
             // 
             this.lblStatPlaylistsSub.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblStatPlaylistsSub.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblStatPlaylistsSub.Location = new System.Drawing.Point(16, 76);
+            this.lblStatPlaylistsSub.Location = new System.Drawing.Point(20, 95);
+            this.lblStatPlaylistsSub.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatPlaylistsSub.Name = "lblStatPlaylistsSub";
-            this.lblStatPlaylistsSub.Size = new System.Drawing.Size(200, 16);
+            this.lblStatPlaylistsSub.Size = new System.Drawing.Size(250, 20);
             this.lblStatPlaylistsSub.TabIndex = 3;
             this.lblStatPlaylistsSub.Text = "2 created this month";
             // 
             // pnlBarPlaylists1
             // 
             this.pnlBarPlaylists1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(214)))), ((int)(((byte)(254)))));
-            this.pnlBarPlaylists1.Location = new System.Drawing.Point(16, 122);
+            this.pnlBarPlaylists1.Location = new System.Drawing.Point(20, 152);
+            this.pnlBarPlaylists1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlBarPlaylists1.Name = "pnlBarPlaylists1";
-            this.pnlBarPlaylists1.Size = new System.Drawing.Size(20, 8);
+            this.pnlBarPlaylists1.Size = new System.Drawing.Size(25, 10);
             this.pnlBarPlaylists1.TabIndex = 4;
             // 
             // pnlBarPlaylists2
             // 
             this.pnlBarPlaylists2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(214)))), ((int)(((byte)(254)))));
-            this.pnlBarPlaylists2.Location = new System.Drawing.Point(42, 118);
+            this.pnlBarPlaylists2.Location = new System.Drawing.Point(52, 148);
+            this.pnlBarPlaylists2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlBarPlaylists2.Name = "pnlBarPlaylists2";
-            this.pnlBarPlaylists2.Size = new System.Drawing.Size(20, 12);
+            this.pnlBarPlaylists2.Size = new System.Drawing.Size(25, 15);
             this.pnlBarPlaylists2.TabIndex = 5;
             // 
             // pnlBarPlaylists3
             // 
             this.pnlBarPlaylists3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(214)))), ((int)(((byte)(254)))));
-            this.pnlBarPlaylists3.Location = new System.Drawing.Point(68, 120);
+            this.pnlBarPlaylists3.Location = new System.Drawing.Point(85, 150);
+            this.pnlBarPlaylists3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlBarPlaylists3.Name = "pnlBarPlaylists3";
-            this.pnlBarPlaylists3.Size = new System.Drawing.Size(20, 10);
+            this.pnlBarPlaylists3.Size = new System.Drawing.Size(25, 12);
             this.pnlBarPlaylists3.TabIndex = 6;
             // 
             // pnlBarPlaylists4
             // 
             this.pnlBarPlaylists4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(214)))), ((int)(((byte)(254)))));
-            this.pnlBarPlaylists4.Location = new System.Drawing.Point(94, 116);
+            this.pnlBarPlaylists4.Location = new System.Drawing.Point(118, 145);
+            this.pnlBarPlaylists4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlBarPlaylists4.Name = "pnlBarPlaylists4";
-            this.pnlBarPlaylists4.Size = new System.Drawing.Size(20, 14);
+            this.pnlBarPlaylists4.Size = new System.Drawing.Size(25, 18);
             this.pnlBarPlaylists4.TabIndex = 7;
             // 
             // pnlBarPlaylists5
             // 
             this.pnlBarPlaylists5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(214)))), ((int)(((byte)(254)))));
-            this.pnlBarPlaylists5.Location = new System.Drawing.Point(120, 112);
+            this.pnlBarPlaylists5.Location = new System.Drawing.Point(150, 140);
+            this.pnlBarPlaylists5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlBarPlaylists5.Name = "pnlBarPlaylists5";
-            this.pnlBarPlaylists5.Size = new System.Drawing.Size(20, 18);
+            this.pnlBarPlaylists5.Size = new System.Drawing.Size(25, 22);
             this.pnlBarPlaylists5.TabIndex = 8;
             // 
             // pnlBarPlaylists6
             // 
             this.pnlBarPlaylists6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
-            this.pnlBarPlaylists6.Location = new System.Drawing.Point(146, 98);
+            this.pnlBarPlaylists6.Location = new System.Drawing.Point(182, 122);
+            this.pnlBarPlaylists6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlBarPlaylists6.Name = "pnlBarPlaylists6";
-            this.pnlBarPlaylists6.Size = new System.Drawing.Size(20, 32);
+            this.pnlBarPlaylists6.Size = new System.Drawing.Size(25, 40);
             this.pnlBarPlaylists6.TabIndex = 9;
             // 
             // txtSearch
@@ -1280,9 +1366,10 @@ namespace Byte_me___Group_2
             this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
-            this.txtSearch.Location = new System.Drawing.Point(518, 18);
+            this.txtSearch.Location = new System.Drawing.Point(648, 22);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(260, 23);
+            this.txtSearch.Size = new System.Drawing.Size(324, 27);
             this.txtSearch.TabIndex = 2;
             this.txtSearch.Text = "Search playlists or songs...";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
@@ -1295,9 +1382,10 @@ namespace Byte_me___Group_2
             this.lblThemeToggle.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblThemeToggle.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.lblThemeToggle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.lblThemeToggle.Location = new System.Drawing.Point(802, 9);
+            this.lblThemeToggle.Location = new System.Drawing.Point(1002, 11);
+            this.lblThemeToggle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblThemeToggle.Name = "lblThemeToggle";
-            this.lblThemeToggle.Size = new System.Drawing.Size(30, 30);
+            this.lblThemeToggle.Size = new System.Drawing.Size(38, 38);
             this.lblThemeToggle.TabIndex = 3;
             this.lblThemeToggle.Text = "☀";
             this.lblThemeToggle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1308,9 +1396,10 @@ namespace Byte_me___Group_2
             this.lblAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
             this.lblAvatar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblAvatar.ForeColor = System.Drawing.Color.White;
-            this.lblAvatar.Location = new System.Drawing.Point(839, 6);
+            this.lblAvatar.Location = new System.Drawing.Point(1049, 8);
+            this.lblAvatar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAvatar.Name = "lblAvatar";
-            this.lblAvatar.Size = new System.Drawing.Size(34, 34);
+            this.lblAvatar.Size = new System.Drawing.Size(42, 42);
             this.lblAvatar.TabIndex = 4;
             this.lblAvatar.Text = "LM";
             this.lblAvatar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1319,9 +1408,10 @@ namespace Byte_me___Group_2
             // 
             this.lblMainWelcomeSub.Font = new System.Drawing.Font("Segoe UI", 9.5F);
             this.lblMainWelcomeSub.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
-            this.lblMainWelcomeSub.Location = new System.Drawing.Point(14, 39);
+            this.lblMainWelcomeSub.Location = new System.Drawing.Point(18, 49);
+            this.lblMainWelcomeSub.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMainWelcomeSub.Name = "lblMainWelcomeSub";
-            this.lblMainWelcomeSub.Size = new System.Drawing.Size(420, 18);
+            this.lblMainWelcomeSub.Size = new System.Drawing.Size(525, 22);
             this.lblMainWelcomeSub.TabIndex = 1;
             this.lblMainWelcomeSub.Text = "Here\'s what\'s happening in your library today.";
             // 
@@ -1329,9 +1419,10 @@ namespace Byte_me___Group_2
             // 
             this.lblMainWelcome.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.lblMainWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.lblMainWelcome.Location = new System.Drawing.Point(11, 7);
+            this.lblMainWelcome.Location = new System.Drawing.Point(14, 9);
+            this.lblMainWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMainWelcome.Name = "lblMainWelcome";
-            this.lblMainWelcome.Size = new System.Drawing.Size(460, 32);
+            this.lblMainWelcome.Size = new System.Drawing.Size(575, 40);
             this.lblMainWelcome.TabIndex = 0;
             this.lblMainWelcome.Text = "Welcome back, Lerato";
             // 
@@ -1344,20 +1435,20 @@ namespace Byte_me___Group_2
             this.pnlPlaylist.Controls.Add(this.pnlPlaylistHeader);
             this.pnlPlaylist.Controls.Add(this.lblPlaylistPathName);
             this.pnlPlaylist.Controls.Add(this.pnlTopBar);
-            this.pnlPlaylist.Location = new System.Drawing.Point(1199, 108);
+            this.pnlPlaylist.Location = new System.Drawing.Point(1499, 135);
             this.pnlPlaylist.Margin = new System.Windows.Forms.Padding(2);
             this.pnlPlaylist.Name = "pnlPlaylist";
-            this.pnlPlaylist.Size = new System.Drawing.Size(922, 518);
+            this.pnlPlaylist.Size = new System.Drawing.Size(1152, 648);
             this.pnlPlaylist.TabIndex = 5;
             // 
             // btnBackHome
             // 
             this.btnBackHome.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBackHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBackHome.Location = new System.Drawing.Point(567, 0);
+            this.btnBackHome.Location = new System.Drawing.Point(709, 0);
             this.btnBackHome.Margin = new System.Windows.Forms.Padding(2);
             this.btnBackHome.Name = "btnBackHome";
-            this.btnBackHome.Size = new System.Drawing.Size(72, 62);
+            this.btnBackHome.Size = new System.Drawing.Size(90, 78);
             this.btnBackHome.TabIndex = 12;
             this.btnBackHome.Text = "Back";
             this.btnBackHome.UseVisualStyleBackColor = true;
@@ -1367,10 +1458,10 @@ namespace Byte_me___Group_2
             // 
             this.lblBreadcrumb.AutoSize = true;
             this.lblBreadcrumb.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblBreadcrumb.Location = new System.Drawing.Point(10, 82);
+            this.lblBreadcrumb.Location = new System.Drawing.Point(12, 102);
             this.lblBreadcrumb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBreadcrumb.Name = "lblBreadcrumb";
-            this.lblBreadcrumb.Size = new System.Drawing.Size(43, 13);
+            this.lblBreadcrumb.Size = new System.Drawing.Size(51, 16);
             this.lblBreadcrumb.TabIndex = 11;
             this.lblBreadcrumb.Text = "Home /";
             this.lblBreadcrumb.Click += new System.EventHandler(this.lblBreadcrumb_Click);
@@ -1379,10 +1470,10 @@ namespace Byte_me___Group_2
             // 
             this.flpSongs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
             this.flpSongs.Controls.Add(this.panel3);
-            this.flpSongs.Location = new System.Drawing.Point(10, 262);
+            this.flpSongs.Location = new System.Drawing.Point(12, 328);
             this.flpSongs.Margin = new System.Windows.Forms.Padding(2);
             this.flpSongs.Name = "flpSongs";
-            this.flpSongs.Size = new System.Drawing.Size(630, 251);
+            this.flpSongs.Size = new System.Drawing.Size(788, 314);
             this.flpSongs.TabIndex = 10;
             // 
             // panel3
@@ -1393,36 +1484,36 @@ namespace Byte_me___Group_2
             this.panel3.Location = new System.Drawing.Point(2, 2);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(625, 37);
+            this.panel3.Size = new System.Drawing.Size(781, 46);
             this.panel3.TabIndex = 1;
             // 
             // lblDuration
             // 
             this.lblDuration.AutoSize = true;
-            this.lblDuration.Location = new System.Drawing.Point(338, 10);
+            this.lblDuration.Location = new System.Drawing.Point(422, 12);
             this.lblDuration.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDuration.Name = "lblDuration";
-            this.lblDuration.Size = new System.Drawing.Size(64, 13);
+            this.lblDuration.Size = new System.Drawing.Size(78, 16);
             this.lblDuration.TabIndex = 2;
             this.lblDuration.Text = "DURATION";
             // 
             // lblArtist
             // 
             this.lblArtist.AutoSize = true;
-            this.lblArtist.Location = new System.Drawing.Point(193, 10);
+            this.lblArtist.Location = new System.Drawing.Point(241, 12);
             this.lblArtist.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblArtist.Name = "lblArtist";
-            this.lblArtist.Size = new System.Drawing.Size(46, 13);
+            this.lblArtist.Size = new System.Drawing.Size(56, 16);
             this.lblArtist.TabIndex = 1;
             this.lblArtist.Text = "ARTIST";
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(14, 10);
+            this.lblTitle.Location = new System.Drawing.Point(18, 12);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(44, 13);
+            this.lblTitle.Size = new System.Drawing.Size(53, 16);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "TITLES";
             // 
@@ -1440,56 +1531,56 @@ namespace Byte_me___Group_2
             this.panel2.Controls.Add(this.lblArtistName);
             this.panel2.Controls.Add(this.lblCurrentSong);
             this.panel2.Controls.Add(this.picAlbumArt);
-            this.panel2.Location = new System.Drawing.Point(10, 183);
+            this.panel2.Location = new System.Drawing.Point(12, 229);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(630, 65);
+            this.panel2.Size = new System.Drawing.Size(788, 81);
             this.panel2.TabIndex = 9;
             // 
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(586, 25);
+            this.lblTime.Location = new System.Drawing.Point(732, 31);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(28, 13);
+            this.lblTime.Size = new System.Drawing.Size(31, 16);
             this.lblTime.TabIndex = 11;
             this.lblTime.Text = "3:42";
             // 
             // lblD
             // 
             this.lblD.AutoSize = true;
-            this.lblD.Location = new System.Drawing.Point(578, 30);
+            this.lblD.Location = new System.Drawing.Point(722, 38);
             this.lblD.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblD.Name = "lblD";
-            this.lblD.Size = new System.Drawing.Size(0, 13);
+            this.lblD.Size = new System.Drawing.Size(0, 16);
             this.lblD.TabIndex = 10;
             // 
             // lblElpased
             // 
             this.lblElpased.AutoSize = true;
-            this.lblElpased.Location = new System.Drawing.Point(355, 30);
+            this.lblElpased.Location = new System.Drawing.Point(444, 38);
             this.lblElpased.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblElpased.Name = "lblElpased";
-            this.lblElpased.Size = new System.Drawing.Size(28, 13);
+            this.lblElpased.Size = new System.Drawing.Size(31, 16);
             this.lblElpased.TabIndex = 9;
             this.lblElpased.Text = "1:24";
             // 
             // trkProgress
             // 
-            this.trkProgress.Location = new System.Drawing.Point(381, 6);
+            this.trkProgress.Location = new System.Drawing.Point(476, 8);
             this.trkProgress.Margin = new System.Windows.Forms.Padding(2);
             this.trkProgress.Name = "trkProgress";
-            this.trkProgress.Size = new System.Drawing.Size(202, 45);
+            this.trkProgress.Size = new System.Drawing.Size(252, 56);
             this.trkProgress.TabIndex = 8;
             // 
             // btnShuffle
             // 
             this.btnShuffle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnShuffle.Location = new System.Drawing.Point(312, 21);
+            this.btnShuffle.Location = new System.Drawing.Point(390, 26);
             this.btnShuffle.Margin = new System.Windows.Forms.Padding(2);
             this.btnShuffle.Name = "btnShuffle";
-            this.btnShuffle.Size = new System.Drawing.Size(21, 22);
+            this.btnShuffle.Size = new System.Drawing.Size(26, 28);
             this.btnShuffle.TabIndex = 7;
             this.btnShuffle.Text = "🔀";
             this.btnShuffle.UseVisualStyleBackColor = true;
@@ -1497,10 +1588,10 @@ namespace Byte_me___Group_2
             // btnNext
             // 
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNext.Location = new System.Drawing.Point(279, 25);
+            this.btnNext.Location = new System.Drawing.Point(349, 31);
             this.btnNext.Margin = new System.Windows.Forms.Padding(2);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(29, 18);
+            this.btnNext.Size = new System.Drawing.Size(36, 22);
             this.btnNext.TabIndex = 6;
             this.btnNext.Text = "▶I";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -1508,10 +1599,10 @@ namespace Byte_me___Group_2
             // btnPlay
             // 
             this.btnPlay.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPlay.Location = new System.Drawing.Point(222, 26);
+            this.btnPlay.Location = new System.Drawing.Point(278, 32);
             this.btnPlay.Margin = new System.Windows.Forms.Padding(2);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(54, 17);
+            this.btnPlay.Size = new System.Drawing.Size(68, 21);
             this.btnPlay.TabIndex = 5;
             this.btnPlay.Text = "I I";
             this.btnPlay.UseVisualStyleBackColor = true;
@@ -1519,10 +1610,10 @@ namespace Byte_me___Group_2
             // btnBack
             // 
             this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBack.Location = new System.Drawing.Point(198, 24);
+            this.btnBack.Location = new System.Drawing.Point(248, 30);
             this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(20, 19);
+            this.btnBack.Size = new System.Drawing.Size(25, 24);
             this.btnBack.TabIndex = 4;
             this.btnBack.Text = "◀";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -1530,10 +1621,10 @@ namespace Byte_me___Group_2
             // btnPrevious
             // 
             this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrevious.Location = new System.Drawing.Point(170, 22);
+            this.btnPrevious.Location = new System.Drawing.Point(212, 28);
             this.btnPrevious.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(22, 24);
+            this.btnPrevious.Size = new System.Drawing.Size(28, 30);
             this.btnPrevious.TabIndex = 3;
             this.btnPrevious.Text = "I◀";
             this.btnPrevious.UseVisualStyleBackColor = true;
@@ -1541,10 +1632,10 @@ namespace Byte_me___Group_2
             // lblArtistName
             // 
             this.lblArtistName.AutoSize = true;
-            this.lblArtistName.Location = new System.Drawing.Point(85, 27);
+            this.lblArtistName.Location = new System.Drawing.Point(106, 34);
             this.lblArtistName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblArtistName.Name = "lblArtistName";
-            this.lblArtistName.Size = new System.Drawing.Size(56, 13);
+            this.lblArtistName.Size = new System.Drawing.Size(69, 16);
             this.lblArtistName.TabIndex = 2;
             this.lblArtistName.Text = "Vela Kane";
             // 
@@ -1552,20 +1643,20 @@ namespace Byte_me___Group_2
             // 
             this.lblCurrentSong.AutoSize = true;
             this.lblCurrentSong.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentSong.Location = new System.Drawing.Point(81, 10);
+            this.lblCurrentSong.Location = new System.Drawing.Point(101, 12);
             this.lblCurrentSong.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCurrentSong.Name = "lblCurrentSong";
-            this.lblCurrentSong.Size = new System.Drawing.Size(82, 13);
+            this.lblCurrentSong.Size = new System.Drawing.Size(107, 19);
             this.lblCurrentSong.TabIndex = 1;
             this.lblCurrentSong.Text = "Neon Corridor";
             // 
             // picAlbumArt
             // 
             this.picAlbumArt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.picAlbumArt.Location = new System.Drawing.Point(14, 8);
+            this.picAlbumArt.Location = new System.Drawing.Point(18, 10);
             this.picAlbumArt.Margin = new System.Windows.Forms.Padding(2);
             this.picAlbumArt.Name = "picAlbumArt";
-            this.picAlbumArt.Size = new System.Drawing.Size(54, 42);
+            this.picAlbumArt.Size = new System.Drawing.Size(68, 52);
             this.picAlbumArt.TabIndex = 0;
             this.picAlbumArt.TabStop = false;
             // 
@@ -1578,17 +1669,18 @@ namespace Byte_me___Group_2
             this.pnlPlaylistHeader.Controls.Add(this.lblDateCreated);
             this.pnlPlaylistHeader.Controls.Add(this.lblPlaylistName);
             this.pnlPlaylistHeader.Controls.Add(this.lblPlaylistType);
-            this.pnlPlaylistHeader.Location = new System.Drawing.Point(10, 101);
+            this.pnlPlaylistHeader.Location = new System.Drawing.Point(12, 126);
             this.pnlPlaylistHeader.Margin = new System.Windows.Forms.Padding(2);
             this.pnlPlaylistHeader.Name = "pnlPlaylistHeader";
-            this.pnlPlaylistHeader.Size = new System.Drawing.Size(630, 78);
+            this.pnlPlaylistHeader.Size = new System.Drawing.Size(788, 98);
             this.pnlPlaylistHeader.TabIndex = 8;
             // 
             // pbxPlaylistCoverPhoto
             // 
-            this.pbxPlaylistCoverPhoto.Location = new System.Drawing.Point(12, 9);
+            this.pbxPlaylistCoverPhoto.Location = new System.Drawing.Point(15, 11);
+            this.pbxPlaylistCoverPhoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbxPlaylistCoverPhoto.Name = "pbxPlaylistCoverPhoto";
-            this.pbxPlaylistCoverPhoto.Size = new System.Drawing.Size(54, 47);
+            this.pbxPlaylistCoverPhoto.Size = new System.Drawing.Size(68, 59);
             this.pbxPlaylistCoverPhoto.TabIndex = 12;
             this.pbxPlaylistCoverPhoto.TabStop = false;
             // 
@@ -1606,10 +1698,10 @@ namespace Byte_me___Group_2
             // btnDelete
             // 
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Location = new System.Drawing.Point(570, 19);
+            this.btnDelete.Location = new System.Drawing.Point(712, 24);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(32, 22);
+            this.btnDelete.Size = new System.Drawing.Size(40, 28);
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "🗑️";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -1618,10 +1710,10 @@ namespace Byte_me___Group_2
             // btnAddsongs
             // 
             this.btnAddsongs.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddsongs.Location = new System.Drawing.Point(481, 21);
+            this.btnAddsongs.Location = new System.Drawing.Point(601, 26);
             this.btnAddsongs.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddsongs.Name = "btnAddsongs";
-            this.btnAddsongs.Size = new System.Drawing.Size(86, 21);
+            this.btnAddsongs.Size = new System.Drawing.Size(108, 26);
             this.btnAddsongs.TabIndex = 8;
             this.btnAddsongs.Text = "Add Songs";
             this.btnAddsongs.UseVisualStyleBackColor = true;
@@ -1629,10 +1721,10 @@ namespace Byte_me___Group_2
             // lblDateCreated
             // 
             this.lblDateCreated.AutoSize = true;
-            this.lblDateCreated.Location = new System.Drawing.Point(73, 43);
+            this.lblDateCreated.Location = new System.Drawing.Point(91, 54);
             this.lblDateCreated.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDateCreated.Name = "lblDateCreated";
-            this.lblDateCreated.Size = new System.Drawing.Size(281, 13);
+            this.lblDateCreated.Size = new System.Drawing.Size(330, 16);
             this.lblDateCreated.TabIndex = 5;
             this.lblDateCreated.Text = "8 tracks   •   32 min   •   Created 12 Mar 2026   •   Private";
             // 
@@ -1640,20 +1732,20 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistName.AutoSize = true;
             this.lblPlaylistName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistName.Location = new System.Drawing.Point(71, 21);
+            this.lblPlaylistName.Location = new System.Drawing.Point(89, 26);
             this.lblPlaylistName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlaylistName.Name = "lblPlaylistName";
-            this.lblPlaylistName.Size = new System.Drawing.Size(135, 21);
+            this.lblPlaylistName.Size = new System.Drawing.Size(169, 28);
             this.lblPlaylistName.TabIndex = 4;
             this.lblPlaylistName.Text = "Late Night Drive";
             // 
             // lblPlaylistType
             // 
             this.lblPlaylistType.AutoSize = true;
-            this.lblPlaylistType.Location = new System.Drawing.Point(73, 9);
+            this.lblPlaylistType.Location = new System.Drawing.Point(91, 11);
             this.lblPlaylistType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlaylistType.Name = "lblPlaylistType";
-            this.lblPlaylistType.Size = new System.Drawing.Size(57, 13);
+            this.lblPlaylistType.Size = new System.Drawing.Size(69, 16);
             this.lblPlaylistType.TabIndex = 3;
             this.lblPlaylistType.Text = "PLAYLIST";
             // 
@@ -1661,10 +1753,10 @@ namespace Byte_me___Group_2
             // 
             this.lblPlaylistPathName.AutoSize = true;
             this.lblPlaylistPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistPathName.Location = new System.Drawing.Point(54, 82);
+            this.lblPlaylistPathName.Location = new System.Drawing.Point(68, 102);
             this.lblPlaylistPathName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlaylistPathName.Name = "lblPlaylistPathName";
-            this.lblPlaylistPathName.Size = new System.Drawing.Size(100, 13);
+            this.lblPlaylistPathName.Size = new System.Drawing.Size(126, 17);
             this.lblPlaylistPathName.TabIndex = 7;
             this.lblPlaylistPathName.Text = "Late Night Drive";
             // 
@@ -1672,20 +1764,20 @@ namespace Byte_me___Group_2
             // 
             this.pnlTopBar.Controls.Add(this.lblPlalistCount);
             this.pnlTopBar.Controls.Add(this.lblWelecome);
-            this.pnlTopBar.Location = new System.Drawing.Point(12, 2);
+            this.pnlTopBar.Location = new System.Drawing.Point(15, 2);
             this.pnlTopBar.Margin = new System.Windows.Forms.Padding(2);
             this.pnlTopBar.Name = "pnlTopBar";
-            this.pnlTopBar.Size = new System.Drawing.Size(349, 63);
+            this.pnlTopBar.Size = new System.Drawing.Size(436, 79);
             this.pnlTopBar.TabIndex = 6;
             // 
             // lblPlalistCount
             // 
             this.lblPlalistCount.AutoSize = true;
             this.lblPlalistCount.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlalistCount.Location = new System.Drawing.Point(18, 33);
+            this.lblPlalistCount.Location = new System.Drawing.Point(22, 41);
             this.lblPlalistCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlalistCount.Name = "lblPlalistCount";
-            this.lblPlalistCount.Size = new System.Drawing.Size(174, 13);
+            this.lblPlalistCount.Size = new System.Drawing.Size(212, 19);
             this.lblPlalistCount.TabIndex = 1;
             this.lblPlalistCount.Text = "You have 6 playlist in your library";
             // 
@@ -1693,10 +1785,10 @@ namespace Byte_me___Group_2
             // 
             this.lblWelecome.AutoSize = true;
             this.lblWelecome.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelecome.Location = new System.Drawing.Point(17, 11);
+            this.lblWelecome.Location = new System.Drawing.Point(21, 14);
             this.lblWelecome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblWelecome.Name = "lblWelecome";
-            this.lblWelecome.Size = new System.Drawing.Size(175, 21);
+            this.lblWelecome.Size = new System.Drawing.Size(215, 28);
             this.lblWelecome.TabIndex = 0;
             this.lblWelecome.Text = "Welcome back,Lerato";
             // 
@@ -1719,9 +1811,10 @@ namespace Byte_me___Group_2
             this.pnlMainContent.Controls.Add(this.btnUploadSongMain);
             this.pnlMainContent.Controls.Add(this.btnNewPlaylistMain);
             this.pnlMainContent.Controls.Add(this.flpPlaylists);
-            this.pnlMainContent.Location = new System.Drawing.Point(243, 0);
+            this.pnlMainContent.Location = new System.Drawing.Point(304, 0);
+            this.pnlMainContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlMainContent.Name = "pnlMainContent";
-            this.pnlMainContent.Size = new System.Drawing.Size(1119, 800);
+            this.pnlMainContent.Size = new System.Drawing.Size(1399, 1000);
             this.pnlMainContent.TabIndex = 4;
             // 
             // ofdCoverPicture
@@ -1730,16 +1823,17 @@ namespace Byte_me___Group_2
             // 
             // Home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            this.ClientSize = new System.Drawing.Size(1232, 676);
+            this.ClientSize = new System.Drawing.Size(1540, 845);
             this.Controls.Add(this.pnlPlaylist);
             this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.pnlSidebarDivider);
             this.Controls.Add(this.pnlTopBarDivider);
             this.Controls.Add(this.pnlMainContent);
-            this.MinimumSize = new System.Drawing.Size(1000, 659);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1246, 812);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Playlist Manager - Home";

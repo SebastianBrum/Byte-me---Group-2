@@ -86,6 +86,8 @@ namespace Byte_me___Group_2
             pnlPlaylist.Location = pnlMainContent.Location;
             pnlPlaylist.Size = pnlPlaylist.Size;
 
+            lblAvatar.Text = this.username[0].ToString();
+
             EnsureStorageExists();       // create folders/files if missing
             HideLegacyFixedSlots();      // hide the Designer's 6 demo rows/cards
             SetActiveFilterHighlight();  // highlight "All playlists" as active
@@ -1342,12 +1344,15 @@ namespace Byte_me___Group_2
             lblPlaylistName.Text = title;
             lblPlaylistPathName.Text = title;
             lblDateCreated.Text = null;
+            lblWelecome.Text = $"Welcome back, {this.username}";
             playlistVisible(false);
             homeVisible(false);
             addPLaylistButton(false);
             changeCoverButton(false);
             readSongs(title);
             loadImage(title);
+
+            lblPlalistCount.Text = $"This playlist has {songs.Count} songs";
 
             string creationDate = File.GetCreationTime(Path.Combine(playlistsFolder, $"{title}.txt")).ToString("dd MMMM yyyy");
             addToCreationLabel(creationDate);
