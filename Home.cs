@@ -112,281 +112,6 @@ namespace Byte_me___Group_2
             pnlPlaylistCard6.Visible = false;
         }
 
-        //// Builds one sidebar row control for a single playlist
-        //private Panel BuildNavRow(string title, int trackCount, string filePath, int yPosition)
-        //{
-        //    Panel row = new Panel();
-        //    row.BackColor = Color.White;
-        //    row.Cursor = Cursors.Hand;             // shows a hand cursor on hover
-        //    row.Location = new Point(15, yPosition); // vertical position passed in
-        //    row.Size = new Size(270, 40);
-        //    row.Tag = filePath;                     // remember which file this row represents
-        //    row.Click += pnlPlaylistNavRow_Click;   // open playlist on click
-
-        //    Label text = new Label();
-        //    text.Font = new Font("Segoe UI", 9F);
-        //    text.ForeColor = Color.FromArgb(55, 65, 81);
-        //    text.Location = new Point(15, 10);
-        //    text.Size = new Size(200, 22);
-        //    text.Text = "♫   " + title;             // playlist name with a music note
-        //    text.TextAlign = ContentAlignment.MiddleLeft;
-        //    text.Click += pnlPlaylistNavRow_Click;  // clicking the text also opens it
-
-        //    Label count = new Label();
-        //    count.Font = new Font("Segoe UI", 9F);
-        //    count.ForeColor = Color.FromArgb(156, 163, 175);
-        //    count.Location = new Point(230, 9);
-        //    count.Size = new Size(30, 22);
-        //    count.Text = trackCount.ToString();      // number of tracks
-        //    count.TextAlign = ContentAlignment.MiddleRight;
-        //    count.Click += pnlPlaylistNavRow_Click;  // clicking the count also opens it
-
-        //    row.Controls.Add(text);
-        //    row.Controls.Add(count);
-        //    return row;
-        //}
-
-        // Builds one grid card control for a single playlist
-        private Panel BuildPlaylistCard(string title, int trackCount, string filePath)
-        {
-            Panel card = new Panel();
-            card.BackColor = Color.White;
-            card.Cursor = Cursors.Hand;
-            card.Size = new Size(255, 262);
-            card.Margin = new Padding(0, 0, 25, 25); // spacing between cards in the flow layout
-            card.Tag = filePath;                      // remember which file this card represents
-            card.Click += pnlPlaylistCard_Click;      // open playlist on click
-
-            Label cover = new Label();
-            cover.BackColor = GetCoverColorFor(title); // colour based on playlist name
-            cover.Font = new Font("Segoe UI", 26F);
-            cover.ForeColor = Color.White;
-            cover.Location = new Point(0, 0);
-            cover.Size = new Size(255, 175);
-            cover.Text = "♫";                          // music note "cover art"
-            cover.TextAlign = ContentAlignment.MiddleCenter;
-            cover.Click += pnlPlaylistCard_Click;
-
-            Label titleLabel = new Label();
-            titleLabel.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            titleLabel.ForeColor = Color.FromArgb(17, 24, 39);
-            titleLabel.Location = new Point(12, 188);
-            titleLabel.Size = new Size(150, 22);
-            titleLabel.Text = title;                   // playlist name
-            titleLabel.Click += pnlPlaylistCard_Click;
-
-            Label countLabel = new Label();
-            countLabel.Font = new Font("Segoe UI", 8F);
-            countLabel.ForeColor = Color.FromArgb(107, 114, 128);
-            countLabel.Location = new Point(12, 212);
-            countLabel.Size = new Size(150, 20);
-            countLabel.Text = trackCount + (trackCount == 1 ? " track" : " tracks"); // track count text
-            countLabel.Click += pnlPlaylistCard_Click;
-
-            // small red "x" button in the corner used to delete this playlist
-            Label deleteButton = new Label();
-            deleteButton.BackColor = Color.FromArgb(220, 38, 38);
-            deleteButton.ForeColor = Color.White;
-            deleteButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            deleteButton.Size = new Size(22, 22);
-            deleteButton.Location = new Point(255 - 22 - 8, 8); // top-right corner of the cover
-            deleteButton.Text = "✕";
-            deleteButton.TextAlign = ContentAlignment.MiddleCenter;
-            deleteButton.Cursor = Cursors.Hand;
-            deleteButton.Tag = filePath;                          // remember which file to delete
-            deleteButton.Click += btnDeletePlaylist_Click;        // separate handler (deletes instead of opening)
-
-            card.Controls.Add(cover);
-            card.Controls.Add(titleLabel);
-            card.Controls.Add(countLabel);
-            card.Controls.Add(deleteButton);
-            deleteButton.BringToFront(); // make sure the "x" sits above the cover
-            return card;
-        }
-
-        private void FavoriteButton_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        // Deletes a playlist (file + cover + favourite/recent references) after confirmation
-        private void btnDeletePlaylist_Click(object sender, EventArgs e)
-        {
-            Control clicked = sender as Control;
-            if (clicked == null)
-                return; // safety check
-            string filePath = clicked.Tag as string; // file to delete, from the button's Tag
-            if (string.IsNullOrEmpty(filePath))
-                return;
-            string name = Path.GetFileNameWithoutExtension(filePath); // playlist name for messages
-
-            deletePlaylist(name, filePath);
-        }
-
-        //Deletes a playlist
-        private void deletePlaylist(string playlist, string filePath)
-        {
-            DialogResult confirm = MessageBox.Show(
-                "Delete \"" + playlist + "\"? This cannot be undone.",
-                "Delete playlist", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (confirm == DialogResult.No)
-                return; // user backed out
-
-            try
-            {
-                if (File.Exists(filePath))
-                    File.Delete(filePath); // remove the playlist file
-                RemoveNameFromFile(favouritesFile, playlist); // scrub from favourites
-                RemoveNameFromFile(recentFile, playlist);     // scrub from recents
-
-                string coverPath = Path.Combine(coversFolder, playlist + ".png");
-                if (File.Exists(coverPath))
-                    File.Delete(coverPath); // remove any cover art too
-
-                RefreshPlaylistView(); // rebuild sidebar/grid without the deleted playlist
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("This playlist could not be deleted:\n" + ex.Message,
-                    "Error deleting playlist", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        // Rewrites a favourites/recent file, dropping any line matching "name"
-        private void RemoveNameFromFile(string filePath, string name)
-        {
-            string[] existing = ReadAllLinesSafe(filePath); // current lines
-            using (StreamWriter writer = new StreamWriter(filePath, false)) // overwrite the file
-            {
-                int i = 0;
-                for (i = 0; i < existing.Length; i++)
-                {
-                    if (!string.Equals(existing[i].Trim(), name, StringComparison.OrdinalIgnoreCase)
-                        && existing[i].Trim().Length > 0)
-                    {
-                        writer.WriteLine(existing[i]); // keep every line except the matching one
-                    }
-                }
-            }
-        }
-
-        // Picks a consistent cover colour for a playlist name (same name = same colour)
-        private Color GetCoverColorFor(string playlistName)
-        {
-            int hash = 0;
-            int i = 0;
-            for (i = 0; i < playlistName.Length; i++)
-            {
-                hash += (int)playlistName[i]; // sum of character codes
-            }
-            int index = hash % CoverPalette.Length; // map sum onto the palette
-            if (index < 0)
-                index += CoverPalette.Length; // guard against a negative result
-            return CoverPalette[index];
-        }
-
-        // Returns only the files whose name is in the favourites list
-        private string[] FilterToFavourites(string[] files, string[] favourites)
-        {
-            string[] buffer = new string[files.Length]; // oversized temp array
-            int count = 0;
-            int i = 0;
-            for (i = 0; i < files.Length; i++)
-            {
-                string name = Path.GetFileNameWithoutExtension(files[i]);
-                if (StringArrayContains(favourites, name))
-                {
-                    buffer[count] = files[i]; // keep this file
-                    count++;
-                }
-            }
-            string[] result = new string[count]; // trim to actual size
-            Array.Copy(buffer, result, count);
-            return result;
-        }
-
-        // Returns "" if the search box is empty or showing its placeholder, otherwise the typed text
-        private string GetActiveSearchQuery()
-        {
-            if (string.IsNullOrEmpty(txtSearch.Text) || txtSearch.Text == SearchPlaceholder)
-                return "";
-            return txtSearch.Text.Trim();
-        }
-
-        // Keeps files whose name OR whose track lines contain the search query
-        private string[] FilterBySearch(string[] files, string query)
-        {
-            if (string.IsNullOrEmpty(query))
-                return files; // nothing typed, keep everything
-            string[] buffer = new string[files.Length];
-            int count = 0;
-            int i = 0;
-            for (i = 0; i < files.Length; i++)
-            {
-                string name = Path.GetFileNameWithoutExtension(files[i]);
-                bool matches = name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0; // name match
-                if (!matches)
-                {
-                    string[] lines = ReadAllLinesSafe(files[i]); // check each track line too
-                    int t = 0;
-                    for (t = 0; t < lines.Length && !matches; t++)
-                    {
-                        if (lines[t].IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0)
-                            matches = true; // matched a song title/artist/duration line
-                    }
-                }
-                if (matches)
-                {
-                    buffer[count] = files[i];
-                    count++;
-                }
-            }
-            string[] result = new string[count];
-            Array.Copy(buffer, result, count);
-            return result;
-        }
-
-        // Sorts playlists: favourites first, then recently opened, then everything else
-        private string[] OrderByFavouriteThenRecentThenName(string[] files, string[] favourites, string[] recents)
-        {
-            int n = files.Length;
-            string[] result = new string[n];
-            Array.Copy(files, result, n); // working copy to sort in place
-
-            int[] scores = new int[n]; // 0 = favourite, 1 = recent, 2 = other
-            int i = 0;
-            for (i = 0; i < n; i++)
-            {
-                string name = Path.GetFileNameWithoutExtension(result[i]);
-                if (StringArrayContains(favourites, name))
-                    scores[i] = 0;
-                else if (StringArrayContains(recents, name))
-                    scores[i] = 1;
-                else
-                    scores[i] = 2;
-            }
-
-            // bubble sort by score, keeping equal-score items in their original order
-            int a = 0;
-            for (a = 0; a < n - 1; a++)
-            {
-                int b = 0;
-                for (b = 0; b < n - 1 - a; b++)
-                {
-                    if (scores[b] > scores[b + 1])
-                    {
-                        int tempScore = scores[b];
-                        scores[b] = scores[b + 1];
-                        scores[b + 1] = tempScore;
-                        string tempFile = result[b];
-                        result[b] = result[b + 1];
-                        result[b + 1] = tempFile;
-                    }
-                }
-            }
-            return result;
-        }
-
         // Reads all lines from a file, returning an empty array if it's missing or unreadable
         private string[] ReadAllLinesSafe(string filePath)
         {
@@ -438,32 +163,18 @@ namespace Byte_me___Group_2
             return count;
         }
 
-        // Opens a playlist when a sidebar row (or its labels) is clicked
-        private void pnlPlaylistNavRow_Click(object sender, EventArgs e)
-        {
-            Control clicked = sender as Control;
-            if (clicked == null)
-                return;
-            // sender may be the row Panel itself or one of its child labels
-            Control row = (clicked is Panel) ? clicked : clicked.Parent;
-            if (row == null)
-                return;
-            string filePath = row.Tag as string; // file path stored on the row
-            OpenPlaylist(filePath);
-        }
-
-        // Opens a playlist when a grid card (or its labels) is clicked
-        private void pnlPlaylistCard_Click(object sender, EventArgs e)
-        {
-            Control clicked = sender as Control;
-            if (clicked == null)
-                return;
-            Control card = (clicked is Panel) ? clicked : clicked.Parent;
-            if (card == null)
-                return;
-            string filePath = card.Tag as string; // file path stored on the card
-            OpenPlaylist(filePath);
-        }
+        //// Opens a playlist when a grid card (or its labels) is clicked
+        //private void pnlPlaylistCard_Click(object sender, EventArgs e)
+        //{
+        //    Control clicked = sender as Control;
+        //    if (clicked == null)
+        //        return;
+        //    Control card = (clicked is Panel) ? clicked : clicked.Parent;
+        //    if (card == null)
+        //        return;
+        //    string filePath = card.Tag as string; // file path stored on the card
+        //    OpenPlaylist(filePath);
+        //}
 
         // Lets the user browse for a playlist .txt file to open directly
         private void lnkBrowseForFile_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -549,93 +260,93 @@ namespace Byte_me___Group_2
             }
         }
 
-        // Handles the "+ New Playlist" button: name it, save it, select it
-        private void btnNewPlaylist_Click(object sender, EventArgs e)
-        {
-            string typed = PromptForPlaylistName(); // ask the user for a name
-            if (typed == null)
-                return; // user cancelled
-            string playlistName = typed.Trim();
-            if (playlistName.Length == 0)
-            {
-                MessageBox.Show("Please enter a playlist name.", "Name required",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            string targetPath = Path.Combine(playlistsFolder, playlistName + ".txt"); // default save path
-            if (File.Exists(targetPath))
-            {
-                MessageBox.Show("A playlist with that name already exists. Please choose another name.",
-                    "Duplicate playlist", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+        //// Handles the "+ New Playlist" button: name it, save it, select it
+        //private void btnNewPlaylist_Click(object sender, EventArgs e)
+        //{
+        //    string typed = PromptForPlaylistName(); // ask the user for a name
+        //    if (typed == null)
+        //        return; // user cancelled
+        //    string playlistName = typed.Trim();
+        //    if (playlistName.Length == 0)
+        //    {
+        //        MessageBox.Show("Please enter a playlist name.", "Name required",
+        //            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        return;
+        //    }
+        //    string targetPath = Path.Combine(playlistsFolder, playlistName + ".txt"); // default save path
+        //    if (File.Exists(targetPath))
+        //    {
+        //        MessageBox.Show("A playlist with that name already exists. Please choose another name.",
+        //            "Duplicate playlist", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        return;
+        //    }
 
-            // let the user confirm/change where the file is actually saved
-            using (SaveFileDialog saveDlg = new SaveFileDialog())
-            {
-                saveDlg.Title = "Save new playlist as";
-                saveDlg.Filter = "Playlist text files (*.txt)|*.txt";
-                saveDlg.InitialDirectory = playlistsFolder;
-                saveDlg.FileName = playlistName + ".txt";
-                if (saveDlg.ShowDialog() != DialogResult.OK)
-                    return; // user cancelled the save dialog
-                targetPath = saveDlg.FileName; // use the chosen path
-            }
+        //    // let the user confirm/change where the file is actually saved
+        //    using (SaveFileDialog saveDlg = new SaveFileDialog())
+        //    {
+        //        saveDlg.Title = "Save new playlist as";
+        //        saveDlg.Filter = "Playlist text files (*.txt)|*.txt";
+        //        saveDlg.InitialDirectory = playlistsFolder;
+        //        saveDlg.FileName = playlistName + ".txt";
+        //        if (saveDlg.ShowDialog() != DialogResult.OK)
+        //            return; // user cancelled the save dialog
+        //        targetPath = saveDlg.FileName; // use the chosen path
+        //    }
 
-            try
-            {
-                WriteNewPlaylistFile(targetPath); // create the empty playlist file
-                RefreshPlaylistView();             // show it in the sidebar/grid
-                SelectPlaylistByPath(targetPath);  // highlight and scroll to it
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("The playlist could not be created:\n" + ex.Message,
-                    "Error creating playlist", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //    try
+        //    {
+        //        WriteNewPlaylistFile(targetPath); // create the empty playlist file
+        //        RefreshPlaylistView();             // show it in the sidebar/grid
+        //        SelectPlaylistByPath(targetPath);  // highlight and scroll to it
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("The playlist could not be created:\n" + ex.Message,
+        //            "Error creating playlist", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
-        // Small pop-up form that asks the user to type a playlist name
-        private string PromptForPlaylistName()
-        {
-            using (Form prompt = new Form())
-            {
-                prompt.Width = 380;
-                prompt.Height = 160;
-                prompt.FormBorderStyle = FormBorderStyle.FixedDialog;
-                prompt.Text = "New Playlist";
-                prompt.StartPosition = FormStartPosition.CenterParent;
-                prompt.MaximizeBox = false;
-                prompt.MinimizeBox = false;
+        //// Small pop-up form that asks the user to type a playlist name
+        //private string PromptForPlaylistName()
+        //{
+        //    using (Form prompt = new Form())
+        //    {
+        //        prompt.Width = 380;
+        //        prompt.Height = 160;
+        //        prompt.FormBorderStyle = FormBorderStyle.FixedDialog;
+        //        prompt.Text = "New Playlist";
+        //        prompt.StartPosition = FormStartPosition.CenterParent;
+        //        prompt.MaximizeBox = false;
+        //        prompt.MinimizeBox = false;
 
-                Label label = new Label() { Left = 20, Top = 20, Width = 320, Text = "Playlist name:" };
-                TextBox textBox = new TextBox() { Left = 20, Top = 45, Width = 320 };
-                Button confirmButton = new Button() { Text = "Create", Left = 195, Width = 145, Top = 80 };
-                Button cancelButton = new Button() { Text = "Cancel", Left = 20, Width = 145, Top = 80 };
+        //        Label label = new Label() { Left = 20, Top = 20, Width = 320, Text = "Playlist name:" };
+        //        TextBox textBox = new TextBox() { Left = 20, Top = 45, Width = 320 };
+        //        Button confirmButton = new Button() { Text = "Create", Left = 195, Width = 145, Top = 80 };
+        //        Button cancelButton = new Button() { Text = "Cancel", Left = 20, Width = 145, Top = 80 };
 
-                // set DialogResult in code (not on the buttons) so we control exactly when the form closes
-                confirmButton.Click += (s, e) => { prompt.DialogResult = DialogResult.OK; };
-                cancelButton.Click += (s, e) => { prompt.DialogResult = DialogResult.Cancel; };
+        //        // set DialogResult in code (not on the buttons) so we control exactly when the form closes
+        //        confirmButton.Click += (s, e) => { prompt.DialogResult = DialogResult.OK; };
+        //        cancelButton.Click += (s, e) => { prompt.DialogResult = DialogResult.Cancel; };
 
-                prompt.Controls.Add(label);
-                prompt.Controls.Add(textBox);
-                prompt.Controls.Add(confirmButton);
-                prompt.Controls.Add(cancelButton);
-                prompt.AcceptButton = confirmButton; // Enter key triggers Create
-                prompt.CancelButton = cancelButton;  // Escape key triggers Cancel
+        //        prompt.Controls.Add(label);
+        //        prompt.Controls.Add(textBox);
+        //        prompt.Controls.Add(confirmButton);
+        //        prompt.Controls.Add(cancelButton);
+        //        prompt.AcceptButton = confirmButton; // Enter key triggers Create
+        //        prompt.CancelButton = cancelButton;  // Escape key triggers Cancel
 
-                return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : null; // null = cancelled
-            }
-        }
+        //        return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : null; // null = cancelled
+        //    }
+        //}
 
-        // Creates a new, empty playlist text file
-        private void WriteNewPlaylistFile(string filePath)
-        {
-            using (StreamWriter writer = new StreamWriter(filePath, false))
-            {
-                // no lines written - an empty playlist has zero tracks
-            }
-        }
+        //// Creates a new, empty playlist text file
+        //private void WriteNewPlaylistFile(string filePath)
+        //{
+        //    using (StreamWriter writer = new StreamWriter(filePath, false))
+        //    {
+        //        // no lines written - an empty playlist has zero tracks
+        //    }
+        //}
 
         // Highlights and scrolls to the row/card matching the given file path
         private void SelectPlaylistByPath(string filePath)
@@ -668,207 +379,207 @@ namespace Byte_me___Group_2
             return null; // not found
         }
 
-        // Handles "Upload Song": pick an audio file, collect details, add it to chosen playlists
-        private void btnUploadSong_Click(object sender, EventArgs e)
-        {
-            string[] playlistFiles = Directory.GetFiles(playlistsFolder, "*.txt"); // playlists to choose from
-            if (playlistFiles.Length == 0)
-            {
-                MessageBox.Show("Create a playlist first, then you'll be able to upload songs into it.",
-                    "No playlists yet", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return; // nothing to add a song to
-            }
+        //// Handles "Upload Song": pick an audio file, collect details, add it to chosen playlists
+        //private void btnUploadSong_Click(object sender, EventArgs e)
+        //{
+        //    string[] playlistFiles = Directory.GetFiles(playlistsFolder, "*.txt"); // playlists to choose from
+        //    if (playlistFiles.Length == 0)
+        //    {
+        //        MessageBox.Show("Create a playlist first, then you'll be able to upload songs into it.",
+        //            "No playlists yet", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        return; // nothing to add a song to
+        //    }
 
-            // Step 1: choose the audio file itself
-            using (OpenFileDialog fileDlg = new OpenFileDialog())
-            {
-                fileDlg.Title = "Choose a song to upload";
-                fileDlg.Filter = "Audio files (*.mp3;*.wav;*.wma)|*.mp3;*.wav;*.wma|All files (*.*)|*.*";
-                if (fileDlg.ShowDialog() != DialogResult.OK)
-                    return; // user cancelled
-                string suggestedTitle = Path.GetFileNameWithoutExtension(fileDlg.FileName); // default title guess
+        //    // Step 1: choose the audio file itself
+        //    using (OpenFileDialog fileDlg = new OpenFileDialog())
+        //    {
+        //        fileDlg.Title = "Choose a song to upload";
+        //        fileDlg.Filter = "Audio files (*.mp3;*.wav;*.wma)|*.mp3;*.wav;*.wma|All files (*.*)|*.*";
+        //        if (fileDlg.ShowDialog() != DialogResult.OK)
+        //            return; // user cancelled
+        //        string suggestedTitle = Path.GetFileNameWithoutExtension(fileDlg.FileName); // default title guess
 
-                // Step 2: collect song details and target playlist(s)
-                string songTitle, songArtist, songDuration;
-                string[] targetPlaylists;
-                bool confirmed = ShowUploadSongPrompt(playlistFiles, suggestedTitle,
-                    out songTitle, out songArtist, out songDuration, out targetPlaylists);
-                if (!confirmed)
-                    return; // user cancelled the details prompt
-                if (targetPlaylists.Length == 0)
-                {
-                    MessageBox.Show("Tick at least one playlist to add the song to.",
-                        "No playlist selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+        //        // Step 2: collect song details and target playlist(s)
+        //        string songTitle, songArtist, songDuration;
+        //        string[] targetPlaylists;
+        //        bool confirmed = ShowUploadSongPrompt(playlistFiles, suggestedTitle,
+        //            out songTitle, out songArtist, out songDuration, out targetPlaylists);
+        //        if (!confirmed)
+        //            return; // user cancelled the details prompt
+        //        if (targetPlaylists.Length == 0)
+        //        {
+        //            MessageBox.Show("Tick at least one playlist to add the song to.",
+        //                "No playlist selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //            return;
+        //        }
 
-                // Step 3: write the song into each chosen playlist
-                int addedCount = 0;     // playlists it was newly added to
-                int replacedCount = 0;  // playlists where it replaced an existing track
-                int i = 0;
-                for (i = 0; i < targetPlaylists.Length; i++)
-                {
-                    try
-                    {
-                        bool wasReplaced = UpsertTrackInPlaylist(targetPlaylists[i], songTitle, songArtist, songDuration);
-                        if (wasReplaced) replacedCount++; else addedCount++;
-                    }
-                    catch (Exception ex)
-                    {
-                        // one bad playlist file shouldn't stop the rest from being updated
-                        MessageBox.Show("Could not add the song to " + Path.GetFileNameWithoutExtension(targetPlaylists[i]) +
-                            ":\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+        //        // Step 3: write the song into each chosen playlist
+        //        int addedCount = 0;     // playlists it was newly added to
+        //        int replacedCount = 0;  // playlists where it replaced an existing track
+        //        int i = 0;
+        //        for (i = 0; i < targetPlaylists.Length; i++)
+        //        {
+        //            try
+        //            {
+        //                bool wasReplaced = UpsertTrackInPlaylist(targetPlaylists[i], songTitle, songArtist, songDuration);
+        //                if (wasReplaced) replacedCount++; else addedCount++;
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                // one bad playlist file shouldn't stop the rest from being updated
+        //                MessageBox.Show("Could not add the song to " + Path.GetFileNameWithoutExtension(targetPlaylists[i]) +
+        //                    ":\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //            }
+        //        }
 
-                // build a summary message describing what happened
-                string summary = "\"" + songTitle + "\" ";
-                if (addedCount > 0 && replacedCount == 0)
-                    summary += "was added to " + addedCount + (addedCount == 1 ? " playlist." : " playlists.");
-                else if (replacedCount > 0 && addedCount == 0)
-                    summary += "already existed and was updated in " + replacedCount + (replacedCount == 1 ? " playlist." : " playlists.");
-                else
-                    summary += "was added to " + addedCount + " and updated in " + replacedCount + " existing playlist(s).";
-                MessageBox.Show(summary, "Upload complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                RefreshPlaylistView(); // reflect the updated track counts
-            }
-        }
+        //        // build a summary message describing what happened
+        //        string summary = "\"" + songTitle + "\" ";
+        //        if (addedCount > 0 && replacedCount == 0)
+        //            summary += "was added to " + addedCount + (addedCount == 1 ? " playlist." : " playlists.");
+        //        else if (replacedCount > 0 && addedCount == 0)
+        //            summary += "already existed and was updated in " + replacedCount + (replacedCount == 1 ? " playlist." : " playlists.");
+        //        else
+        //            summary += "was added to " + addedCount + " and updated in " + replacedCount + " existing playlist(s).";
+        //        MessageBox.Show(summary, "Upload complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        RefreshPlaylistView(); // reflect the updated track counts
+        //    }
+        //}
 
-        // Pop-up form collecting song title/artist/duration and which playlists to add it to
-        private bool ShowUploadSongPrompt(string[] playlistFiles, string suggestedTitle,
-            out string songTitle, out string songArtist, out string songDuration, out string[] targetPlaylists)
-        {
-            songTitle = null;
-            songArtist = null;
-            songDuration = null;
-            targetPlaylists = new string[0];
+        //// Pop-up form collecting song title/artist/duration and which playlists to add it to
+        //private bool ShowUploadSongPrompt(string[] playlistFiles, string suggestedTitle,
+        //    out string songTitle, out string songArtist, out string songDuration, out string[] targetPlaylists)
+        //{
+        //    songTitle = null;
+        //    songArtist = null;
+        //    songDuration = null;
+        //    targetPlaylists = new string[0];
 
-            using (Form prompt = new Form())
-            {
-                prompt.Width = 380;
-                prompt.Height = 420;
-                prompt.FormBorderStyle = FormBorderStyle.FixedDialog;
-                prompt.Text = "Upload Song";
-                prompt.StartPosition = FormStartPosition.CenterParent;
-                prompt.MaximizeBox = false;
-                prompt.MinimizeBox = false;
+        //    using (Form prompt = new Form())
+        //    {
+        //        prompt.Width = 380;
+        //        prompt.Height = 420;
+        //        prompt.FormBorderStyle = FormBorderStyle.FixedDialog;
+        //        prompt.Text = "Upload Song";
+        //        prompt.StartPosition = FormStartPosition.CenterParent;
+        //        prompt.MaximizeBox = false;
+        //        prompt.MinimizeBox = false;
 
-                Label lblTitle = new Label() { Left = 20, Top = 15, Width = 320, Text = "Song title:" };
-                TextBox txtTitle = new TextBox() { Left = 20, Top = 38, Width = 320, Text = suggestedTitle }; // pre-filled from filename
-                Label lblArtist = new Label() { Left = 20, Top = 70, Width = 320, Text = "Artist:" };
-                TextBox txtArtist = new TextBox() { Left = 20, Top = 93, Width = 320 };
-                Label lblDuration = new Label() { Left = 20, Top = 125, Width = 320, Text = "Duration (e.g. 3:45) - optional:" };
-                TextBox txtDuration = new TextBox() { Left = 20, Top = 148, Width = 320 };
-                Label lblPlaylists = new Label() { Left = 20, Top = 180, Width = 320, Text = "Add to which playlist(s)?" };
-                CheckedListBox clb = new CheckedListBox() { Left = 20, Top = 203, Width = 320, Height = 130 };
+        //        Label lblTitle = new Label() { Left = 20, Top = 15, Width = 320, Text = "Song title:" };
+        //        TextBox txtTitle = new TextBox() { Left = 20, Top = 38, Width = 320, Text = suggestedTitle }; // pre-filled from filename
+        //        Label lblArtist = new Label() { Left = 20, Top = 70, Width = 320, Text = "Artist:" };
+        //        TextBox txtArtist = new TextBox() { Left = 20, Top = 93, Width = 320 };
+        //        Label lblDuration = new Label() { Left = 20, Top = 125, Width = 320, Text = "Duration (e.g. 3:45) - optional:" };
+        //        TextBox txtDuration = new TextBox() { Left = 20, Top = 148, Width = 320 };
+        //        Label lblPlaylists = new Label() { Left = 20, Top = 180, Width = 320, Text = "Add to which playlist(s)?" };
+        //        CheckedListBox clb = new CheckedListBox() { Left = 20, Top = 203, Width = 320, Height = 130 };
 
-                int i = 0;
-                for (i = 0; i < playlistFiles.Length; i++)
-                {
-                    clb.Items.Add(Path.GetFileNameWithoutExtension(playlistFiles[i])); // list every playlist as a tick-box
-                }
+        //        int i = 0;
+        //        for (i = 0; i < playlistFiles.Length; i++)
+        //        {
+        //            clb.Items.Add(Path.GetFileNameWithoutExtension(playlistFiles[i])); // list every playlist as a tick-box
+        //        }
 
-                Button addButton = new Button() { Text = "Add Song", Left = 195, Width = 145, Top = 345 };
-                Button cancelButton = new Button() { Text = "Cancel", Left = 20, Width = 145, Top = 345 };
+        //        Button addButton = new Button() { Text = "Add Song", Left = 195, Width = 145, Top = 345 };
+        //        Button cancelButton = new Button() { Text = "Cancel", Left = 20, Width = 145, Top = 345 };
 
-                addButton.Click += (s, e) =>
-                {
-                    // validate before allowing the form to close
-                    if (string.IsNullOrWhiteSpace(txtTitle.Text))
-                    {
-                        MessageBox.Show("Please enter a song title.", "Title required",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    if (string.IsNullOrWhiteSpace(txtArtist.Text))
-                    {
-                        MessageBox.Show("Please enter an artist name.", "Artist required",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    prompt.DialogResult = DialogResult.OK; // only close once valid
-                };
-                cancelButton.Click += (s, e) => { prompt.DialogResult = DialogResult.Cancel; };
+        //        addButton.Click += (s, e) =>
+        //        {
+        //            // validate before allowing the form to close
+        //            if (string.IsNullOrWhiteSpace(txtTitle.Text))
+        //            {
+        //                MessageBox.Show("Please enter a song title.", "Title required",
+        //                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //                return;
+        //            }
+        //            if (string.IsNullOrWhiteSpace(txtArtist.Text))
+        //            {
+        //                MessageBox.Show("Please enter an artist name.", "Artist required",
+        //                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //                return;
+        //            }
+        //            prompt.DialogResult = DialogResult.OK; // only close once valid
+        //        };
+        //        cancelButton.Click += (s, e) => { prompt.DialogResult = DialogResult.Cancel; };
 
-                prompt.Controls.Add(lblTitle);
-                prompt.Controls.Add(txtTitle);
-                prompt.Controls.Add(lblArtist);
-                prompt.Controls.Add(txtArtist);
-                prompt.Controls.Add(lblDuration);
-                prompt.Controls.Add(txtDuration);
-                prompt.Controls.Add(lblPlaylists);
-                prompt.Controls.Add(clb);
-                prompt.Controls.Add(addButton);
-                prompt.Controls.Add(cancelButton);
-                prompt.AcceptButton = addButton;
-                prompt.CancelButton = cancelButton;
+        //        prompt.Controls.Add(lblTitle);
+        //        prompt.Controls.Add(txtTitle);
+        //        prompt.Controls.Add(lblArtist);
+        //        prompt.Controls.Add(txtArtist);
+        //        prompt.Controls.Add(lblDuration);
+        //        prompt.Controls.Add(txtDuration);
+        //        prompt.Controls.Add(lblPlaylists);
+        //        prompt.Controls.Add(clb);
+        //        prompt.Controls.Add(addButton);
+        //        prompt.Controls.Add(cancelButton);
+        //        prompt.AcceptButton = addButton;
+        //        prompt.CancelButton = cancelButton;
 
-                if (prompt.ShowDialog() != DialogResult.OK)
-                    return false; // user cancelled
+        //        if (prompt.ShowDialog() != DialogResult.OK)
+        //            return false; // user cancelled
 
-                songTitle = txtTitle.Text.Trim();
-                songArtist = txtArtist.Text.Trim();
-                songDuration = string.IsNullOrWhiteSpace(txtDuration.Text) ? "0:00" : txtDuration.Text.Trim(); // default duration
+        //        songTitle = txtTitle.Text.Trim();
+        //        songArtist = txtArtist.Text.Trim();
+        //        songDuration = string.IsNullOrWhiteSpace(txtDuration.Text) ? "0:00" : txtDuration.Text.Trim(); // default duration
 
-                // count how many playlists were ticked
-                int checkedCount = 0;
-                for (i = 0; i < clb.Items.Count; i++)
-                {
-                    if (clb.GetItemChecked(i))
-                        checkedCount++;
-                }
-                string[] selected = new string[checkedCount];
-                int writeIndex = 0;
-                for (i = 0; i < clb.Items.Count; i++)
-                {
-                    if (clb.GetItemChecked(i))
-                    {
-                        selected[writeIndex] = playlistFiles[i]; // collect the ticked playlist paths
-                        writeIndex++;
-                    }
-                }
-                targetPlaylists = selected;
-                return true;
-            }
-        }
+        //        // count how many playlists were ticked
+        //        int checkedCount = 0;
+        //        for (i = 0; i < clb.Items.Count; i++)
+        //        {
+        //            if (clb.GetItemChecked(i))
+        //                checkedCount++;
+        //        }
+        //        string[] selected = new string[checkedCount];
+        //        int writeIndex = 0;
+        //        for (i = 0; i < clb.Items.Count; i++)
+        //        {
+        //            if (clb.GetItemChecked(i))
+        //            {
+        //                selected[writeIndex] = playlistFiles[i]; // collect the ticked playlist paths
+        //                writeIndex++;
+        //            }
+        //        }
+        //        targetPlaylists = selected;
+        //        return true;
+        //    }
+        //}
 
-        // Adds (or updates) a "Title|Artist|Duration" line in a playlist file
-        private bool UpsertTrackInPlaylist(string filePath, string title, string artist, string duration)
-        {
-            string safeTitle = title.Replace("|", "/").Trim();       // strip separator character from values
-            string safeArtist = artist.Replace("|", "/").Trim();
-            string safeDuration = duration.Replace("|", "/").Trim();
-            string newLine = safeTitle + "|" + safeArtist + "|" + safeDuration; // line to write
+        //// Adds (or updates) a "Title|Artist|Duration" line in a playlist file
+        //private bool UpsertTrackInPlaylist(string filePath, string title, string artist, string duration)
+        //{
+        //    string safeTitle = title.Replace("|", "/").Trim();       // strip separator character from values
+        //    string safeArtist = artist.Replace("|", "/").Trim();
+        //    string safeDuration = duration.Replace("|", "/").Trim();
+        //    string newLine = safeTitle + "|" + safeArtist + "|" + safeDuration; // line to write
 
-            string[] existingLines = ReadAllLinesSafe(filePath); // current tracks
-            bool foundExisting = false;                            // true if we replaced a track instead of adding one
+        //    string[] existingLines = ReadAllLinesSafe(filePath); // current tracks
+        //    bool foundExisting = false;                            // true if we replaced a track instead of adding one
 
-            using (StreamWriter writer = new StreamWriter(filePath, false)) // rewrite the whole file
-            {
-                int i = 0;
-                for (i = 0; i < existingLines.Length; i++)
-                {
-                    if (existingLines[i].Trim().Length == 0)
-                        continue; // skip blank lines
-                    string[] parts = existingLines[i].Split('|');
-                    string existingTitle = parts.Length > 0 ? parts[0].Trim() : "";
-                    if (string.Equals(existingTitle, safeTitle, StringComparison.OrdinalIgnoreCase))
-                    {
-                        writer.WriteLine(newLine);   // overwrite the matching track
-                        foundExisting = true;
-                    }
-                    else
-                    {
-                        writer.WriteLine(existingLines[i]); // keep every other track unchanged
-                    }
-                }
-                if (!foundExisting)
-                {
-                    writer.WriteLine(newLine); // no match found, append as a new track
-                }
-            }
-            return foundExisting;
-        }
+        //    using (StreamWriter writer = new StreamWriter(filePath, false)) // rewrite the whole file
+        //    {
+        //        int i = 0;
+        //        for (i = 0; i < existingLines.Length; i++)
+        //        {
+        //            if (existingLines[i].Trim().Length == 0)
+        //                continue; // skip blank lines
+        //            string[] parts = existingLines[i].Split('|');
+        //            string existingTitle = parts.Length > 0 ? parts[0].Trim() : "";
+        //            if (string.Equals(existingTitle, safeTitle, StringComparison.OrdinalIgnoreCase))
+        //            {
+        //                writer.WriteLine(newLine);   // overwrite the matching track
+        //                foundExisting = true;
+        //            }
+        //            else
+        //            {
+        //                writer.WriteLine(existingLines[i]); // keep every other track unchanged
+        //            }
+        //        }
+        //        if (!foundExisting)
+        //        {
+        //            writer.WriteLine(newLine); // no match found, append as a new track
+        //        }
+        //    }
+        //    return foundExisting;
+        //}
 
         // Creates the Data folder structure and empty favourites/recent files if missing
         private void EnsureStorageExists()
@@ -888,21 +599,21 @@ namespace Byte_me___Group_2
             }
         }
 
-        // Re-filters the playlist view live as the user types in the search box
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            if (txtSearch.Text == SearchPlaceholder)
-                return; // ignore the placeholder text itself
-            try
-            {
-                RefreshPlaylistView(); // apply the new search text
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Something went wrong while searching your playlists:\n" + ex.Message,
-                    "Search error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //// Re-filters the playlist view live as the user types in the search box
+        //private void txtSearch_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (txtSearch.Text == SearchPlaceholder)
+        //        return; // ignore the placeholder text itself
+        //    try
+        //    {
+        //        RefreshPlaylistView(); // apply the new search text
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Something went wrong while searching your playlists:\n" + ex.Message,
+        //            "Search error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
 
         /*
