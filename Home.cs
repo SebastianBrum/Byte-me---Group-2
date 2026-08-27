@@ -112,39 +112,39 @@ namespace Byte_me___Group_2
             pnlPlaylistCard6.Visible = false;
         }
 
-        // Builds one sidebar row control for a single playlist
-        private Panel BuildNavRow(string title, int trackCount, string filePath, int yPosition)
-        {
-            Panel row = new Panel();
-            row.BackColor = Color.White;
-            row.Cursor = Cursors.Hand;             // shows a hand cursor on hover
-            row.Location = new Point(15, yPosition); // vertical position passed in
-            row.Size = new Size(270, 40);
-            row.Tag = filePath;                     // remember which file this row represents
-            row.Click += pnlPlaylistNavRow_Click;   // open playlist on click
+        //// Builds one sidebar row control for a single playlist
+        //private Panel BuildNavRow(string title, int trackCount, string filePath, int yPosition)
+        //{
+        //    Panel row = new Panel();
+        //    row.BackColor = Color.White;
+        //    row.Cursor = Cursors.Hand;             // shows a hand cursor on hover
+        //    row.Location = new Point(15, yPosition); // vertical position passed in
+        //    row.Size = new Size(270, 40);
+        //    row.Tag = filePath;                     // remember which file this row represents
+        //    row.Click += pnlPlaylistNavRow_Click;   // open playlist on click
 
-            Label text = new Label();
-            text.Font = new Font("Segoe UI", 9F);
-            text.ForeColor = Color.FromArgb(55, 65, 81);
-            text.Location = new Point(15, 10);
-            text.Size = new Size(200, 22);
-            text.Text = "♫   " + title;             // playlist name with a music note
-            text.TextAlign = ContentAlignment.MiddleLeft;
-            text.Click += pnlPlaylistNavRow_Click;  // clicking the text also opens it
+        //    Label text = new Label();
+        //    text.Font = new Font("Segoe UI", 9F);
+        //    text.ForeColor = Color.FromArgb(55, 65, 81);
+        //    text.Location = new Point(15, 10);
+        //    text.Size = new Size(200, 22);
+        //    text.Text = "♫   " + title;             // playlist name with a music note
+        //    text.TextAlign = ContentAlignment.MiddleLeft;
+        //    text.Click += pnlPlaylistNavRow_Click;  // clicking the text also opens it
 
-            Label count = new Label();
-            count.Font = new Font("Segoe UI", 9F);
-            count.ForeColor = Color.FromArgb(156, 163, 175);
-            count.Location = new Point(230, 9);
-            count.Size = new Size(30, 22);
-            count.Text = trackCount.ToString();      // number of tracks
-            count.TextAlign = ContentAlignment.MiddleRight;
-            count.Click += pnlPlaylistNavRow_Click;  // clicking the count also opens it
+        //    Label count = new Label();
+        //    count.Font = new Font("Segoe UI", 9F);
+        //    count.ForeColor = Color.FromArgb(156, 163, 175);
+        //    count.Location = new Point(230, 9);
+        //    count.Size = new Size(30, 22);
+        //    count.Text = trackCount.ToString();      // number of tracks
+        //    count.TextAlign = ContentAlignment.MiddleRight;
+        //    count.Click += pnlPlaylistNavRow_Click;  // clicking the count also opens it
 
-            row.Controls.Add(text);
-            row.Controls.Add(count);
-            return row;
-        }
+        //    row.Controls.Add(text);
+        //    row.Controls.Add(count);
+        //    return row;
+        //}
 
         // Builds one grid card control for a single playlist
         private Panel BuildPlaylistCard(string title, int trackCount, string filePath)
