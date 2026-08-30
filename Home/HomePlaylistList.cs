@@ -87,34 +87,34 @@ namespace Byte_me___Group_2
             deletePlaylist(name, filePath);
         }
 
-        //Deletes a playlist
-        private void deletePlaylist(string playlist, string filePath)
-        {
-            DialogResult confirm = MessageBox.Show(
-                "Delete \"" + playlist + "\"? This cannot be undone.",
-                "Delete playlist", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (confirm == DialogResult.No)
-                return; // user backed out
+        ////Deletes a playlist
+        //private void deletePlaylist(string playlist, string filePath)
+        //{
+        //    DialogResult confirm = MessageBox.Show(
+        //        "Delete \"" + playlist + "\"? This cannot be undone.",
+        //        "Delete playlist", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        //    if (confirm == DialogResult.No)
+        //        return; // user backed out
 
-            try
-            {
-                if (File.Exists(filePath))
-                    File.Delete(filePath); // remove the playlist file
-                RemoveNameFromFile(favouritesFile, playlist); // scrub from favourites
-                RemoveNameFromFile(recentFile, playlist);     // scrub from recents
+        //    try
+        //    {
+        //        if (File.Exists(filePath))
+        //            File.Delete(filePath); // remove the playlist file
+        //        RemoveNameFromFile(favouritesFile, playlist); // scrub from favourites
+        //        RemoveNameFromFile(recentFile, playlist);     // scrub from recents
 
-                string coverPath = Path.Combine(coversFolder, playlist + ".png");
-                if (File.Exists(coverPath))
-                    File.Delete(coverPath); // remove any cover art too
+        //        string coverPath = Path.Combine(coversFolder, playlist + ".png");
+        //        if (File.Exists(coverPath))
+        //            File.Delete(coverPath); // remove any cover art too
 
-                RefreshPlaylistView(); // rebuild sidebar/grid without the deleted playlist
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("This playlist could not be deleted:\n" + ex.Message,
-                    "Error deleting playlist", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //        RefreshPlaylistView(); // rebuild sidebar/grid without the deleted playlist
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("This playlist could not be deleted:\n" + ex.Message,
+        //            "Error deleting playlist", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
         // Picks a consistent cover colour for a playlist name (same name = same colour)
         private Color GetCoverColorFor(string playlistName)

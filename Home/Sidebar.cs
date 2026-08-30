@@ -189,5 +189,19 @@ namespace Byte_me___Group_2
             row.Controls.Add(count);
             return row;
         }
+
+        // Opens a playlist when a sidebar row (or its labels) is clicked
+        private void pnlPlaylistNavRow_Click(object sender, EventArgs e)
+        {
+            Control clicked = sender as Control;
+            if (clicked == null)
+                return;
+            // sender may be the row Panel itself or one of its child labels
+            Control row = (clicked is Panel) ? clicked : clicked.Parent;
+            if (row == null)
+                return;
+            string filePath = row.Tag as string; // file path stored on the row
+            OpenPlaylist(filePath);
+        }
     }
 }
