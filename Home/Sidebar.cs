@@ -193,6 +193,9 @@ namespace Byte_me___Group_2
         // Opens a playlist when a sidebar row (or its labels) is clicked
         private void pnlPlaylistNavRow_Click(object sender, EventArgs e)
         {
+            this.Controls.Remove(playlistPanel);
+            playlistPanel.Dispose();
+
             Control clicked = sender as Control;
             if (clicked == null)
                 return;

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 //I changed this for test 2
@@ -56,6 +57,8 @@ namespace Byte_me___Group_2
             Color.FromArgb(189, 101, 214)
         };
 
+        PlaylistControl playlistPanel;
+
         //username = parameter received from Form1.cs
         public Home(string username)
         {
@@ -82,11 +85,6 @@ namespace Byte_me___Group_2
 
             recentFile = Path.Combine(userFolder, "recent.txt");
 
-            pnlPlaylist.Visible = false;
-            pnlPlaylist.Enabled = false;
-            pnlPlaylist.Location = pnlMainContent.Location;
-            pnlPlaylist.Size = pnlPlaylist.Size;
-
             lblAvatar.Text = this.username[0].ToString();
 
             EnsureStorageExists();       // create folders/files if missing
@@ -110,6 +108,11 @@ namespace Byte_me___Group_2
             pnlPlaylistCard4.Visible = false;
             pnlPlaylistCard5.Visible = false;
             pnlPlaylistCard6.Visible = false;
+        }
+
+        public void adjustFormHomeWidth(int width)
+        {
+            this.Width = pnlSidebar.Width + width;
         }
 
         // Reads all lines from a file, returning an empty array if it's missing or unreadable
@@ -195,7 +198,15 @@ namespace Byte_me___Group_2
                 RefreshPlaylistView();   // reflect the new "recent" ordering immediately
 
                 // Opens the playlist page
-                setupPlaylistPage(name);
+                playlistPanel = new PlaylistControl(this, this.username, this.coversFolder, this.playlistsFolder, this.dataFolder, ofdCoverPicture, pnlMainContent, pnlSidebar, btnNewPlaylist, btnChangeCoverPhoto);
+                playlistPanel.setupPlaylistPage(name);
+
+                this.Controls.Add(playlistPanel);
+                playlistPanel.Top = pnlMainContent.Top;
+                playlistPanel.Left = pnlMainContent.Left;
+                playlistPanel.BringToFront();
+
+                adjustFormHomeWidth(playlistPanel.Width - 400);
             }
             catch (Exception ex)
             {
@@ -297,7 +308,7 @@ namespace Byte_me___Group_2
         }
 
         //Deletes a playlist
-        private void deletePlaylist(string playlist, string filePath)
+        public void deletePlaylist(string playlist, string filePath)
         {
             DialogResult confirm = MessageBox.Show(
                 "Delete \"" + playlist + "\"? This cannot be undone.",
@@ -323,6 +334,11 @@ namespace Byte_me___Group_2
                 MessageBox.Show("This playlist could not be deleted:\n" + ex.Message,
                     "Error deleting playlist", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnChangeCoverPhoto_Click(object sender, EventArgs e)
+        {
+            playlistPanel.changeCoverPhoto();
         }
 
         //Closes all the open forms when you press the red x
