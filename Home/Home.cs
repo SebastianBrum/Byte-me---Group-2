@@ -206,7 +206,7 @@ namespace Byte_me___Group_2
                 playlistPanel.Left = pnlMainContent.Left;
                 playlistPanel.BringToFront();
 
-                adjustFormHomeWidth(playlistPanel.Width - 400);
+                adjustFormHomeWidth(playlistPanel.Width);
             }
             catch (Exception ex)
             {
