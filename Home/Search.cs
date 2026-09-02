@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace Byte_me___Group_2
 {
@@ -104,6 +105,27 @@ namespace Byte_me___Group_2
             {
                 MessageBox.Show("Something went wrong while searching your playlists:\n" + ex.Message,
                     "Search error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ---- Search box placeholder behaviour ----
+        // Clears the placeholder text when the search box gains focus
+        private void txtSearch_GotFocus(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == SearchPlaceholder)
+            {
+                txtSearch.Text = "";                              // remove placeholder
+                txtSearch.ForeColor = Color.FromArgb(31, 41, 55); // normal text colour
+            }
+        }
+
+        // Restores the placeholder text when the search box loses focus and is empty
+        private void txtSearch_LostFocus(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                txtSearch.Text = SearchPlaceholder;                    // show placeholder again
+                txtSearch.ForeColor = Color.FromArgb(156, 163, 175);   // greyed-out colour
             }
         }
     }
