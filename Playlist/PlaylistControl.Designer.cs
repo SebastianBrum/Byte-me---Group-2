@@ -446,7 +446,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlPlaylist);
             this.Name = "PlaylistControl";
-            this.Size = new System.Drawing.Size(807, 654);
+            this.Size = new System.Drawing.Size(819, 654);
             this.pnlPlaylist.ResumeLayout(false);
             this.pnlPlaylist.PerformLayout();
             this.flpSongs.ResumeLayout(false);
