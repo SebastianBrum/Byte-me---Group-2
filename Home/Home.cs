@@ -13,6 +13,8 @@ namespace Byte_me___Group_2
 {
     // Home page: dashboard visuals (welcome message, search, theme toggle) + playlist functionality.
     // Data is stored as plain text files under a "Data" folder next to the .exe.
+
+    // IDK random work
     public partial class Home : Form
     {
         private string username;
