@@ -177,11 +177,6 @@ namespace Byte_me___Group_2
             artists.Clear();
             songDurations.Clear();
 
-            //Clears the display panel from old songs
-            flpSongs.Controls.Clear();
-            Panel titlePanel = createTitlePanel();
-            flpSongs.Controls.Add(titlePanel);
-
             //Reads from the textfile
             try
             {
@@ -239,125 +234,11 @@ namespace Byte_me___Group_2
         {
             for (int i = 0; i < songs.Count; i++)
             {
-                Panel songPanel = createSongPanel(songs[i], artists[i], songDurations[i], playlistName, i);
-                flpSongs.Controls.Add(songPanel);
+                
             }
         }
 
-        //Creates the headers for the display panel
-        private Panel createTitlePanel()
-        {
-            Panel headingPanel = new Panel();
-            headingPanel.Width = 784;
-            headingPanel.Height = 30;
-            headingPanel.Cursor = Cursors.Hand;
-
-            Label Title = new Label();
-            Title.Text = "Names";
-            Title.Font = new Font("Microsoft Sans Sarif", 10, FontStyle.Bold);
-            Title.Width = 53;
-            Title.Height = 16;
-            Title.AutoSize = false;
-            Title.TextAlign = ContentAlignment.MiddleLeft;
-            Title.Left = 17;
-            Title.Top = 13;
-
-            Label Artist = new Label();
-            Artist.Text = "Artists";
-            Artist.Font = new Font("Microsoft Sans Sarif", 10, FontStyle.Bold);
-            Artist.Width = 53;
-            Artist.Height = 16;
-            Artist.AutoSize = false;
-            Artist.TextAlign = ContentAlignment.MiddleLeft;
-            Artist.Left = 241;
-            Artist.Top = 13;
-
-            Label Duration = new Label();
-            Duration.Text = "Duration";
-            Duration.Font = new Font("Microsoft Sans Sarif", 10, FontStyle.Bold);
-            Duration.Width = 70;
-            Duration.Height = 16;
-            Duration.AutoSize = false;
-            Duration.TextAlign = ContentAlignment.MiddleLeft;
-            Duration.Left = 423;
-            Duration.Top = 13;
-
-            headingPanel.Controls.Add(Title);
-            headingPanel.Controls.Add(Artist);
-            headingPanel.Controls.Add(Duration);
-
-            return headingPanel;
-        }
-
-        //Creates the song display
-        private Panel createSongPanel(string songName, string artist, string duration, string playlistName, int songIndex)
-        {
-            //Song panel
-            Panel songPanel = new Panel();
-            songPanel.Width = 784;
-            songPanel.Height = 30;
-            songPanel.Cursor = Cursors.Hand;
-
-            //Title
-            Label songTitle = new Label();
-            songTitle.Text = songName;
-            songTitle.Font = new Font("Microsoft Sans Sarif", 8, FontStyle.Regular);
-            songTitle.Width = 53;
-            songTitle.Height = 16;
-            songTitle.AutoSize = false;
-            songTitle.TextAlign = ContentAlignment.MiddleLeft;
-            songTitle.Left = 17;
-            songTitle.Top = 13;
-
-            //Artist
-            Label songArtist = new Label();
-            songArtist.Text = artist;
-            songArtist.Font = new Font("Microsoft Sans Sarif", 8, FontStyle.Regular);
-            songArtist.Width = 53;
-            songArtist.Height = 16;
-            songArtist.AutoSize = false;
-            songArtist.TextAlign = ContentAlignment.MiddleLeft;
-            songArtist.Left = 241;
-            songArtist.Top = 13;
-
-            //Duration
-            Label songDuration = new Label();
-            songDuration.Text = duration;
-            songDuration.Font = new Font("Microsoft Sans Sarif", 8, FontStyle.Regular);
-            songDuration.Width = 53;
-            songDuration.Height = 16;
-            songDuration.AutoSize = false;
-            songDuration.TextAlign = ContentAlignment.MiddleLeft;
-            songDuration.Left = 423;
-            songDuration.Top = 13;
-
-            //Delete button
-            Button buttonDelete = new Button();
-            buttonDelete.Width = 40;
-            buttonDelete.Height = 24;
-            buttonDelete.Cursor = Cursors.Hand;
-            buttonDelete.Left = flpSongs.Width - buttonDelete.Width - 40;
-            buttonDelete.Top = 3;
-            buttonDelete.Text = "🗑️";
-            buttonDelete.Font = new Font("Microsoft Sans Sarif", 8, FontStyle.Regular);
-            buttonDelete.ForeColor = Color.Black;
-            buttonDelete.BackColor = Color.Red;
-
-            // Delete functionality. Sends the index in the array as paramater
-            buttonDelete.Click += (sender, e) =>
-            {
-                DeleteSong(songIndex, playlistName);
-            };
-
-            // Adds the controls to the song panel
-            songPanel.Controls.Add(songTitle);
-            songPanel.Controls.Add(songArtist);
-            songPanel.Controls.Add(songDuration);
-            songPanel.Controls.Add(buttonDelete);
-
-
-            return songPanel;
-        }
+       
 
         private void DeleteSong(int songIndex, string playlistName)
         {
