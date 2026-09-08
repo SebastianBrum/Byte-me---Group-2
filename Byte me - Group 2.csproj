@@ -50,7 +50,6 @@
     <Compile Include="Playlist\AddNewPlaylist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Playlist\Playlist.cs" />
     <Compile Include="Playlist\PlaylistControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

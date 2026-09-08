@@ -57,6 +57,9 @@
             this.pnlTopBar = new System.Windows.Forms.Panel();
             this.lblPlalistCount = new System.Windows.Forms.Label();
             this.lblWelecome = new System.Windows.Forms.Label();
+            this.dgvSongDisplay = new System.Windows.Forms.DataGridView();
+            this.songName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.songDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlPlaylist.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkProgress)).BeginInit();
@@ -65,10 +68,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlaylistCoverPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MediaPlayer)).BeginInit();
             this.pnlTopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSongDisplay)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlPlaylist
             // 
+            this.pnlPlaylist.Controls.Add(this.dgvSongDisplay);
             this.pnlPlaylist.Controls.Add(this.btnBackHome);
             this.pnlPlaylist.Controls.Add(this.lblBreadcrumb);
             this.pnlPlaylist.Controls.Add(this.panel2);
@@ -381,6 +386,35 @@
             this.lblWelecome.TabIndex = 0;
             this.lblWelecome.Text = "Welcome back,Lerato";
             // 
+            // dgvSongDisplay
+            // 
+            this.dgvSongDisplay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSongDisplay.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.songName,
+            this.songDuration});
+            this.dgvSongDisplay.Location = new System.Drawing.Point(12, 331);
+            this.dgvSongDisplay.Name = "dgvSongDisplay";
+            this.dgvSongDisplay.RowHeadersWidth = 51;
+            this.dgvSongDisplay.RowTemplate.Height = 24;
+            this.dgvSongDisplay.Size = new System.Drawing.Size(787, 303);
+            this.dgvSongDisplay.TabIndex = 13;
+            // 
+            // songName
+            // 
+            this.songName.HeaderText = "Name";
+            this.songName.MinimumWidth = 6;
+            this.songName.Name = "songName";
+            this.songName.ReadOnly = true;
+            this.songName.Width = 125;
+            // 
+            // songDuration
+            // 
+            this.songDuration.HeaderText = "Duration";
+            this.songDuration.MinimumWidth = 6;
+            this.songDuration.Name = "songDuration";
+            this.songDuration.ReadOnly = true;
+            this.songDuration.Width = 125;
+            // 
             // PlaylistControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -400,6 +434,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.MediaPlayer)).EndInit();
             this.pnlTopBar.ResumeLayout(false);
             this.pnlTopBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSongDisplay)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -434,5 +469,8 @@
         private System.Windows.Forms.Panel pnlTopBar;
         private System.Windows.Forms.Label lblPlalistCount;
         private System.Windows.Forms.Label lblWelecome;
+        private System.Windows.Forms.DataGridView dgvSongDisplay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn songName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn songDuration;
     }
 }
