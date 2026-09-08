@@ -55,7 +55,7 @@ namespace Byte_me___Group_2
             addPLaylistButton(false);
             changeCoverButton(false);
             readSongs(title);
-            loadImage(title);
+            loadImage(title, pbxPlaylistCoverPhoto);
 
             lblPlalistCount.Text = $"This playlist has {songs.Count} songs";
 
@@ -81,7 +81,12 @@ namespace Byte_me___Group_2
             changeCoverButton(true);
         }
 
-        private void loadImage(string playlist)
+        /// <summary>
+        /// Loads the picture into a picturebox
+        /// </summary>
+        /// <param name="playlist"> The playlist name </param>
+        /// <param name="pictureBox"> The picturebox that needs to be updated </param>
+        private void loadImage(string playlist, PictureBox pictureBox)
         {
             // Write all the image files to an array
             string[] coverImagesFiles = Directory.GetFiles(coversFolder);
@@ -96,23 +101,23 @@ namespace Byte_me___Group_2
                 string currentImage = Path.GetFileNameWithoutExtension(coverImage);
 
 
-                //  Checks if the current image in the loop is the correct one
+                //  Checks if the current image in the loop is the one corresponding with the playlist
                 if (currentImage == playlist)
                 {
-                    pbxPlaylistCoverPhoto.Image = Image.FromFile(coverImage);
-                    pbxPlaylistCoverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pictureBox.Image = Image.FromFile(coverImage);
+                    pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
                     // The user has a image for the playlist
                     hasImage = true;
                 }
             }
 
-            //Sets the default image if the user didn't set an image themselves
+            // Sets the default image if the user didn't set an image themselves
             if (!hasImage)
             {
                 string defaultImagePath = Path.Combine(dataFolder, "DefaultCover", "default.png");
-                pbxPlaylistCoverPhoto.Image = Image.FromFile(defaultImagePath);
-                pbxPlaylistCoverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox.Image = Image.FromFile(defaultImagePath);
+                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
 
@@ -232,10 +237,7 @@ namespace Byte_me___Group_2
         //Displays the songs into the display panel
         private void displaySongs(string playlistName)
         {
-            for (int i = 0; i < songs.Count; i++)
-            {
-                
-            }
+            
         }
 
        
