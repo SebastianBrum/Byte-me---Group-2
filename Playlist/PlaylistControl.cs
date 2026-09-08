@@ -219,6 +219,21 @@ namespace Byte_me___Group_2
             }
         }
 
+        private void dgvDisplaySongs_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Gaurd against the header being clicked
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            // Deletes the song which delete button is pressed
+            if (dgvDisplaySongs.Columns[e.ColumnIndex].Name == "SongDelete")
+            {
+                DeleteSong(e.RowIndex, lblPlaylistName.Text);
+            }
+        }
+
         //gets the song title from the textfile and saves it into the songs list
         private string getSongTitle(ref string line)
         {
@@ -262,24 +277,21 @@ namespace Byte_me___Group_2
             // Saves the current playlist path
             string playlistPath = files[0];
 
-            // Reads the songs into an array
-            string[] songs = File.ReadAllLines(playlistPath);
-
             // Checks if the playlist does have songs
-            if (songs.Length == 0)
+            if (Songs.Count == 0)
             {
                 MessageBox.Show("There are no songs to delete.");
                 return;
             }
 
             // Checks if the selected song actually exists in the playlist
-            if (songIndex < 0 || songIndex >= songs.Length)
+            if (songIndex < 0 || songIndex >= Songs.Count)
             {
                 return;
             }
 
             // Gets the song that the user selected
-            string songToDelete = songs[songIndex];
+            string songToDelete = Songs[songIndex].Name;
 
             // Ask the user for confirmation
             DialogResult confirm = MessageBox.Show(
@@ -294,17 +306,21 @@ namespace Byte_me___Group_2
                 return;
             }
 
-            // Converts array into a list so that it is easier to delete
-            List<string> remainingSongs = songs.ToList();
-
             // Deletes the song from the list
-            remainingSongs.RemoveAt(songIndex);
+            Songs.RemoveAt(songIndex);
 
             // Writes remaining songs back into the playlist
-            File.WriteAllLines(playlistPath, remainingSongs);
+            //File.WriteAllLines(playlistPath, remainingSongs);
+            using (StreamWriter writer = new StreamWriter(playlistPath))
+            {
+                foreach (Song song in Songs)
+                {
+                    writer.WriteLine($"{song.Name}|{song.Artist}|{song.duration}");
+                }
+            }
 
             // Rerenders all the remaining songs to display
-            readSongs(playlistName);
+            //readSongs(playlistName);
 
             // Shows a message for successful deletion
             MessageBox.Show("Song deleted successfully.");
