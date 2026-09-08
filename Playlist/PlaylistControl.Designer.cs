@@ -1,4 +1,6 @@
-﻿namespace Byte_me___Group_2
+﻿using System.Windows.Forms;
+
+namespace Byte_me___Group_2
 {
     partial class PlaylistControl
     {
@@ -30,13 +32,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlaylistControl));
             this.pnlPlaylist = new System.Windows.Forms.Panel();
+            this.dgvDisplaySongs = new System.Windows.Forms.DataGridView();
             this.btnBackHome = new System.Windows.Forms.Button();
             this.lblBreadcrumb = new System.Windows.Forms.Label();
-            this.flpSongs = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lblDuration = new System.Windows.Forms.Label();
-            this.lblArtist = new System.Windows.Forms.Label();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblD = new System.Windows.Forms.Label();
@@ -62,9 +60,12 @@
             this.pnlTopBar = new System.Windows.Forms.Panel();
             this.lblPlalistCount = new System.Windows.Forms.Label();
             this.lblWelecome = new System.Windows.Forms.Label();
+            this.songName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.songArtist = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.songDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SongDelete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlPlaylist.SuspendLayout();
-            this.flpSongs.SuspendLayout();
-            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDisplaySongs)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkProgress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbumArt)).BeginInit();
@@ -76,9 +77,9 @@
             // 
             // pnlPlaylist
             // 
+            this.pnlPlaylist.Controls.Add(this.dgvDisplaySongs);
             this.pnlPlaylist.Controls.Add(this.btnBackHome);
             this.pnlPlaylist.Controls.Add(this.lblBreadcrumb);
-            this.pnlPlaylist.Controls.Add(this.flpSongs);
             this.pnlPlaylist.Controls.Add(this.panel2);
             this.pnlPlaylist.Controls.Add(this.pnlPlaylistHeader);
             this.pnlPlaylist.Controls.Add(this.lblPlaylistPathName);
@@ -88,6 +89,23 @@
             this.pnlPlaylist.Name = "pnlPlaylist";
             this.pnlPlaylist.Size = new System.Drawing.Size(815, 648);
             this.pnlPlaylist.TabIndex = 6;
+            // 
+            // dgvDisplaySongs
+            // 
+            this.dgvDisplaySongs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDisplaySongs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+                this.songName,
+                this.songArtist,
+                this.songDuration,
+                this.SongDelete});
+            this.dgvDisplaySongs.Location = new System.Drawing.Point(12, 329);
+            this.dgvDisplaySongs.Name = "dgvDisplaySongs";
+            this.dgvDisplaySongs.RowHeadersWidth = 51;
+            this.dgvDisplaySongs.RowTemplate.Height = 24;
+            this.dgvDisplaySongs.Size = new System.Drawing.Size(788, 290);
+            this.dgvDisplaySongs.TabIndex = 13;
+            this.dgvDisplaySongs.AutoGenerateColumns = false;
+            this.dgvDisplaySongs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisplaySongs_CellClick);
             // 
             // btnBackHome
             // 
@@ -113,57 +131,6 @@
             this.lblBreadcrumb.TabIndex = 11;
             this.lblBreadcrumb.Text = "Home /";
             this.lblBreadcrumb.Click += new System.EventHandler(this.lblBreadcrumb_Click);
-            // 
-            // flpSongs
-            // 
-            this.flpSongs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            this.flpSongs.Controls.Add(this.panel3);
-            this.flpSongs.Location = new System.Drawing.Point(12, 328);
-            this.flpSongs.Margin = new System.Windows.Forms.Padding(2);
-            this.flpSongs.Name = "flpSongs";
-            this.flpSongs.Size = new System.Drawing.Size(788, 314);
-            this.flpSongs.TabIndex = 10;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.lblDuration);
-            this.panel3.Controls.Add(this.lblArtist);
-            this.panel3.Controls.Add(this.lblTitle);
-            this.panel3.Location = new System.Drawing.Point(2, 2);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(781, 46);
-            this.panel3.TabIndex = 1;
-            // 
-            // lblDuration
-            // 
-            this.lblDuration.AutoSize = true;
-            this.lblDuration.Location = new System.Drawing.Point(422, 12);
-            this.lblDuration.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblDuration.Name = "lblDuration";
-            this.lblDuration.Size = new System.Drawing.Size(78, 16);
-            this.lblDuration.TabIndex = 2;
-            this.lblDuration.Text = "DURATION";
-            // 
-            // lblArtist
-            // 
-            this.lblArtist.AutoSize = true;
-            this.lblArtist.Location = new System.Drawing.Point(241, 12);
-            this.lblArtist.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblArtist.Name = "lblArtist";
-            this.lblArtist.Size = new System.Drawing.Size(56, 16);
-            this.lblArtist.TabIndex = 1;
-            this.lblArtist.Text = "ARTIST";
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(18, 12);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(53, 16);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "TITLES";
             // 
             // panel2
             // 
@@ -440,6 +407,42 @@
             this.lblWelecome.TabIndex = 0;
             this.lblWelecome.Text = "Welcome back,Lerato";
             // 
+            // songName
+            // 
+            this.songName.DataPropertyName = "Name";
+            this.songName.HeaderText = "Name";
+            this.songName.MinimumWidth = 6;
+            this.songName.Name = "songName";
+            this.songName.ReadOnly = true;
+            this.songName.Width = 300;
+            // 
+            // songArtist
+            // 
+            this.songArtist.DataPropertyName = "Artist";
+            this.songArtist.HeaderText = "Artist";
+            this.songArtist.MinimumWidth = 6;
+            this.songArtist.Name = "songArtist";
+            this.songArtist.ReadOnly = true;
+            this.songArtist.Width = 200;
+            // 
+            // songDuration
+            // 
+            this.songDuration.DataPropertyName = "Duration";
+            this.songDuration.HeaderText = "Duration";
+            this.songDuration.MinimumWidth = 6;
+            this.songDuration.Name = "songDuration";
+            this.songDuration.ReadOnly = true;
+            this.songDuration.Width = 125;
+            // 
+            // SongDelete
+            // 
+            this.SongDelete.DataPropertyName = "Delete";
+            this.SongDelete.HeaderText = "";
+            this.SongDelete.MinimumWidth = 6;
+            this.SongDelete.Name = "SongDelete";
+            this.SongDelete.ReadOnly = true;
+            this.SongDelete.Width = 125;
+            // 
             // PlaylistControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -449,9 +452,7 @@
             this.Size = new System.Drawing.Size(819, 654);
             this.pnlPlaylist.ResumeLayout(false);
             this.pnlPlaylist.PerformLayout();
-            this.flpSongs.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDisplaySongs)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkProgress)).EndInit();
@@ -471,11 +472,6 @@
         private System.Windows.Forms.Panel pnlPlaylist;
         private System.Windows.Forms.Button btnBackHome;
         private System.Windows.Forms.Label lblBreadcrumb;
-        private System.Windows.Forms.FlowLayoutPanel flpSongs;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label lblDuration;
-        private System.Windows.Forms.Label lblArtist;
-        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label lblD;
@@ -501,5 +497,10 @@
         private System.Windows.Forms.Panel pnlTopBar;
         private System.Windows.Forms.Label lblPlalistCount;
         private System.Windows.Forms.Label lblWelecome;
+        private System.Windows.Forms.DataGridView dgvDisplaySongs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn songName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn songArtist;
+        private System.Windows.Forms.DataGridViewTextBoxColumn songDuration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SongDelete;
     }
 }
