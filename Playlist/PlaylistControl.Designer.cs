@@ -47,7 +47,6 @@
             this.picAlbumArt = new System.Windows.Forms.PictureBox();
             this.pnlPlaylistHeader = new System.Windows.Forms.Panel();
             this.pbxPlaylistCoverPhoto = new System.Windows.Forms.PictureBox();
-            this.MediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAddsongs = new System.Windows.Forms.Button();
             this.lblDateCreated = new System.Windows.Forms.Label();
@@ -57,23 +56,26 @@
             this.pnlTopBar = new System.Windows.Forms.Panel();
             this.lblPlalistCount = new System.Windows.Forms.Label();
             this.lblWelecome = new System.Windows.Forms.Label();
-            this.dgvSongDisplay = new System.Windows.Forms.DataGridView();
+            this.MediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.dgvDisplaySongs = new System.Windows.Forms.DataGridView();
             this.songName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.songArtist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.songDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SongDelete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlPlaylist.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkProgress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbumArt)).BeginInit();
             this.pnlPlaylistHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlaylistCoverPhoto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MediaPlayer)).BeginInit();
             this.pnlTopBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSongDisplay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MediaPlayer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDisplaySongs)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlPlaylist
             // 
-            this.pnlPlaylist.Controls.Add(this.dgvSongDisplay);
+            this.pnlPlaylist.Controls.Add(this.dgvDisplaySongs);
             this.pnlPlaylist.Controls.Add(this.btnBackHome);
             this.pnlPlaylist.Controls.Add(this.lblBreadcrumb);
             this.pnlPlaylist.Controls.Add(this.panel2);
@@ -278,17 +280,6 @@
             this.pbxPlaylistCoverPhoto.TabIndex = 12;
             this.pbxPlaylistCoverPhoto.TabStop = false;
             // 
-            // MediaPlayer
-            // 
-            this.MediaPlayer.Enabled = true;
-            this.MediaPlayer.Location = new System.Drawing.Point(863, 109);
-            this.MediaPlayer.Margin = new System.Windows.Forms.Padding(2);
-            this.MediaPlayer.Name = "MediaPlayer";
-            this.MediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("MediaPlayer.OcxState")));
-            this.MediaPlayer.Size = new System.Drawing.Size(10, 10);
-            this.MediaPlayer.TabIndex = 11;
-            this.MediaPlayer.Visible = false;
-            // 
             // btnDelete
             // 
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -386,18 +377,31 @@
             this.lblWelecome.TabIndex = 0;
             this.lblWelecome.Text = "Welcome back,Lerato";
             // 
-            // dgvSongDisplay
+            // MediaPlayer
             // 
-            this.dgvSongDisplay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSongDisplay.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MediaPlayer.Enabled = true;
+            this.MediaPlayer.Location = new System.Drawing.Point(863, 109);
+            this.MediaPlayer.Margin = new System.Windows.Forms.Padding(2);
+            this.MediaPlayer.Name = "MediaPlayer";
+            this.MediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("MediaPlayer.OcxState")));
+            this.MediaPlayer.Size = new System.Drawing.Size(10, 10);
+            this.MediaPlayer.TabIndex = 11;
+            this.MediaPlayer.Visible = false;
+            // 
+            // dgvDisplaySongs
+            // 
+            this.dgvDisplaySongs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDisplaySongs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.songName,
-            this.songDuration});
-            this.dgvSongDisplay.Location = new System.Drawing.Point(12, 331);
-            this.dgvSongDisplay.Name = "dgvSongDisplay";
-            this.dgvSongDisplay.RowHeadersWidth = 51;
-            this.dgvSongDisplay.RowTemplate.Height = 24;
-            this.dgvSongDisplay.Size = new System.Drawing.Size(787, 303);
-            this.dgvSongDisplay.TabIndex = 13;
+            this.songArtist,
+            this.songDuration,
+            this.SongDelete});
+            this.dgvDisplaySongs.Location = new System.Drawing.Point(12, 329);
+            this.dgvDisplaySongs.Name = "dgvDisplaySongs";
+            this.dgvDisplaySongs.RowHeadersWidth = 51;
+            this.dgvDisplaySongs.RowTemplate.Height = 24;
+            this.dgvDisplaySongs.Size = new System.Drawing.Size(788, 290);
+            this.dgvDisplaySongs.TabIndex = 13;
             // 
             // songName
             // 
@@ -405,7 +409,15 @@
             this.songName.MinimumWidth = 6;
             this.songName.Name = "songName";
             this.songName.ReadOnly = true;
-            this.songName.Width = 125;
+            this.songName.Width = 310;
+            // 
+            // songArtist
+            // 
+            this.songArtist.HeaderText = "Artist";
+            this.songArtist.MinimumWidth = 6;
+            this.songArtist.Name = "songArtist";
+            this.songArtist.ReadOnly = true;
+            this.songArtist.Width = 200;
             // 
             // songDuration
             // 
@@ -413,7 +425,14 @@
             this.songDuration.MinimumWidth = 6;
             this.songDuration.Name = "songDuration";
             this.songDuration.ReadOnly = true;
-            this.songDuration.Width = 125;
+            // 
+            // SongDelete
+            // 
+            this.SongDelete.HeaderText = "";
+            this.SongDelete.MinimumWidth = 6;
+            this.SongDelete.Name = "SongDelete";
+            this.SongDelete.ReadOnly = true;
+            this.SongDelete.Width = 125;
             // 
             // PlaylistControl
             // 
@@ -431,10 +450,10 @@
             this.pnlPlaylistHeader.ResumeLayout(false);
             this.pnlPlaylistHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlaylistCoverPhoto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MediaPlayer)).EndInit();
             this.pnlTopBar.ResumeLayout(false);
             this.pnlTopBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSongDisplay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MediaPlayer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDisplaySongs)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -469,8 +488,10 @@
         private System.Windows.Forms.Panel pnlTopBar;
         private System.Windows.Forms.Label lblPlalistCount;
         private System.Windows.Forms.Label lblWelecome;
-        private System.Windows.Forms.DataGridView dgvSongDisplay;
+        private System.Windows.Forms.DataGridView dgvDisplaySongs;
         private System.Windows.Forms.DataGridViewTextBoxColumn songName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn songArtist;
         private System.Windows.Forms.DataGridViewTextBoxColumn songDuration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SongDelete;
     }
 }
