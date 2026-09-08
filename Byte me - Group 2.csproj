@@ -97,6 +97,7 @@
     <Compile Include="Home\Statistics.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Song\Song.cs" />
     <EmbeddedResource Include="Login\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

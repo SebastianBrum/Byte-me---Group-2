@@ -8,9 +8,17 @@ namespace Byte_me___Group_2
 {
     public class Song
     {
+
         private string mName;
         private string mArtist;
         private string mDuration;
+
+        public Song(string name, string artist, string duration)
+        {
+            this.mName = name;
+            this.mArtist = artist;
+            this.mDuration = duration;
+        }
 
         public string Name
         {
@@ -26,7 +34,7 @@ namespace Byte_me___Group_2
 
         public string duration
         {
-            get { return mDuration}
+            get { return mDuration; }
             set { mDuration = value; }
         }
     }

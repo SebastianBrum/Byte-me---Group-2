@@ -22,6 +22,8 @@ namespace Byte_me___Group_2
         Panel pnlMainContent, pnlSidebar;
         Button btnNewPlaylist, btnChangeCoverPhoto;
 
+        private BindingList<Song> Songs;
+
         public PlaylistControl(Home homeForm, string username, string coversFolder, string playListsFolder, string dataFolder, OpenFileDialog ofdCoverPicture, Panel pnlMain, Panel Sidebar, Button btnNewPlayList, Button btnChangeCover)
         {
             InitializeComponent();
@@ -38,10 +40,10 @@ namespace Byte_me___Group_2
             this.homeForm = homeForm;
         }
 
-        //Lists for the songNames, artists, and durations
-        List<string> songs = new List<string>();
-        List<string> artists = new List<string>();
-        List<string> songDurations = new List<string>();
+        ////Lists for the songNames, artists, and durations
+        //List<string> songs = new List<string>();
+        //List<string> artists = new List<string>();
+        //List<string> songDurations = new List<string>();
 
         //Basic display setup when the user opens a playlist
         public void setupPlaylistPage(string title)
@@ -50,14 +52,17 @@ namespace Byte_me___Group_2
             lblPlaylistPathName.Text = title;
             lblDateCreated.Text = null;
             lblWelecome.Text = $"Welcome back, {this.username}";
+
+            readSongs(title);
+            dgvDisplaySongs.DataSource = Songs;
+
             playlistVisible(false);
             homeVisible(false);
             addPLaylistButton(false);
             changeCoverButton(false);
-            readSongs(title);
             loadImage(title, pbxPlaylistCoverPhoto);
 
-            lblPlalistCount.Text = $"This playlist has {songs.Count} songs";
+            lblPlalistCount.Text = $"This playlist has {Songs.Count} songs";
 
             string creationDate = File.GetCreationTime(Path.Combine(playlistsFolder, $"{title}.txt")).ToString("dd MMMM yyyy");
             addToCreationLabel(creationDate);
@@ -177,10 +182,11 @@ namespace Byte_me___Group_2
             playlistName + ".txt"
             );
 
-            //Clears the lists from old values
-            songs.Clear();
-            artists.Clear();
-            songDurations.Clear();
+            //Removes the old playlist's songs from the list
+            if (Songs != null) Songs.Clear();
+
+
+            Songs = new BindingList<Song>();
 
             //Reads from the textfile
             try
@@ -191,7 +197,12 @@ namespace Byte_me___Group_2
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        getSongTitle(line);
+                        string Title = getSongTitle(ref line);
+                        string Artist = getSongArtist(ref line);
+                        string Duration = line;
+
+                        Songs.Add( new Song(Title, Artist, Duration) );
+
                         totalSongs++;
                     }
 
@@ -206,38 +217,24 @@ namespace Byte_me___Group_2
             {
                 MessageBox.Show("Please try again");
             }
-
-            //Displays the songs in the panel
-            displaySongs(playlistName);
         }
 
         //gets the song title from the textfile and saves it into the songs list
-        private void getSongTitle(string line)
+        private string getSongTitle(ref string line)
         {
             int characterPosition = line.IndexOf("|");
-            songs.Add(line.Substring(0, characterPosition));
-
-            getSongArtist(line.Substring(characterPosition + 1));
+            string title = line.Substring(0, characterPosition);
+            line = line.Substring(characterPosition + 1);
+            return title;
         }
 
         //Gets the songs artist from the textfile and saves it into the artists list
-        private void getSongArtist(string line)
+        private string getSongArtist(ref string line)
         {
             int characterPosition = line.IndexOf("|");
-            artists.Add(line.Substring(0, characterPosition));
-            getSongDuration(line.Substring(characterPosition + 1));
-        }
-
-        //Gets the song duration from the textfile and saves it into the songDurations List
-        private void getSongDuration(string line)
-        {
-            songDurations.Add(line);
-        }
-
-        //Displays the songs into the display panel
-        private void displaySongs(string playlistName)
-        {
-            
+            string artist = line.Substring(0, characterPosition);
+            line = line.Substring(characterPosition + 1);
+            return artist;
         }
 
        
