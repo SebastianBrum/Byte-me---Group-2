@@ -52,7 +52,7 @@ namespace Byte_me___Group_2
                 {
                     try
                     {
-                        bool wasReplaced = UpsertTrackInPlaylist(targetPlaylists[i], songTitle, songArtist, songDuration);
+                        bool wasReplaced = UpsertTrackInPlaylist(targetPlaylists[i], songTitle, songArtist, songDuration, fileDlg.FileName);
                         if (wasReplaced) replacedCount++; else addedCount++;
                     }
                     catch (Exception ex)
@@ -175,15 +175,16 @@ namespace Byte_me___Group_2
         }
 
         // Adds (or updates) a "Title|Artist|Duration" line in a playlist file
-        private bool UpsertTrackInPlaylist(string filePath, string title, string artist, string duration)
+        private bool UpsertTrackInPlaylist(string filePath, string title, string artist, string duration, string songFilePath)
         {
+            MessageBox.Show($"{songFilePath}");
             string safeTitle = title.Replace("|", "/").Trim();       // strip separator character from values
             string safeArtist = artist.Replace("|", "/").Trim();
             string safeDuration = duration.Replace("|", "/").Trim();
-            string newLine = safeTitle + "|" + safeArtist + "|" + safeDuration; // line to write
+            string newLine = safeTitle + "|" + safeArtist + "|" + safeDuration + "|" +  songFilePath; // line to write
 
             string[] existingLines = ReadAllLinesSafe(filePath); // current tracks
-            bool foundExisting = false;                            // true if we replaced a track instead of adding one
+            bool foundExisting = false;                          // true if we replaced a track instead of adding one
 
             using (StreamWriter writer = new StreamWriter(filePath, false)) // rewrite the whole file
             {

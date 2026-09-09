@@ -197,11 +197,8 @@ namespace Byte_me___Group_2
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        string Title = getSongTitle(ref line);
-                        string Artist = getSongArtist(ref line);
-                        string Duration = line;
 
-                        Songs.Add( new Song(Title, Artist, Duration) );
+                        Songs.Add( new Song(line) );
 
                         totalSongs++;
                     }
@@ -213,9 +210,9 @@ namespace Byte_me___Group_2
             {
                 MessageBox.Show("Playlist file corrupted.");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Please try again");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -232,24 +229,6 @@ namespace Byte_me___Group_2
             {
                 DeleteSong(e.RowIndex, lblPlaylistName.Text);
             }
-        }
-
-        //gets the song title from the textfile and saves it into the songs list
-        private string getSongTitle(ref string line)
-        {
-            int characterPosition = line.IndexOf("|");
-            string title = line.Substring(0, characterPosition);
-            line = line.Substring(characterPosition + 1);
-            return title;
-        }
-
-        //Gets the songs artist from the textfile and saves it into the artists list
-        private string getSongArtist(ref string line)
-        {
-            int characterPosition = line.IndexOf("|");
-            string artist = line.Substring(0, characterPosition);
-            line = line.Substring(characterPosition + 1);
-            return artist;
         }
 
        
@@ -315,7 +294,7 @@ namespace Byte_me___Group_2
             {
                 foreach (Song song in Songs)
                 {
-                    writer.WriteLine($"{song.Name}|{song.Artist}|{song.duration}");
+                    writer.WriteLine($"{song.Name}|{song.Artist}|{song.Duration}");
                 }
             }
 
