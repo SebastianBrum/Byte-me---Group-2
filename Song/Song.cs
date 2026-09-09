@@ -13,11 +13,14 @@ namespace Byte_me___Group_2
         private string mArtist;
         private string mDuration;
 
-        public Song(string name, string artist, string duration)
+        private string mSongFilePath;
+
+        public Song(string line)
         {
-            this.mName = name;
-            this.mArtist = artist;
-            this.mDuration = duration;
+            this.Name = getSongName(ref line);
+            this.Artist = getSongArtist(ref line);
+            this.Duration = getSongDuratiion(ref line);
+            this.SongFilePath = line;
         }
 
         public string Name
@@ -32,10 +35,42 @@ namespace Byte_me___Group_2
             set { mArtist = value;}
         }
 
-        public string duration
+        public string Duration
         {
             get { return mDuration; }
             set { mDuration = value; }
+        }
+
+        public string SongFilePath
+        {
+            get { return mSongFilePath; }
+            set { mSongFilePath = value; }
+        }
+
+        //gets the song title from the textfile and saves it into the songs list
+        private string getSongName(ref string line)
+        {
+            int characterPosition = line.IndexOf("|");
+            string title = line.Substring(0, characterPosition);
+            line = line.Substring(characterPosition + 1);
+            return title;
+        }
+
+        //Gets the songs artist from the textfile and saves it into the artists list
+        private string getSongArtist(ref string line)
+        {
+            int characterPosition = line.IndexOf("|");
+            string artist = line.Substring(0, characterPosition);
+            line = line.Substring(characterPosition + 1);
+            return artist;
+        }
+
+        private string getSongDuratiion(ref string line)
+        {
+            int characterPosition = line.IndexOf("|");
+            string duration = line.Substring(0, characterPosition);
+            line = line.Substring(characterPosition + 1);
+            return duration;
         }
     }
 }
