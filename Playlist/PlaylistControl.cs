@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//
 namespace Byte_me___Group_2
 {
     public partial class PlaylistControl : UserControl
@@ -23,6 +24,7 @@ namespace Byte_me___Group_2
         Button btnNewPlaylist, btnChangeCoverPhoto;
 
         private BindingList<Song> Songs;
+        CurrentlyPlaying currentlyPlayingSong;
 
         public PlaylistControl(Home homeForm, string username, string coversFolder, string playListsFolder, string dataFolder, OpenFileDialog ofdCoverPicture, Panel pnlMain, Panel Sidebar, Button btnNewPlayList, Button btnChangeCover)
         {
@@ -52,7 +54,7 @@ namespace Byte_me___Group_2
             lblPlaylistPathName.Text = title;
             lblDateCreated.Text = null;
             lblWelecome.Text = $"Welcome back, {this.username}";
-
+            
             readSongs(title);
             dgvDisplaySongs.DataSource = Songs;
 
@@ -197,7 +199,6 @@ namespace Byte_me___Group_2
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-
                         Songs.Add( new Song(line) );
 
                         totalSongs++;
@@ -231,9 +232,10 @@ namespace Byte_me___Group_2
             } 
             else
             {
-                MessageBox.Show(Songs[e.RowIndex].SongFilePath);
                 wmpSongPlay.URL = Songs[e.RowIndex].SongFilePath;
                 wmpSongPlay.Ctlcontrols.play();
+
+                currentlyPlayingSong = new CurrentlyPlaying();
             }
         }
 

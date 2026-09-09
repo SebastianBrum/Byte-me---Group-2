@@ -442,7 +442,7 @@ namespace Byte_me___Group_2
             // wmpSongPlay
             // 
             this.wmpSongPlay.Enabled = true;
-            this.wmpSongPlay.Location = new System.Drawing.Point(473, 16);
+            this.wmpSongPlay.Location = new System.Drawing.Point(459, 16);
             this.wmpSongPlay.Name = "wmpSongPlay";
             this.wmpSongPlay.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("wmpSongPlay.OcxState")));
             this.wmpSongPlay.Size = new System.Drawing.Size(222, 44);
