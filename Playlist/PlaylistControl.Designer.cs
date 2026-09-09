@@ -64,7 +64,8 @@ namespace Byte_me___Group_2
             this.pnlTopBar = new System.Windows.Forms.Panel();
             this.lblPlalistCount = new System.Windows.Forms.Label();
             this.lblWelecome = new System.Windows.Forms.Label();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.wmpSongPlay = new AxWMPLib.AxWindowsMediaPlayer();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.pnlPlaylist.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDisplaySongs)).BeginInit();
             this.panel2.SuspendLayout();
@@ -72,12 +73,12 @@ namespace Byte_me___Group_2
             this.pnlPlaylistHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlaylistCoverPhoto)).BeginInit();
             this.pnlTopBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wmpSongPlay)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlPlaylist
             // 
-            this.pnlPlaylist.Controls.Add(this.axWindowsMediaPlayer1);
+            this.pnlPlaylist.Controls.Add(this.wmpSongPlay);
             this.pnlPlaylist.Controls.Add(this.dgvDisplaySongs);
             this.pnlPlaylist.Controls.Add(this.btnBackHome);
             this.pnlPlaylist.Controls.Add(this.lblBreadcrumb);
@@ -438,14 +439,24 @@ namespace Byte_me___Group_2
             this.lblWelecome.TabIndex = 0;
             this.lblWelecome.Text = "Welcome back,Lerato";
             // 
-            // axWindowsMediaPlayer1
+            // wmpSongPlay
             // 
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(473, 16);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(222, 44);
-            this.axWindowsMediaPlayer1.TabIndex = 14;
+            this.wmpSongPlay.Enabled = true;
+            this.wmpSongPlay.Location = new System.Drawing.Point(473, 16);
+            this.wmpSongPlay.Name = "wmpSongPlay";
+            this.wmpSongPlay.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("wmpSongPlay.OcxState")));
+            this.wmpSongPlay.Size = new System.Drawing.Size(222, 44);
+            this.wmpSongPlay.TabIndex = 14;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(448, 108);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(95, 20);
+            this.checkBox1.TabIndex = 15;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // PlaylistControl
             // 
@@ -465,7 +476,7 @@ namespace Byte_me___Group_2
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlaylistCoverPhoto)).EndInit();
             this.pnlTopBar.ResumeLayout(false);
             this.pnlTopBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wmpSongPlay)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -505,6 +516,7 @@ namespace Byte_me___Group_2
         private System.Windows.Forms.DataGridViewTextBoxColumn SongDelete;
         private Panel pnlTrackParent;
         private Panel pnlTrackChild;
-        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private AxWMPLib.AxWindowsMediaPlayer wmpSongPlay;
+        private CheckBox checkBox1;
     }
 }

@@ -228,6 +228,12 @@ namespace Byte_me___Group_2
             if (dgvDisplaySongs.Columns[e.ColumnIndex].Name == "SongDelete")
             {
                 DeleteSong(e.RowIndex, lblPlaylistName.Text);
+            } 
+            else
+            {
+                MessageBox.Show(Songs[e.RowIndex].SongFilePath);
+                wmpSongPlay.URL = Songs[e.RowIndex].SongFilePath;
+                wmpSongPlay.Ctlcontrols.play();
             }
         }
 

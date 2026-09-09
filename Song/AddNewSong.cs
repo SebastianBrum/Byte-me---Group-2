@@ -177,7 +177,6 @@ namespace Byte_me___Group_2
         // Adds (or updates) a "Title|Artist|Duration" line in a playlist file
         private bool UpsertTrackInPlaylist(string filePath, string title, string artist, string duration, string songFilePath)
         {
-            MessageBox.Show($"{songFilePath}");
             string safeTitle = title.Replace("|", "/").Trim();       // strip separator character from values
             string safeArtist = artist.Replace("|", "/").Trim();
             string safeDuration = duration.Replace("|", "/").Trim();

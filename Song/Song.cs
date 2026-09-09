@@ -20,6 +20,7 @@ namespace Byte_me___Group_2
             this.Name = getSongName(ref line);
             this.Artist = getSongArtist(ref line);
             this.Duration = getSongDuratiion(ref line);
+            this.SongFilePath = line;
         }
 
         public string Name
@@ -38,6 +39,12 @@ namespace Byte_me___Group_2
         {
             get { return mDuration; }
             set { mDuration = value; }
+        }
+
+        public string SongFilePath
+        {
+            get { return mSongFilePath; }
+            set { mSongFilePath = value; }
         }
 
         //gets the song title from the textfile and saves it into the songs list
