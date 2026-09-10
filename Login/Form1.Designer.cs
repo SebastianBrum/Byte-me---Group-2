@@ -167,6 +167,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmMain";
             this.Text = "Playlist Manager";
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
