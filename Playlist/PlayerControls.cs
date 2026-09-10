@@ -13,6 +13,7 @@ namespace Byte_me___Group_2.Playlist
 {
     public partial class PlayerControls : UserControl
     {
+        private bool isPlaying = false;
 
         private AxWindowsMediaPlayer songPlayer;
 
@@ -24,13 +25,20 @@ namespace Byte_me___Group_2.Playlist
         public void setSongPlayer(AxWindowsMediaPlayer player)
         {
             songPlayer = player;
-            MessageBox.Show(songPlayer.Name);
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(songPlayer.Name);
-            songPlayer.Ctlcontrols.pause();
+            if (!isPlaying) 
+            {
+                songPlayer.Ctlcontrols.play();
+                isPlaying = true;
+            }
+            else
+            {
+                songPlayer.Ctlcontrols.pause();
+                isPlaying = false;
+            }
         }
     }
 }
