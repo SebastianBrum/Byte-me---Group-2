@@ -83,6 +83,7 @@ namespace Byte_me___Group_2
 
             favouritesFile = Path.Combine(userFolder, "favourites.txt");
 
+            // Recent playlists opened
             recentFile = Path.Combine(userFolder, "recent.txt");
 
             lblAvatar.Text = this.username[0].ToString();

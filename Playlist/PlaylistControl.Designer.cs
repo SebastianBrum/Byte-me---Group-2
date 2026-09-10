@@ -341,7 +341,7 @@ namespace Byte_me___Group_2
         private System.Windows.Forms.DataGridViewTextBoxColumn songArtist;
         private System.Windows.Forms.DataGridViewTextBoxColumn songDuration;
         private System.Windows.Forms.DataGridViewTextBoxColumn SongDelete;
-        public AxWMPLib.AxWindowsMediaPlayer wmpSongPlay;
+        private AxWMPLib.AxWindowsMediaPlayer wmpSongPlay;
         private CheckBox checkBox1;
         private Playlist.PlayerControls playerControls1;
     }

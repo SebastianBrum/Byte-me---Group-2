@@ -37,7 +37,6 @@
             this.btnShuffle = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.lblArtistName = new System.Windows.Forms.Label();
             this.lblCurrentSong = new System.Windows.Forms.Label();
@@ -56,7 +55,6 @@
             this.panel2.Controls.Add(this.btnShuffle);
             this.panel2.Controls.Add(this.btnNext);
             this.panel2.Controls.Add(this.btnPlay);
-            this.panel2.Controls.Add(this.btnBack);
             this.panel2.Controls.Add(this.btnPrevious);
             this.panel2.Controls.Add(this.lblArtistName);
             this.panel2.Controls.Add(this.lblCurrentSong);
@@ -144,27 +142,17 @@
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
-            // btnBack
-            // 
-            this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBack.Location = new System.Drawing.Point(248, 30);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(25, 24);
-            this.btnBack.TabIndex = 4;
-            this.btnBack.Text = "◀";
-            this.btnBack.UseVisualStyleBackColor = true;
-            // 
             // btnPrevious
             // 
             this.btnPrevious.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrevious.Location = new System.Drawing.Point(212, 28);
+            this.btnPrevious.Location = new System.Drawing.Point(238, 32);
             this.btnPrevious.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(28, 30);
+            this.btnPrevious.Size = new System.Drawing.Size(36, 22);
             this.btnPrevious.TabIndex = 3;
             this.btnPrevious.Text = "I◀";
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // lblArtistName
             // 
@@ -222,7 +210,6 @@
         private System.Windows.Forms.Button btnShuffle;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPlay;
-        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Label lblArtistName;
         private System.Windows.Forms.Label lblCurrentSong;

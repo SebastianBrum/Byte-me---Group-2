@@ -17,14 +17,19 @@ namespace Byte_me___Group_2
     {
         private Home homeForm;
 
-
         private string username, coversFolder, playlistsFolder, dataFolder;
         OpenFileDialog ofdCoverPicture;
         Panel pnlMainContent, pnlSidebar;
         Button btnNewPlaylist, btnChangeCoverPhoto;
 
+        // The list of songs in the playlist
         private BindingList<Song> Songs;
+
+        // The class for the song that is currently playing
         CurrentlyPlaying currentlyPlayingSong;
+
+        SongHistory SongsQueue;
+
 
         public PlaylistControl(Home homeForm, string username, string coversFolder, string playListsFolder, string dataFolder, OpenFileDialog ofdCoverPicture, Panel pnlMain, Panel Sidebar, Button btnNewPlayList, Button btnChangeCover)
         {
@@ -45,12 +50,10 @@ namespace Byte_me___Group_2
             playerControls1.setSongPlayer(wmpSongPlay);
         }
 
-        ////Lists for the songNames, artists, and durations
-        //List<string> songs = new List<string>();
-        //List<string> artists = new List<string>();
-        //List<string> songDurations = new List<string>();
-
-        //Basic display setup when the user opens a playlist
+        /// <summary>
+        /// Basic display setup when the user opens a playlist
+        /// </summary>
+        /// <param name="title"> The playlist that the user opened </param>
         public void setupPlaylistPage(string title)
         {
             lblPlaylistName.Text = title;
@@ -58,6 +61,7 @@ namespace Byte_me___Group_2
             lblDateCreated.Text = null;
             lblWelecome.Text = $"Welcome back, {this.username}";
             
+            // Read the songs from the textfile
             readSongs(title);
             dgvDisplaySongs.DataSource = Songs;
 
@@ -69,8 +73,11 @@ namespace Byte_me___Group_2
 
             lblPlalistCount.Text = $"This playlist has {Songs.Count} songs";
 
+            //Gets the creation date of the playlist and displays it
             string creationDate = File.GetCreationTime(Path.Combine(playlistsFolder, $"{title}.txt")).ToString("dd MMMM yyyy");
             addToCreationLabel(creationDate);
+
+            SongsQueue = new SongHistory( playlistsFolder, title );
         }
 
         //Goes back to the home screen when the user clicks on the filepath
@@ -220,6 +227,7 @@ namespace Byte_me___Group_2
             }
         }
 
+        //
         private void dgvDisplaySongs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Gaurd against the header being clicked
@@ -235,6 +243,7 @@ namespace Byte_me___Group_2
             } 
             else
             {
+                //Plays the song that is clicked
                 wmpSongPlay.URL = Songs[e.RowIndex].SongFilePath;
                 wmpSongPlay.Ctlcontrols.play();
 

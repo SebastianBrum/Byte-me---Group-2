@@ -62,6 +62,7 @@
     <Compile Include="Playlist\PlaylistControl.Designer.cs">
       <DependentUpon>PlaylistControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Playlist\SongHistory.cs" />
     <Compile Include="Song\AddNewSong.cs">
       <SubType>Form</SubType>
     </Compile>

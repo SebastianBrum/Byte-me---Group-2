@@ -40,5 +40,10 @@ namespace Byte_me___Group_2.Playlist
                 isPlaying = false;
             }
         }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
