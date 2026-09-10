@@ -50,6 +50,12 @@
     <Compile Include="Playlist\AddNewPlaylist.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Playlist\PlayerControls.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Playlist\PlayerControls.Designer.cs">
+      <DependentUpon>PlayerControls.cs</DependentUpon>
+    </Compile>
     <Compile Include="Playlist\PlaylistControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Playlist\PlayerControls.resx">
+      <DependentUpon>PlayerControls.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Playlist\PlaylistControl.resx">
       <DependentUpon>PlaylistControl.cs</DependentUpon>

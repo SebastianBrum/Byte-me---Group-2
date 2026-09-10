@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Byte_me___Group_2.Playlist;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//ACTUALLLLL
 namespace Byte_me___Group_2
 {
     public partial class PlaylistControl : UserControl
@@ -40,6 +40,9 @@ namespace Byte_me___Group_2
             this.btnChangeCoverPhoto = btnChangeCover;
             this.pnlSidebar = Sidebar;
             this.homeForm = homeForm;
+
+
+            playerControls1.setSongPlayer(wmpSongPlay);
         }
 
         ////Lists for the songNames, artists, and durations
