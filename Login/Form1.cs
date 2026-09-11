@@ -8,11 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Byte_me___Group_2
 {
     public partial class FrmMain : Form
     {
+        // List that stores all user objects
+        List<User> users = new List<User>();
         public FrmMain()
         {
             InitializeComponent();
@@ -34,6 +38,31 @@ namespace Byte_me___Group_2
             txtPassword.PasswordChar = '*';
         }
 
+        // Deserialization
+        //Reads the saved users from the file
+        public void ReadUsersFromFile()
+        {
+            try
+            {
+                // Open the users file
+                FileStream file = new FileStream("ExsistingUsers.txt", FileMode.Open, FileAccess.Read);
+
+                // Create BinaryFormatter
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                // Convert the binary data back into a List<user>
+                users = (List<User>)formatter.Deserialize(file);
+
+                // close the file
+                file.Close();
+            }
+            catch (FileNotFoundException)
+            {
+                // File does not exsist yet
+                users = new List<User>();
+            }
+        }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             // try is used to to prevent program from crashing, if prblem while reading the file 
@@ -50,30 +79,48 @@ namespace Byte_me___Group_2
                     return;
                 }
 
+                // Deserialize users from file
+                ReadUsersFromFile();
+
                 // Variable keep track of whether username or password were found 
-                bool found = false;
+               bool found = false;
 
-                //Open users.txt file so that we can read what is stored inside 
-                StreamReader reader = new StreamReader("ExistingUsers.txt");
+                MessageBox.Show("hi");
 
-                //Keep reading file while there are still lines left to read
-                while (!reader.EndOfStream)
+                // Go through each User object in the list
+                foreach (User user in users)
                 {
-                    //Read one line from text file
-                    string line = reader.ReadLine();
-                    // Split line at the comma
-                    string[] user = line.Split(',');
-
-                    // Check whether username  and password entered by user match the info in the text file
-                    if (user[0] == username && user[1] == password)
+                    MessageBox.Show("mo");
+                    //Check if username and password match
+                    if (user.Username == username && user.Password == password)
                     {
-                        // If they match, the login details are correct
                         found = true;
+                        break;
                     }
                 }
+                MessageBox.Show("HI");
+
+                //Open users.txt file so that we can read what is stored inside 
+               // StreamReader reader = new StreamReader("ExistingUsers.txt");
+
+                //Keep reading file while there are still lines left to read
+                //while (!reader.EndOfStream)
+              //  {
+                    //Read one line from text file
+                //    string line = reader.ReadLine();
+                    // Split line at the comma
+                //    string[] user = line.Split(',');
+
+                    // Check whether username  and password entered by user match the info in the text file
+              //      if (user[0] == username && user[1] == password)
+              //      {
+                        // If they match, the login details are correct
+              //          found = true;
+              //      }
+              //  }
 
                 //close the text file after we have finished reading it 
-                reader.Close();
+                //reader.Close();
 
                 //Check if correct username and password were found
                 if (found)
@@ -101,6 +148,12 @@ namespace Byte_me___Group_2
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

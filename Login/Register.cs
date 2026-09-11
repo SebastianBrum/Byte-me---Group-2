@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,6 +24,8 @@ namespace Byte_me___Group_2
         {
             InitializeComponent();
         }
+
+        List<User> users = new List<User>();
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
@@ -87,7 +90,8 @@ namespace Byte_me___Group_2
 
                 // save the whole updated list back to the file 
                 WriteDataToFile("ExistingUsers", ExistingUsers);
-
+                
+                MessageBox.Show("Account created successfully!");
 
                 // takes the user user back to login form after they have successfully created an account //
                 FrmMain login = new FrmMain();
