@@ -211,7 +211,6 @@ namespace Byte_me___Group_2
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        MessageBox.Show(line);
                         Songs.Add( new Song(line) );
 
                         totalSongs++;
@@ -330,9 +329,6 @@ namespace Byte_me___Group_2
                     writer.WriteLine($"{song.Name}|{song.Artist}|{song.Duration}|{song.SongFilePath}");
                 }
             }
-
-            // Rerenders all the remaining songs to display
-            //readSongs(playlistName);
 
             // Shows a message for successful deletion
             MessageBox.Show("Song deleted successfully.");
