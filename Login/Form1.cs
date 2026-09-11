@@ -85,9 +85,12 @@ namespace Byte_me___Group_2
                 // Variable keep track of whether username or password were found 
                bool found = false;
 
+                MessageBox.Show("hi");
+
                 // Go through each User object in the list
                 foreach (User user in users)
                 {
+                    MessageBox.Show("mo");
                     //Check if username and password match
                     if (user.Username == username && user.Password == password)
                     {
@@ -95,6 +98,7 @@ namespace Byte_me___Group_2
                         break;
                     }
                 }
+                MessageBox.Show("HI");
 
                 //Open users.txt file so that we can read what is stored inside 
                // StreamReader reader = new StreamReader("ExistingUsers.txt");
