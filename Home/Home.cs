@@ -34,6 +34,215 @@ namespace Byte_me___Group_2
         // True = only show favourited playlists in sidebar/grid
         private bool showFavouritesOnly = false;
 
+
+
+        // Returns the names of favourite playlists whose files still exist on disk
+        private string[] GetFavouritePlaylistNames()
+        {
+            string[] lines = ReadAllLinesSafe(favouritesFile);
+            List<string> valid = new List<string>();
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string name = lines[i].Trim();
+
+                if (name.Length > 0)
+                {
+                    string path = Path.Combine(playlistsFolder, name + ".txt");
+
+                    if (File.Exists(path))
+                    {
+                        valid.Add(name);
+                    }
+                }
+            }
+
+            return valid.ToArray();
+        }
+
+        // Switches the main view to show only favourite playlists
+        private void ShowFavouritesList()
+        {
+            showFavouritesOnly = true;
+            SetActiveFilterHighlight();
+            RefreshPlaylistView();
+        }
+
+        // Shows a message in the main content area when there are no playlists to display
+        private void ShowEmptyState(string message)
+        {
+            if (emptyStateLabel == null)
+            {
+                emptyStateLabel = new Label();
+                emptyStateLabel.AutoSize = true;
+                emptyStateLabel.Font = new Font("Segoe UI", 10F, FontStyle.Italic);
+                emptyStateLabel.ForeColor = Color.Gray;
+                emptyStateLabel.Location = new Point(30, 30);
+                pnlMainContent.Controls.Add(emptyStateLabel);
+            }
+
+            emptyStateLabel.Text = message;
+            emptyStateLabel.Visible = true;
+            emptyStateLabel.BringToFront();
+        }
+
+        // Hides the empty-state label when there is something to show
+        private void HideEmptyState()
+        {
+            if (emptyStateLabel != null)
+            {
+                emptyStateLabel.Visible = false;
+            }
+        }
+
+        // Opens the playlist whose sidebar row was clicked
+        private void SidebarRow_Click(object sender, EventArgs e)
+        {
+            Control c = sender as Control;
+
+            if (c != null && c.Tag is string)
+            {
+                OpenPlaylist((string)c.Tag);
+            }
+        }
+
+        // Opens the playlist whose grid card was clicked
+        private void GridCard_Click(object sender, EventArgs e)
+        {
+            Control c = sender as Control;
+
+            if (c != null && c.Tag is string)
+            {
+                OpenPlaylist((string)c.Tag);
+            }
+        }
+
+        // Builds one grid card for a single playlist and adds it to the flow layout panel
+        private void AddGridCard(string name, string filePath)
+        {
+            Panel card = new Panel();
+            card.Width = 150;
+            card.Height = 180;
+            card.BackColor = Color.White;
+            card.Margin = new Padding(8);
+            card.Tag = filePath;
+            card.Cursor = Cursors.Hand;
+
+            Label lblName = new Label();
+            lblName.Text = name;
+            lblName.AutoSize = false;
+            lblName.Width = card.Width;
+            lblName.Height = 30;
+            lblName.TextAlign = ContentAlignment.MiddleCenter;
+            lblName.ForeColor = Color.Black;
+            lblName.Cursor = Cursors.Hand;
+
+            card.Controls.Add(lblName);
+
+            card.Click += GridCard_Click;
+            lblName.Click += GridCard_Click;
+
+            dynamicCards[dynamicCardCount] = card;
+            dynamicCardCount++;
+
+            flpPlaylists.Controls.Add(card);
+        }
+
+        // Builds one sidebar row for a single playlist and adds it to the sidebar
+        private void AddSidebarRow(string name, string filePath)
+        {
+            if (dynamicNavRowCount < MaxSidebarRows)
+            {
+                Panel row = new Panel();
+                row.Width = pnlSidebar.Width - 20;
+                row.Height = 40;
+                row.BackColor = Color.Transparent;
+                row.Cursor = Cursors.Hand;
+                row.Tag = filePath;
+
+                Label lblName = new Label();
+                lblName.Text = name;
+                lblName.AutoSize = false;
+                lblName.Width = row.Width - 10;
+                lblName.Height = row.Height;
+                lblName.TextAlign = ContentAlignment.MiddleLeft;
+                lblName.ForeColor = Color.White;
+                lblName.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
+                lblName.Cursor = Cursors.Hand;
+
+                row.Controls.Add(lblName);
+
+                row.Click += SidebarRow_Click;
+                lblName.Click += SidebarRow_Click;
+
+                int y = 0;
+                if (dynamicNavRowCount > 0)
+                {
+                    Panel prev = dynamicNavRows[dynamicNavRowCount - 1];
+                    y = prev.Bottom + 4;
+                }
+
+                row.Top = y;
+                row.Left = 10;
+
+                dynamicNavRows[dynamicNavRowCount] = row;
+                dynamicNavRowCount++;
+
+                pnlSidebar.Controls.Add(row);
+            }
+        }
+
+        // Rebuilds the sidebar rows and grid cards from a given list of playlist names
+        private void BuildPlaylistList(string[] names)
+        {
+            // Clear previous sidebar rows
+            for (int i = 0; i < dynamicNavRowCount; i++)
+            {
+                if (dynamicNavRows[i] != null)
+                {
+                    dynamicNavRows[i].Dispose();
+                    dynamicNavRows[i] = null;
+                }
+            }
+            dynamicNavRowCount = 0;
+
+            // Clear previous grid cards
+            for (int i = 0; i < dynamicCardCount; i++)
+            {
+                if (dynamicCards[i] != null)
+                {
+                    dynamicCards[i].Dispose();
+                    dynamicCards[i] = null;
+                }
+            }
+            dynamicCardCount = 0;
+
+            // Clear the containers themselves
+            flpPlaylists.Controls.Clear();
+            pnlSidebar.Controls.Clear();
+
+            if (names.Length == 0)
+            {
+                ShowEmptyState("No playlists to display.");
+            }
+            else
+            {
+                HideEmptyState();
+
+                for (int i = 0; i < names.Length; i++)
+                {
+                    string filePath = Path.Combine(playlistsFolder, names[i] + ".txt");
+                    AddSidebarRow(names[i], filePath);
+                    AddGridCard(names[i], filePath);
+                }
+            }
+        }
+
+
+
+
+
+
         // Dynamically built sidebar rows (replace the fixed demo rows)
         private readonly Panel[] dynamicNavRows = new Panel[200];
         private int dynamicNavRowCount = 0;
