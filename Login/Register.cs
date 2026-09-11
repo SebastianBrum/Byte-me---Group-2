@@ -36,6 +36,7 @@ namespace Byte_me___Group_2
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
             {
                 MessageBox.Show(" please enter a username And password");
+                return;
             }
 
             else
