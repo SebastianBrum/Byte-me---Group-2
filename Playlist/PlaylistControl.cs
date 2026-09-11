@@ -257,7 +257,7 @@ namespace Byte_me___Group_2
 
         public void playSong(int rowIndex)
         {
-            playerControls1.lblTime.Text = dgvDisplaySongs[3, rowIndex].Value.ToString();
+            playerControls1.lblTime.Text = dgvDisplaySongs[2, rowIndex].Value.ToString();
 
             playerControls1.tmrTrackbarTime.Enabled = true;
             

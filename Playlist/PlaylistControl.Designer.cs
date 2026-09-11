@@ -84,6 +84,7 @@ namespace Byte_me___Group_2
             this.songArtist,
             this.songDuration,
             this.SongDelete});
+            this.dgvDisplaySongs.AutoGenerateColumns = false;
             this.dgvDisplaySongs.Location = new System.Drawing.Point(12, 329);
             this.dgvDisplaySongs.Name = "dgvDisplaySongs";
             this.dgvDisplaySongs.RowHeadersWidth = 51;
