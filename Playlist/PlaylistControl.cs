@@ -62,10 +62,9 @@ namespace Byte_me___Group_2
             lblPlaylistPathName.Text = title;
             lblDateCreated.Text = null;
             lblWelecome.Text = $"Welcome back, {this.username}";
-            
+
             // Read the songs from the textfile
             readSongs(title);
-            dgvDisplaySongs.DataSource = Songs;
 
             playlistVisible(false);
             homeVisible(false);
@@ -217,6 +216,7 @@ namespace Byte_me___Group_2
                     }
 
                     addToCreationLabel($"{totalSongs} tracks");
+                    dgvDisplaySongs.DataSource = Songs;
                 }
             }
             catch (FileNotFoundException)
@@ -232,9 +232,11 @@ namespace Byte_me___Group_2
         //
         private void dgvDisplaySongs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Gaurd against the header being clicked
+
             if (e.RowIndex < 0)
             {
+                SortPlaylistSongs(dgvDisplaySongs.Columns[e.ColumnIndex].Name, false, lblPlaylistName.Text);
+                MessageBox.Show($"{lblPlaylistName.Text} + {dgvDisplaySongs.Columns[e.ColumnIndex].Name}");
                 return;
             }
 
@@ -263,7 +265,13 @@ namespace Byte_me___Group_2
             
         }
 
-       
+        private void btnAddsongs_Click(object sender, EventArgs e)
+        {
+            homeForm.btnUploadSong_Click(sender, e);
+            Songs.Clear();
+            readSongs(lblPlaylistName.Text);
+            MessageBox.Show(Songs.Last().Name);
+        }
 
         private void DeleteSong(int songIndex, string playlistName)
         {
@@ -321,7 +329,6 @@ namespace Byte_me___Group_2
             Songs.RemoveAt(songIndex);
 
             // Writes remaining songs back into the playlist
-            //File.WriteAllLines(playlistPath, remainingSongs);
             using (StreamWriter writer = new StreamWriter(playlistPath))
             {
                 foreach (Song song in Songs)
@@ -366,5 +373,99 @@ namespace Byte_me___Group_2
             homePage.deletePlaylist(lblPlaylistName.Text, Path.Combine(playlistsFolder, lblPlaylistName.Text + ".txt"));
             btnBackHome_Click(sender, e);
         }
+
+        //This method sorts the songs according to the selected option
+        private void SortPlaylistSongs(string sortBy, bool ascending, string playlistName)
+        {
+            //Creates a list that stores the positions of the songs
+            List<int> songIndexes = new List<int>();
+
+            //Adds each song to the position list
+            for (int i = 0; i < Songs.Count; i++)
+            {
+                songIndexes.Add(i);
+            }
+            //checks if user wants to sort by title
+            if (sortBy == "songName")
+            {
+                if (ascending)
+                {
+                    songIndexes = songIndexes.OrderBy(i => Songs[i].Name).ToList();//from A to Z
+                }
+                else
+                {
+                    songIndexes = songIndexes.OrderByDescending(i => Songs[i].Name).ToList();//from Z to A
+                }
+            }
+            else if (sortBy == "songArtist")
+            {
+                if (ascending)
+                {
+                    songIndexes = songIndexes.OrderBy(i => Songs[i].Artist).ToList();
+                }
+                else
+                {
+                    songIndexes = songIndexes.OrderByDescending(i => Songs[i].Artist).ToList();
+                }
+            }
+            else if (sortBy == "songDuration")
+            {
+                if (ascending)
+                {
+                    songIndexes = songIndexes.OrderBy(i => GetDurationInSeconds(Songs[i].Duration)).ToList();
+                }
+                else
+                {
+                    songIndexes = songIndexes.OrderByDescending(i => GetDurationInSeconds(Songs[i].Duration)).ToList();
+                }
+            }
+
+            //Creates temporary list to store the sorted information.
+            List<Song> sortedSongs = new List<Song>();
+
+            //Goes through their index in the new sorted order
+            for (int i = 0; i < songIndexes.Count; i++)
+            {
+                //Gets original position of a song
+                int index = songIndexes[i];
+
+                //Adds info to the temporary list
+                sortedSongs.Add(Songs[index]);
+            }
+
+            //clear the original lists
+            Songs.Clear();
+
+            //Add sorted info back to the original list
+            foreach (Song song in sortedSongs)
+            {
+                Songs.Add(song);
+            }
+
+
+
+        }
+        private int GetDurationInSeconds(string duration)
+        {
+            //Splits duration such as "3:45"into seconds.
+            string[] parts = duration.Split(':');
+
+            //checks if duration contains minutes and seconds
+            if (parts.Length == 2)
+            {
+                int minutes;
+                int seconds;
+
+                //minutes snd seconds into numbers
+                if (int.TryParse(parts[0], out minutes) && int.TryParse(parts[1], out seconds))
+                {
+                    return (minutes * 60) + seconds;
+                }
+            }
+            //Return Zero if duration cannot be converted
+            return 0;
+        }
     }
+
+
 }

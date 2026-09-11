@@ -93,7 +93,6 @@ namespace Byte_me___Group_2
             this.songArtist,
             this.songDuration,
             this.SongDelete});
-            this.dgvDisplaySongs.AutoGenerateColumns = false;
             this.dgvDisplaySongs.Location = new System.Drawing.Point(12, 329);
             this.dgvDisplaySongs.Name = "dgvDisplaySongs";
             this.dgvDisplaySongs.RowHeadersWidth = 51;
@@ -127,7 +126,6 @@ namespace Byte_me___Group_2
             this.songDuration.MinimumWidth = 6;
             this.songDuration.Name = "songDuration";
             this.songDuration.ReadOnly = true;
-            this.songDuration.Width = 100;
             // 
             // SongDelete
             // 
@@ -208,6 +206,7 @@ namespace Byte_me___Group_2
             this.btnAddsongs.TabIndex = 8;
             this.btnAddsongs.Text = "Add Songs";
             this.btnAddsongs.UseVisualStyleBackColor = true;
+            this.btnAddsongs.Click += new System.EventHandler(this.btnAddsongs_Click);
             // 
             // lblDateCreated
             // 
