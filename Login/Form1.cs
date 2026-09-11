@@ -86,7 +86,7 @@ namespace Byte_me___Group_2
                bool found = false;
 
                 // Go through each User object in the list
-                foreach (UserControl user in users)
+                foreach (User user in users)
                 {
                     //Check if username and password match
                     if (user.Username == username && user.Password == password)
