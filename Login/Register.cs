@@ -10,12 +10,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+//this allows the class to have access to the serialization and deserialization methods
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Byte_me___Group_2
 {
     public partial class Register : Form
     {
-       public Register()
+        // this list that holds all existing users
+        List<User> ExistingUsers = new List<User>();
+        public Register()
         {
             InitializeComponent();
         }
@@ -34,41 +39,37 @@ namespace Byte_me___Group_2
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
             {
                 MessageBox.Show(" please enter a username And password");
+                return;
             }
 
             else
-            {  // checking if the exisitng accounts text file  exists// 
-                if (File.Exists("ExistingUsers.txt"))
+            {  // checking if the exisitng accounts  file  exists// 
+                if (File.Exists("ExistingUsers.ser"))
                 {
-                    // if it does exist the ReadUser will read it and tell us whether or not the username and passowrd entered by the user already exists // 
+                    // if it exists , load all the saved users into the list first
                     try
                     {
-                        StreamReader ReadUser = new StreamReader("ExistingUsers.txt");
-                        string Readline = ReadUser.ReadLine();
+                        ReadDataFromFile("ExistingUsers", ExistingUsers);
 
-                        while (Readline != null)
-                        {// to split the username and password into an array //
-                            string[] user = Readline.Split(',');
-                            // checking if the username and passoward has already been entered by the user //
-                            if (user[0] == Username && user[1] == Password)
+                        // now checking is the username and password already exists
+                        for (int i = 0; i < ExistingUsers.Count; i++)
+                        {
+                            if (ExistingUsers[i].Username == Username)
                             {
                                 found = true;
-                                break;// to break the loop since the account exists //
+                                break;// to break  the loop since the account exists
                             }
-
-                            Readline = ReadUser.ReadLine();
-
-
                         }
-                        ReadUser.Close();
 
+                    }
 
-                    } // to catch any error that pops up  //
+                    // to catch any error that pops up  //
                     catch (Exception generalException)
                     {
                         MessageBox.Show("there is an error please try again later " + generalException.Message);
 
                     }
+
                 }
 
             }
@@ -81,43 +82,76 @@ namespace Byte_me___Group_2
             }
             else
             {
+                // create a new User object with the entered details 
+                User newUser = new User(Username, Password);
 
-                // to add the username and password to the existing accounts text file
-                users.Add(new User(Username, Password));
-                WriteUsersToFile();
-                lblOutput.Text = "Account created successfully!";
+                //add it to the list of existing users
+                ExistingUsers.Add(newUser);
 
+                // save the whole updated list back to the file 
+                WriteDataToFile("ExistingUsers", ExistingUsers);
+                
+                MessageBox.Show("Account created successfully!");
 
-               
-            FrmMain login = new FrmMain ();
-             login.Show();
-            this.Hide();   
+                // takes the user user back to login form after they have successfully created an account //
+                FrmMain login = new FrmMain();
+                login.Show();
+                this.Hide();
 
             }
         }
 
+        // Serialises the list of users to a file
+        public void WriteDataToFile(string listnName, List<User> myList)
+        {
+            try
+            { // opens/create the file for writing
+                FileStream outfile = new FileStream(listnName + ".ser", FileMode.Create, FileAccess.Write);
+                BinaryFormatter bFormatter = new BinaryFormatter();
 
-        // Serialization
-        // Saves the current users list to the file
-        public void WriteUsersToFile()
+                // write the whole list to file as bytes 
+                bFormatter.Serialize(outfile, myList);
+                outfile.Close();
+
+            }
+            // to catch all the generale expections that may arise 
+            catch (Exception generalException)
+            {
+                MessageBox.Show("there is an error saving your data " + generalException.Message);
+            }
+
+
+        }
+
+
+        // Deserialises the list of users from a file
+        public void ReadDataFromFile(string listName, List<User> myList)
         {
             try
             {
-                // Open (or create) the users file for writing
-                FileStream file = new FileStream("ExsistingUsers.txt", FileMode.Create, FileAccess.Write);
+                //open the existing file for reading 
+                FileStream infile = new FileStream(listName + ".ser", FileMode.Open, FileAccess.Read);
+                BinaryFormatter bFormatter = new BinaryFormatter();
 
-                // Create BinaryFormatter
-                BinaryFormatter formatter = new BinaryFormatter();
+                myList.Clear();
 
-                // Convert the List<User> into binary data and write it to the file
-                formatter.Serialize(file, users);
+                //convert the bytes back into the List<User>
+                List<User> tempList = (List<User>)bFormatter.Deserialize(infile);
 
-                // close the file
-                file.Close();
+                for (int i = 0; i < tempList.Count; i++)
+                {
+                    myList.Add(tempList[i]);
+                }
+                infile.Close();
+
             }
-            catch (Exception ex)
+            catch (FileNotFoundException)
             {
-                MessageBox.Show(ex.Message);
+
+            }
+            catch (Exception generalException)
+            {
+                MessageBox.Show("there is an error reading your data " + generalException.Message);
             }
         }
     }
