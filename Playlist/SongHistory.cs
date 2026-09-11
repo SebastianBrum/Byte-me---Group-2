@@ -69,6 +69,8 @@ namespace Byte_me___Group_2.Playlist
             // Update the current index to point to the last song
             // the history.Count - 1 is used to get the index of the last song in the history list
             currentIndex = history.Count - 1;
+            //persist the updated history to the file
+            SaveHistory();
         }
 
         // Go backwards
@@ -81,6 +83,8 @@ namespace Byte_me___Group_2.Playlist
 
             // Decrement
             currentIndex--;
+            // Persist the new position
+            SaveHistory();
 
             // Return the previous song
             return history[currentIndex];
@@ -96,7 +100,7 @@ namespace Byte_me___Group_2.Playlist
 
             // Increment
             currentIndex++;
-
+            SaveHistory();
             return history[currentIndex];
         }
 
@@ -104,7 +108,7 @@ namespace Byte_me___Group_2.Playlist
         public string LastPlayedSong()
         {
             // Check if there are any songs in the history
-            if (history.Count == 0)
+            if (history.Count == 0 || currentIndex < 0 || currentIndex >= history.Count)
                 return null;
 
             return history[currentIndex];
@@ -159,14 +163,17 @@ namespace Byte_me___Group_2.Playlist
 
                 // convert the first line of
                 //the file "which should be the current index... from a string to an integer
-                currentIndex = Convert.ToInt32(lines[0]);
+               if( !int.TryParse(lines[0], out currentIndex))
+                {// If the first line is not a valid integer,
+                 // clear the history and reset the current index
+                    history.Clear();
+                    currentIndex = -1;
+                    return;
+               }
 
                 // the Skip method is used to skip the first line of the file
                 history = lines
                     .Skip(1)
-                    // the Take method is used to take only the last 50 songs from the history  
-                    .Take(MaxSongs)
-                    // the ToList method is used to convert the <string>
                     // returned by the Skip and Take methods into a List<string>
                     .ToList();
 
