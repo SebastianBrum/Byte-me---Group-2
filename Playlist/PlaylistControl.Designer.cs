@@ -32,6 +32,7 @@ namespace Byte_me___Group_2
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlaylistControl));
             this.pnlPlaylist = new System.Windows.Forms.Panel();
+            this.wmpSongPlay = new AxWMPLib.AxWindowsMediaPlayer();
             this.dgvDisplaySongs = new System.Windows.Forms.DataGridView();
             this.songName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.songArtist = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,6 +41,7 @@ namespace Byte_me___Group_2
             this.btnBackHome = new System.Windows.Forms.Button();
             this.lblBreadcrumb = new System.Windows.Forms.Label();
             this.pnlPlaylistHeader = new System.Windows.Forms.Panel();
+            this.pbxPlaylistCoverPhoto = new System.Windows.Forms.PictureBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAddsongs = new System.Windows.Forms.Button();
             this.lblDateCreated = new System.Windows.Forms.Label();
@@ -50,15 +52,13 @@ namespace Byte_me___Group_2
             this.lblPlalistCount = new System.Windows.Forms.Label();
             this.lblWelecome = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.wmpSongPlay = new AxWMPLib.AxWindowsMediaPlayer();
             this.playerControls1 = new Byte_me___Group_2.Playlist.PlayerControls();
-            this.pbxPlaylistCoverPhoto = new System.Windows.Forms.PictureBox();
             this.pnlPlaylist.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wmpSongPlay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDisplaySongs)).BeginInit();
             this.pnlPlaylistHeader.SuspendLayout();
-            this.pnlTopBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wmpSongPlay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlaylistCoverPhoto)).BeginInit();
+            this.pnlTopBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlPlaylist
@@ -73,8 +73,17 @@ namespace Byte_me___Group_2
             this.pnlPlaylist.Location = new System.Drawing.Point(2, 2);
             this.pnlPlaylist.Margin = new System.Windows.Forms.Padding(2);
             this.pnlPlaylist.Name = "pnlPlaylist";
-            this.pnlPlaylist.Size = new System.Drawing.Size(815, 648);
-            this.pnlPlaylist.TabIndex = 6;
+            this.pnlPlaylist.Size = new System.Drawing.Size(946, 698);
+            this.pnlPlaylist.TabIndex = 0;
+            // 
+            // wmpSongPlay
+            // 
+            this.wmpSongPlay.Enabled = true;
+            this.wmpSongPlay.Location = new System.Drawing.Point(200, 16);
+            this.wmpSongPlay.Name = "wmpSongPlay";
+            this.wmpSongPlay.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("wmpSongPlay.OcxState")));
+            this.wmpSongPlay.Size = new System.Drawing.Size(222, 44);
+            this.wmpSongPlay.TabIndex = 14;
             // 
             // dgvDisplaySongs
             // 
@@ -89,7 +98,7 @@ namespace Byte_me___Group_2
             this.dgvDisplaySongs.Name = "dgvDisplaySongs";
             this.dgvDisplaySongs.RowHeadersWidth = 51;
             this.dgvDisplaySongs.RowTemplate.Height = 24;
-            this.dgvDisplaySongs.Size = new System.Drawing.Size(788, 290);
+            this.dgvDisplaySongs.Size = new System.Drawing.Size(932, 290);
             this.dgvDisplaySongs.TabIndex = 13;
             this.dgvDisplaySongs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisplaySongs_CellClick);
             // 
@@ -100,7 +109,7 @@ namespace Byte_me___Group_2
             this.songName.MinimumWidth = 6;
             this.songName.Name = "songName";
             this.songName.ReadOnly = true;
-            this.songName.Width = 300;
+            this.songName.Width = 250;
             // 
             // songArtist
             // 
@@ -118,7 +127,7 @@ namespace Byte_me___Group_2
             this.songDuration.MinimumWidth = 6;
             this.songDuration.Name = "songDuration";
             this.songDuration.ReadOnly = true;
-            this.songDuration.Width = 125;
+            this.songDuration.Width = 100;
             // 
             // SongDelete
             // 
@@ -127,7 +136,7 @@ namespace Byte_me___Group_2
             this.SongDelete.MinimumWidth = 6;
             this.SongDelete.Name = "SongDelete";
             this.SongDelete.ReadOnly = true;
-            this.SongDelete.Width = 125;
+            this.SongDelete.Width = 95;
             // 
             // btnBackHome
             // 
@@ -167,6 +176,15 @@ namespace Byte_me___Group_2
             this.pnlPlaylistHeader.Name = "pnlPlaylistHeader";
             this.pnlPlaylistHeader.Size = new System.Drawing.Size(788, 98);
             this.pnlPlaylistHeader.TabIndex = 8;
+            // 
+            // pbxPlaylistCoverPhoto
+            // 
+            this.pbxPlaylistCoverPhoto.Location = new System.Drawing.Point(15, 11);
+            this.pbxPlaylistCoverPhoto.Margin = new System.Windows.Forms.Padding(4);
+            this.pbxPlaylistCoverPhoto.Name = "pbxPlaylistCoverPhoto";
+            this.pbxPlaylistCoverPhoto.Size = new System.Drawing.Size(68, 59);
+            this.pbxPlaylistCoverPhoto.TabIndex = 12;
+            this.pbxPlaylistCoverPhoto.TabStop = false;
             // 
             // btnDelete
             // 
@@ -275,30 +293,12 @@ namespace Byte_me___Group_2
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // wmpSongPlay
-            // 
-            this.wmpSongPlay.Enabled = true;
-            this.wmpSongPlay.Location = new System.Drawing.Point(459, 16);
-            this.wmpSongPlay.Name = "wmpSongPlay";
-            this.wmpSongPlay.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("wmpSongPlay.OcxState")));
-            this.wmpSongPlay.Size = new System.Drawing.Size(222, 44);
-            this.wmpSongPlay.TabIndex = 14;
-            // 
             // playerControls1
             // 
             this.playerControls1.Location = new System.Drawing.Point(11, 231);
             this.playerControls1.Name = "playerControls1";
             this.playerControls1.Size = new System.Drawing.Size(791, 84);
             this.playerControls1.TabIndex = 15;
-            // 
-            // pbxPlaylistCoverPhoto
-            // 
-            this.pbxPlaylistCoverPhoto.Location = new System.Drawing.Point(15, 11);
-            this.pbxPlaylistCoverPhoto.Margin = new System.Windows.Forms.Padding(4);
-            this.pbxPlaylistCoverPhoto.Name = "pbxPlaylistCoverPhoto";
-            this.pbxPlaylistCoverPhoto.Size = new System.Drawing.Size(68, 59);
-            this.pbxPlaylistCoverPhoto.TabIndex = 12;
-            this.pbxPlaylistCoverPhoto.TabStop = false;
             // 
             // PlaylistControl
             // 
@@ -307,16 +307,16 @@ namespace Byte_me___Group_2
             this.Controls.Add(this.playerControls1);
             this.Controls.Add(this.pnlPlaylist);
             this.Name = "PlaylistControl";
-            this.Size = new System.Drawing.Size(819, 654);
+            this.Size = new System.Drawing.Size(947, 702);
             this.pnlPlaylist.ResumeLayout(false);
             this.pnlPlaylist.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wmpSongPlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDisplaySongs)).EndInit();
             this.pnlPlaylistHeader.ResumeLayout(false);
             this.pnlPlaylistHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxPlaylistCoverPhoto)).EndInit();
             this.pnlTopBar.ResumeLayout(false);
             this.pnlTopBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wmpSongPlay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxPlaylistCoverPhoto)).EndInit();
             this.ResumeLayout(false);
 
         }

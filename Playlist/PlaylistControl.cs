@@ -211,6 +211,7 @@ namespace Byte_me___Group_2
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
+                        MessageBox.Show(line);
                         Songs.Add( new Song(line) );
 
                         totalSongs++;
@@ -326,7 +327,7 @@ namespace Byte_me___Group_2
             {
                 foreach (Song song in Songs)
                 {
-                    writer.WriteLine($"{song.Name}|{song.Artist}|{song.Duration}");
+                    writer.WriteLine($"{song.Name}|{song.Artist}|{song.Duration}|{song.SongFilePath}");
                 }
             }
 
