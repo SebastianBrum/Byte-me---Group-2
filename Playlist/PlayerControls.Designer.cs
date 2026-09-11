@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlTrackChild = new System.Windows.Forms.Panel();
             this.pnlTrackParent = new System.Windows.Forms.Panel();
@@ -41,6 +42,7 @@
             this.lblArtistName = new System.Windows.Forms.Label();
             this.lblCurrentSong = new System.Windows.Forms.Label();
             this.picAlbumArt = new System.Windows.Forms.PictureBox();
+            this.tmrTrackbarTime = new System.Windows.Forms.Timer(this.components);
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAlbumArt)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +69,7 @@
             // 
             // pnlTrackChild
             // 
+            this.pnlTrackChild.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.pnlTrackChild.Location = new System.Drawing.Point(480, 40);
             this.pnlTrackChild.Name = "pnlTrackChild";
             this.pnlTrackChild.Size = new System.Drawing.Size(95, 10);
@@ -118,6 +121,7 @@
             this.btnShuffle.TabIndex = 7;
             this.btnShuffle.Text = "🔀";
             this.btnShuffle.UseVisualStyleBackColor = true;
+            this.btnShuffle.Click += new System.EventHandler(this.btnShuffle_Click);
             // 
             // btnNext
             // 
@@ -185,6 +189,10 @@
             this.picAlbumArt.TabIndex = 0;
             this.picAlbumArt.TabStop = false;
             // 
+            // tmrTrackbarTime
+            // 
+            this.tmrTrackbarTime.Tick += new System.EventHandler(this.tmrTrackbarTime_Tick);
+            // 
             // PlayerControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -204,7 +212,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnlTrackChild;
         private System.Windows.Forms.Panel pnlTrackParent;
-        private System.Windows.Forms.Label lblTime;
+        public System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label lblD;
         private System.Windows.Forms.Label lblElpased;
         private System.Windows.Forms.Button btnShuffle;
@@ -214,5 +222,6 @@
         private System.Windows.Forms.Label lblArtistName;
         private System.Windows.Forms.Label lblCurrentSong;
         private System.Windows.Forms.PictureBox picAlbumArt;
+        public System.Windows.Forms.Timer tmrTrackbarTime;
     }
 }

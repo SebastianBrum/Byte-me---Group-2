@@ -34,7 +34,6 @@ namespace Byte_me___Group_2.Playlist
         {
             //  the Path.Combine method is used to create the path for the playback history file
             playbackHistoryFile = Path.Combine(playlistFolder, $"{playlistName}SongQueue.txt");
-            MessageBox.Show(playbackHistoryFile);
 
             //  the LoadHistory method is called to load the playback history from the file
             LoadHistory();

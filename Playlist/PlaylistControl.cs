@@ -5,8 +5,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -248,7 +250,17 @@ namespace Byte_me___Group_2
                 wmpSongPlay.Ctlcontrols.play();
 
                 currentlyPlayingSong = new CurrentlyPlaying();
+
+                playSong(e.RowIndex);
             }
+        }
+
+        public void playSong(int rowIndex)
+        {
+            playerControls1.lblTime.Text = dgvDisplaySongs[3, rowIndex].Value.ToString();
+
+            playerControls1.tmrTrackbarTime.Enabled = true;
+            
         }
 
        
