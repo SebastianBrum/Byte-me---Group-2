@@ -11,7 +11,7 @@ namespace Byte_me___Group_2
     public partial class  Home : Form
     {
         // Handles "Upload Song": pick an audio file, collect details, add it to chosen playlists
-        private void btnUploadSong_Click(object sender, EventArgs e)
+        public void btnUploadSong_Click(object sender, EventArgs e)
         {
             string[] playlistFiles = Directory.GetFiles(playlistsFolder, "*.txt"); // playlists to choose from
             if (playlistFiles.Length == 0)

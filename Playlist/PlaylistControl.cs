@@ -62,10 +62,9 @@ namespace Byte_me___Group_2
             lblPlaylistPathName.Text = title;
             lblDateCreated.Text = null;
             lblWelecome.Text = $"Welcome back, {this.username}";
-            
+
             // Read the songs from the textfile
             readSongs(title);
-            dgvDisplaySongs.DataSource = Songs;
 
             playlistVisible(false);
             homeVisible(false);
@@ -217,6 +216,7 @@ namespace Byte_me___Group_2
                     }
 
                     addToCreationLabel($"{totalSongs} tracks");
+                    dgvDisplaySongs.DataSource = Songs;
                 }
             }
             catch (FileNotFoundException)
@@ -265,7 +265,13 @@ namespace Byte_me___Group_2
             
         }
 
-       
+        private void btnAddsongs_Click(object sender, EventArgs e)
+        {
+            homeForm.btnUploadSong_Click(sender, e);
+            Songs.Clear();
+            readSongs(lblPlaylistName.Text);
+            MessageBox.Show(Songs.Last().Name);
+        }
 
         private void DeleteSong(int songIndex, string playlistName)
         {
@@ -461,5 +467,5 @@ namespace Byte_me___Group_2
         }
     }
 
-}
 
+}
