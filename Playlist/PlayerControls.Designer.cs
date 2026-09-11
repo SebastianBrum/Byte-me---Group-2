@@ -85,7 +85,7 @@
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(732, 38);
+            this.lblTime.Location = new System.Drawing.Point(744, 35);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(31, 16);
@@ -104,7 +104,7 @@
             // lblElpased
             // 
             this.lblElpased.AutoSize = true;
-            this.lblElpased.Location = new System.Drawing.Point(444, 38);
+            this.lblElpased.Location = new System.Drawing.Point(430, 35);
             this.lblElpased.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblElpased.Name = "lblElpased";
             this.lblElpased.Size = new System.Drawing.Size(31, 16);

@@ -239,7 +239,7 @@ namespace Byte_me___Group_2
             }
 
             // Deletes the song which delete button is pressed
-            if (dgvDisplaySongs.Columns[e.ColumnIndex].Name == "SongDelete")
+            if (e.ColumnIndex > 0 && dgvDisplaySongs.Columns[e.ColumnIndex].Name == "SongDelete")
             {
                 DeleteSong(e.RowIndex, lblPlaylistName.Text);
             } 
