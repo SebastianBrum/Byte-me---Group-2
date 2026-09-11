@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +19,8 @@ namespace Byte_me___Group_2
         {
             InitializeComponent();
         }
+
+        List<User> users = new List<User>();
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
@@ -79,10 +82,9 @@ namespace Byte_me___Group_2
             else
             {
 
-                // to add the username and password to the existing accounts text file //
-                StreamWriter AddUser = new StreamWriter("ExistingUsers.txt", true);// the true is to make sure that the user is saved //
-                AddUser.WriteLine(Username + "," + Password);
-                AddUser.Close();
+                // to add the username and password to the existing accounts text file
+                users.Add(new User(Username, Password));
+                WriteUsersToFile();
                 lblOutput.Text = "Account created successfully!";
 
 
@@ -93,9 +95,30 @@ namespace Byte_me___Group_2
 
             }
         }
-       
 
-   
 
+        // Serialization
+        // Saves the current users list to the file
+        public void WriteUsersToFile()
+        {
+            try
+            {
+                // Open (or create) the users file for writing
+                FileStream file = new FileStream("ExsistingUsers.txt", FileMode.Create, FileAccess.Write);
+
+                // Create BinaryFormatter
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                // Convert the List<User> into binary data and write it to the file
+                formatter.Serialize(file, users);
+
+                // close the file
+                file.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

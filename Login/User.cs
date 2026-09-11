@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace Byte_me___Group_2.Login
+namespace Byte_me___Group_2
 {
     [Serializable]
     public class User

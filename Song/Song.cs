@@ -16,6 +16,11 @@ namespace Byte_me___Group_2
 
         private string mSongFilePath;
 
+
+        /// <summary>
+        /// It extracts the SongName, Artist, Duration and the FilePath of the song from the line paramater
+        /// </summary>
+        /// <param name="line"> The line that was read from the textfile </param>
         public Song(string line)
         {
             this.Name = getSongName(ref line);
@@ -26,29 +31,33 @@ namespace Byte_me___Group_2
 
         public string Name
         {
-            get { return mName;  }
-            set { mName = value;  }
+            get { return this.mName; }
+            set { mName = value; }
         }
 
         public string Artist
         {
-            get { return mArtist; }
+            get { return this.mArtist; }
             set { mArtist = value;}
         }
 
         public string Duration
         {
-            get { return mDuration; }
+            get { return this.mDuration; }
             set { mDuration = value; }
         }
 
         public string SongFilePath
         {
-            get { return mSongFilePath; }
+            get { return this.mSongFilePath; }
             set { mSongFilePath = value; }
         }
 
-        //gets the song title from the textfile and saves it into the songs list
+        /// <summary>
+        /// Gets the Name of the Song of the song
+        /// </summary>
+        /// <param name="line"> The text file line that was read, it subsets it so that Name of the Song is removed from the line and the remaining data is sent back </param>
+        /// <returns> The Name of the song of the song</returns>
         private string getSongName(ref string line)
         {
             int characterPosition = line.IndexOf("|");
@@ -57,7 +66,11 @@ namespace Byte_me___Group_2
             return title;
         }
 
-        //Gets the songs artist from the textfile and saves it into the artists list
+        /// <summary>
+        /// Gets the Artist of the song
+        /// </summary>
+        /// <param name="line"> The text file line that was read, it subsets it so that Artist is removed from the line and the remaining data is sent back </param>
+        /// <returns> The Artist of the song</returns>
         private string getSongArtist(ref string line)
         {
             int characterPosition = line.IndexOf("|");
@@ -66,6 +79,11 @@ namespace Byte_me___Group_2
             return artist;
         }
 
+        /// <summary>
+        /// Gets the duration of the song
+        /// </summary>
+        /// <param name="line"> The text file line that was read, it subsets it so that duration is removed from the line and the remaining data is sent back </param>
+        /// <returns> The duration of the song</returns>
         private string getSongDuratiion(ref string line)
         {
             int characterPosition = line.IndexOf("|");

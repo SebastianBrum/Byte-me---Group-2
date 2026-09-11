@@ -1,2 +1,1 @@
-Showcase1 (1)|BAD|3:45|C:\Users\sebas\Downloads\Showcase1 (1).mp4
-Showcase1|Han|5:100|C:\Users\sebas\Downloads\Showcase1.mp4
+Showcase1|;lads|0:00|C:\Users\sebas\Downloads\Showcase1.mp4
