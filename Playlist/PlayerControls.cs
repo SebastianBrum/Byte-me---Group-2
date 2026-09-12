@@ -17,7 +17,11 @@ namespace Byte_me___Group_2.Playlist
         private bool Dragging = false;
         private double width;
 
+        private PlaylistControl PlaylistPanel;
+
         private AxWindowsMediaPlayer songPlayer;
+
+        private CurrentlyPlaying songCurrentlyPlaying;
 
         public PlayerControls()
         {
@@ -33,6 +37,16 @@ namespace Byte_me___Group_2.Playlist
             songPlayer = player;
         }
 
+        public void setPlaylistPanel(PlaylistControl playlistPanel)
+        {
+            this.PlaylistPanel = playlistPanel;
+        }
+
+        public void setCurrentlyPlaying(CurrentlyPlaying song)
+        {
+            this.songCurrentlyPlaying = song;
+        }
+
         /// Play or pause the song
         private void btnPlay_Click(object sender, EventArgs e)
         {
@@ -40,11 +54,13 @@ namespace Byte_me___Group_2.Playlist
             {
                 songPlayer.Ctlcontrols.play();
                 isPlaying = true;
+                btnPlay.Text = "▶";
             }
             else
             {
                 songPlayer.Ctlcontrols.pause();
                 isPlaying = false;
+                btnPlay.Text = "Ⅱ";
             }
         }
 
@@ -55,7 +71,12 @@ namespace Byte_me___Group_2.Playlist
 
         private void btnShuffle_Click(object sender, EventArgs e)
         {
+            int SongCount = PlaylistPanel.Songs.Count;
 
+            Random randomSongIndex = new Random();
+            int songIndex = randomSongIndex.Next(0, SongCount);
+
+            PlaylistPanel.playSong(songIndex, PlaylistPanel.Songs[songIndex].SongFilePath);
         }
 
         /// <summary>
@@ -86,9 +107,19 @@ namespace Byte_me___Group_2.Playlist
                 // Updates lblElapsed
                 UpdateTimeElapsed(secondsElapsed);
 
-                //button2.Left = panel1.Left + pnlTime.Width - Convert.ToInt32(button2.Width * 0.5);
-                //button2.Top = panel1.Top + pnlTime.Top - Convert.ToInt32(button2.Height * 0.4);
+                if (secondsElapsed >= duration)
+                {
+                    playNextSong();
+                }
             }
+        }
+
+        private void playNextSong()
+        {
+            string nextFilePath = PlaylistPanel.Songs[songCurrentlyPlaying.currentlyPlayingIndex + 1].SongFilePath;
+            int nextIndex = songCurrentlyPlaying.currentlyPlayingIndex + 1;
+
+            PlaylistPanel.playSong(nextIndex, nextFilePath);
         }
 
         /// <summary>
@@ -99,6 +130,9 @@ namespace Byte_me___Group_2.Playlist
         {
             // Formats the time displayed so that it is minutes : seconds
             lblElpased.Text = $"{(int)secondsElapsed.TotalMinutes:D2}:{secondsElapsed.Seconds:D2}";
+
+            // Updates the time elapsed on the CurrentlyPlaying class
+            songCurrentlyPlaying.secondsElapsed = secondsElapsed;
         }
     }
 }

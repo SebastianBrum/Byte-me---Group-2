@@ -72,7 +72,7 @@
             this.pnlTrackChild.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.pnlTrackChild.Location = new System.Drawing.Point(480, 40);
             this.pnlTrackChild.Name = "pnlTrackChild";
-            this.pnlTrackChild.Size = new System.Drawing.Size(95, 10);
+            this.pnlTrackChild.Size = new System.Drawing.Size(10, 10);
             this.pnlTrackChild.TabIndex = 0;
             // 
             // pnlTrackParent
@@ -90,7 +90,7 @@
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(31, 16);
             this.lblTime.TabIndex = 11;
-            this.lblTime.Text = "3:42";
+            this.lblTime.Text = "0:00";
             // 
             // lblD
             // 
@@ -109,15 +109,15 @@
             this.lblElpased.Name = "lblElpased";
             this.lblElpased.Size = new System.Drawing.Size(31, 16);
             this.lblElpased.TabIndex = 9;
-            this.lblElpased.Text = "1:24";
+            this.lblElpased.Text = "0:00";
             // 
             // btnShuffle
             // 
             this.btnShuffle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnShuffle.Location = new System.Drawing.Point(390, 26);
+            this.btnShuffle.Location = new System.Drawing.Point(390, 32);
             this.btnShuffle.Margin = new System.Windows.Forms.Padding(2);
             this.btnShuffle.Name = "btnShuffle";
-            this.btnShuffle.Size = new System.Drawing.Size(26, 28);
+            this.btnShuffle.Size = new System.Drawing.Size(26, 30);
             this.btnShuffle.TabIndex = 7;
             this.btnShuffle.Text = "🔀";
             this.btnShuffle.UseVisualStyleBackColor = true;
@@ -126,10 +126,10 @@
             // btnNext
             // 
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNext.Location = new System.Drawing.Point(349, 31);
+            this.btnNext.Location = new System.Drawing.Point(350, 34);
             this.btnNext.Margin = new System.Windows.Forms.Padding(2);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(36, 22);
+            this.btnNext.Size = new System.Drawing.Size(36, 28);
             this.btnNext.TabIndex = 6;
             this.btnNext.Text = "▶I";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -140,7 +140,7 @@
             this.btnPlay.Location = new System.Drawing.Point(278, 32);
             this.btnPlay.Margin = new System.Windows.Forms.Padding(2);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(68, 21);
+            this.btnPlay.Size = new System.Drawing.Size(68, 30);
             this.btnPlay.TabIndex = 5;
             this.btnPlay.Text = "I I";
             this.btnPlay.UseVisualStyleBackColor = true;
@@ -152,7 +152,7 @@
             this.btnPrevious.Location = new System.Drawing.Point(238, 32);
             this.btnPrevious.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(36, 22);
+            this.btnPrevious.Size = new System.Drawing.Size(36, 30);
             this.btnPrevious.TabIndex = 3;
             this.btnPrevious.Text = "I◀";
             this.btnPrevious.UseVisualStyleBackColor = true;
@@ -219,8 +219,8 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.Button btnPrevious;
-        private System.Windows.Forms.Label lblArtistName;
-        private System.Windows.Forms.Label lblCurrentSong;
+        public System.Windows.Forms.Label lblArtistName;
+        public System.Windows.Forms.Label lblCurrentSong;
         private System.Windows.Forms.PictureBox picAlbumArt;
         public System.Windows.Forms.Timer tmrTrackbarTime;
     }

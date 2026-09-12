@@ -15,7 +15,7 @@ namespace Byte_me___Group_2.Playlist
         private const int MaxSongs = 50;
 
         //  Store the playback history
-        private List<string> history = new List<string>();
+        private List<Song> history = new List<Song>();
 
         //  Tracks the current position in the history
         //   initialized -1 to indicate that there is no song played yet
@@ -23,6 +23,8 @@ namespace Byte_me___Group_2.Playlist
 
         //  Store the path of the playback history file
         private string playbackHistoryFile;
+
+        Song song;
 
 
         /// <summary>
@@ -40,12 +42,8 @@ namespace Byte_me___Group_2.Playlist
         }
 
         // Add a newly played song
-        public void AddSong(string song)
+        public void AddSong(Song song)
         {
-            // Check if the song is null or empty
-            if (string.IsNullOrWhiteSpace(song))
-                return;
-
             // If the user went backwards and then plays a new song,
             // remove the old forward history.
             if (currentIndex < history.Count - 1)
@@ -69,17 +67,18 @@ namespace Byte_me___Group_2.Playlist
             // Update the current index to point to the last song
             // the history.Count - 1 is used to get the index of the last song in the history list
             currentIndex = history.Count - 1;
+
             //persist the updated history to the file
             SaveHistory();
         }
 
         // Go backwards
-        public string PreviousSong()
+        public int PreviousSong()
         {
             // Check if there is a previous song to go back to
             if (currentIndex <= 0)
-                // If there is no previous song, return null
-                return null;
+                // If there is no previous song, return 0
+                return 0;
 
             // Decrement
             currentIndex--;
@@ -87,12 +86,13 @@ namespace Byte_me___Group_2.Playlist
             SaveHistory();
 
             // Return the previous song
-            return history[currentIndex];
+            return currentIndex;
         }
 
         // Go forwards
-        public string NextSong()
-        {// Check if there is a next song to go forward to
+        public Song NextSong()
+        {
+            // Check if there is a next song to go forward to
             // so the currentIndex >= history.Count - 1 is used to
             // check if the current index is at the last song in the history list
             if (currentIndex >= history.Count - 1)
@@ -105,7 +105,7 @@ namespace Byte_me___Group_2.Playlist
         }
 
         // Returns the last song played
-        public string LastPlayedSong()
+        public Song LastPlayedSong()
         {
             // Check if there are any songs in the history
             if (history.Count == 0 || currentIndex < 0 || currentIndex >= history.Count)
@@ -129,7 +129,7 @@ namespace Byte_me___Group_2.Playlist
                     // Write the current index to the first line of the file
                     writer.WriteLine(currentIndex);
                     // Write each song in the history to the file
-                    foreach (string song in history)
+                    foreach (Song song in history)
                     {
                         // the WriteLine method is used to write each
                         // song to a new line in the file
@@ -174,6 +174,8 @@ namespace Byte_me___Group_2.Playlist
                 // the Skip method is used to skip the first line of the file
                 history = lines
                     .Skip(1)
+                    //Converts the line to a song object
+                    .Select(line => new Song(line))
                     // returned by the Skip and Take methods into a List<string>
                     .ToList();
 

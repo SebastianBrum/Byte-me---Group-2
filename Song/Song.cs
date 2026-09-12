@@ -25,7 +25,7 @@ namespace Byte_me___Group_2
         {
             this.Name = getSongName(ref line);
             this.Artist = getSongArtist(ref line);
-            this.Duration = getSongDuratiion(ref line);
+            this.Duration = getSongDuration(ref line);
             this.SongFilePath = line;
         }
 
@@ -52,6 +52,8 @@ namespace Byte_me___Group_2
             get { return this.mSongFilePath; }
             set { mSongFilePath = value; }
         }
+
+        public string Delete { get; set; } = "🗑️";
 
         /// <summary>
         /// Gets the Name of the Song of the song
@@ -84,7 +86,7 @@ namespace Byte_me___Group_2
         /// </summary>
         /// <param name="line"> The text file line that was read, it subsets it so that duration is removed from the line and the remaining data is sent back </param>
         /// <returns> The duration of the song</returns>
-        private string getSongDuratiion(ref string line)
+        private string getSongDuration(ref string line)
         {
             int characterPosition = line.IndexOf("|");
             string duration = line.Substring(0, characterPosition);
