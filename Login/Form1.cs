@@ -85,12 +85,9 @@ namespace Byte_me___Group_2
                 // Variable keep track of whether username or password were found 
                bool found = false;
 
-                MessageBox.Show("hi");
-
                 // Go through each User object in the list
                 foreach (User user in users)
                 {
-                    MessageBox.Show("mo");
                     //Check if username and password match
                     if (user.Username == username && user.Password == password)
                     {
@@ -98,29 +95,6 @@ namespace Byte_me___Group_2
                         break;
                     }
                 }
-                MessageBox.Show("HI");
-
-                //Open users.txt file so that we can read what is stored inside 
-               // StreamReader reader = new StreamReader("ExistingUsers.txt");
-
-                //Keep reading file while there are still lines left to read
-                //while (!reader.EndOfStream)
-              //  {
-                    //Read one line from text file
-                //    string line = reader.ReadLine();
-                    // Split line at the comma
-                //    string[] user = line.Split(',');
-
-                    // Check whether username  and password entered by user match the info in the text file
-              //      if (user[0] == username && user[1] == password)
-              //      {
-                        // If they match, the login details are correct
-              //          found = true;
-              //      }
-              //  }
-
-                //close the text file after we have finished reading it 
-                //reader.Close();
 
                 //Check if correct username and password were found
                 if (found)
