@@ -45,19 +45,28 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\taglib-sharp-netstandard2.0.2.1.0\lib\netstandard2.0\taglib-sharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Login\User.cs" />
     <Compile Include="Playlist\AddNewPlaylist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Playlist\Playlist.cs" />
+    <Compile Include="Playlist\PlayerControls.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Playlist\PlayerControls.Designer.cs">
+      <DependentUpon>PlayerControls.cs</DependentUpon>
+    </Compile>
     <Compile Include="Playlist\PlaylistControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Playlist\PlaylistControl.Designer.cs">
       <DependentUpon>PlaylistControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Playlist\SongHistory.cs" />
     <Compile Include="Song\AddNewSong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,11 +108,16 @@
     <Compile Include="Home\Statistics.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Song\CurrentlyPlaying.cs" />
+    <Compile Include="Song\Song.cs" />
     <EmbeddedResource Include="Login\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Playlist\PlayerControls.resx">
+      <DependentUpon>PlayerControls.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Playlist\PlaylistControl.resx">
       <DependentUpon>PlaylistControl.cs</DependentUpon>
@@ -121,6 +135,7 @@
     <EmbeddedResource Include="Login\Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

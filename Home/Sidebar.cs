@@ -171,7 +171,7 @@ namespace Byte_me___Group_2
             text.Font = new Font("Segoe UI", 9F);
             text.ForeColor = Color.FromArgb(55, 65, 81);
             text.Location = new Point(15, 10);
-            text.Size = new Size(200, 22);
+            text.Size = new Size(180, 22);
             text.Text = "♫   " + title;             // playlist name with a music note
             text.TextAlign = ContentAlignment.MiddleLeft;
             text.Click += pnlPlaylistNavRow_Click;  // clicking the text also opens it
@@ -179,7 +179,7 @@ namespace Byte_me___Group_2
             Label count = new Label();
             count.Font = new Font("Segoe UI", 9F);
             count.ForeColor = Color.FromArgb(156, 163, 175);
-            count.Location = new Point(230, 9);
+            count.Location = new Point(200, 9);
             count.Size = new Size(30, 22);
             count.Text = trackCount.ToString();      // number of tracks
             count.TextAlign = ContentAlignment.MiddleRight;
@@ -187,24 +187,58 @@ namespace Byte_me___Group_2
 
             row.Controls.Add(text);
             row.Controls.Add(count);
+            // Heart button — favourites toggle for this playlist
+            Button btnFav = new Button();
+            btnFav.Width = 24;
+            btnFav.Height = 24;
+            btnFav.Left = 240;                        // right side of the 270-wide row
+            btnFav.Top = 8;
+            btnFav.FlatStyle = FlatStyle.Flat;
+            btnFav.FlatAppearance.BorderSize = 0;
+            btnFav.Cursor = Cursors.Hand;
+            btnFav.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Regular);
+            btnFav.Tag = filePath;
+            btnFav.BackColor = Color.White;
+
+            string[] favs = ReadAllLinesSafe(favouritesFile);
+            if (StringArrayContains(favs, title))
+            {
+                btnFav.Text = "♥";
+                btnFav.ForeColor = Color.DeepPink;
+            }
+            else
+            {
+                btnFav.Text = "♡";
+                btnFav.ForeColor = Color.LightGray;
+            }
+
+            btnFav.Click += FavHeart_Click;
+
+            row.Controls.Add(btnFav);
+            btnFav.BringToFront();
             return row;
+
         }
 
         // Opens a playlist when a sidebar row (or its labels) is clicked
         private void pnlPlaylistNavRow_Click(object sender, EventArgs e)
         {
-            this.Controls.Remove(playlistPanel);
-            playlistPanel.Dispose();
+            if (playlistPanel != null)
+            {
+                this.Controls.Remove(playlistPanel);
+                playlistPanel.Dispose();
+                playlistPanel = null;
+            }
 
             Control clicked = sender as Control;
             if (clicked == null)
                 return;
-            // sender may be the row Panel itself or one of its child labels
             Control row = (clicked is Panel) ? clicked : clicked.Parent;
             if (row == null)
                 return;
-            string filePath = row.Tag as string; // file path stored on the row
+            string filePath = row.Tag as string;
             OpenPlaylist(filePath);
         }
     }
-}
+    }
+

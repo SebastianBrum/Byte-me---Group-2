@@ -21,15 +21,41 @@ namespace Byte_me___Group_2
             card.Tag = filePath;                      // remember which file this card represents
             card.Click += pnlPlaylistCard_Click;      // open playlist on click
 
-            Label cover = new Label();
-            cover.BackColor = GetCoverColorFor(title); // colour based on playlist name
-            cover.Font = new Font("Segoe UI", 26F);
-            cover.ForeColor = Color.White;
+            PictureBox cover = new PictureBox();
             cover.Location = new Point(0, 0);
             cover.Size = new Size(255, 175);
-            cover.Text = "♫";                          // music note "cover art"
-            cover.TextAlign = ContentAlignment.MiddleCenter;
+            cover.SizeMode = PictureBoxSizeMode.StretchImage;
+            cover.Cursor = Cursors.Hand;
             cover.Click += pnlPlaylistCard_Click;
+
+            // Try to load a custom cover image using the playlist panel helper; if none exists, fall back to a colored placeholder
+            try
+            {
+                if (playlistPanel != null)
+                {
+                    playlistPanel.loadImage(title, cover);
+                }
+                else
+                {
+                    // fallback: coloured placeholder with note drawn as an image
+                    Bitmap bmp = new Bitmap(255, 175);
+                    using (Graphics g = Graphics.FromImage(bmp))
+                    {
+                        g.Clear(GetCoverColorFor(title));
+                        using (Font f = new Font("Segoe UI", 48F))
+                        using (Brush b = Brushes.White)
+                        {
+                            var sz = g.MeasureString("♫", f);
+                            g.DrawString("♫", f, b, (bmp.Width - sz.Width) / 2, (bmp.Height - sz.Height) / 2);
+                        }
+                    }
+                    cover.Image = bmp;
+                }
+            }
+            catch
+            {
+                // ignore failures and leave the picturebox empty
+            }
 
             Label titleLabel = new Label();
             titleLabel.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);

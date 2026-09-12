@@ -24,9 +24,6 @@ namespace Byte_me___Group_2
         {
             InitializeComponent();
         }
-
-        List<User> users = new List<User>();
-
         private void btnRegister_Click(object sender, EventArgs e)
         {
             // input //
@@ -82,10 +79,7 @@ namespace Byte_me___Group_2
             }
             else
             {
-                // create a new User object with the entered details 
                 User newUser = new User(Username, Password);
-
-                //add it to the list of existing users
                 ExistingUsers.Add(newUser);
 
                 // save the whole updated list back to the file 
@@ -93,11 +87,9 @@ namespace Byte_me___Group_2
 
                 MessageBox.Show("Account created successfully!");
 
-                // takes the user user back to login form after they have successfully created an account //
                 FrmMain login = new FrmMain();
                 login.Show();
                 this.Hide();
-
             }
         }
 

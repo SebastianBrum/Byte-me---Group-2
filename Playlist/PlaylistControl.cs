@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Byte_me___Group_2.Playlist;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,11 +19,17 @@ namespace Byte_me___Group_2
     {
         private Home homeForm;
 
-
         private string username, coversFolder, playlistsFolder, dataFolder;
         OpenFileDialog ofdCoverPicture;
         Panel pnlMainContent, pnlSidebar;
         Button btnNewPlaylist, btnChangeCoverPhoto;
+
+        // The list of songs in the playlist
+        public BindingList<Song> Songs;
+
+        // The class for the song that is currently playing
+        CurrentlyPlaying currentlyPlayingSong;
+
 
         public PlaylistControl(Home homeForm, string username, string coversFolder, string playListsFolder, string dataFolder, OpenFileDialog ofdCoverPicture, Panel pnlMain, Panel Sidebar, Button btnNewPlayList, Button btnChangeCover)
         {
@@ -36,29 +45,35 @@ namespace Byte_me___Group_2
             this.btnChangeCoverPhoto = btnChangeCover;
             this.pnlSidebar = Sidebar;
             this.homeForm = homeForm;
+
+
+            playerControls1.setSongPlayer(wmpSongPlay);
+            playerControls1.setPlaylistPanel(this);
         }
 
-        //Lists for the songNames, artists, and durations
-        List<string> songs = new List<string>();
-        List<string> artists = new List<string>();
-        List<string> songDurations = new List<string>();
-
-        //Basic display setup when the user opens a playlist
+        /// <summary>
+        /// Basic display setup when the user opens a playlist
+        /// </summary>
+        /// <param name="title"> The playlist that the user opened </param>
         public void setupPlaylistPage(string title)
         {
             lblPlaylistName.Text = title;
             lblPlaylistPathName.Text = title;
             lblDateCreated.Text = null;
             lblWelecome.Text = $"Welcome back, {this.username}";
+
+            // Read the songs from the textfile
+            readSongs(title);
+
             playlistVisible(false);
             homeVisible(false);
             addPLaylistButton(false);
             changeCoverButton(false);
-            readSongs(title);
-            loadImage(title);
+            loadImage(title, pbxPlaylistCoverPhoto);
 
-            lblPlalistCount.Text = $"This playlist has {songs.Count} songs";
+            lblPlalistCount.Text = $"This playlist has {Songs.Count} songs";
 
+            //Gets the creation date of the playlist and displays it
             string creationDate = File.GetCreationTime(Path.Combine(playlistsFolder, $"{title}.txt")).ToString("dd MMMM yyyy");
             addToCreationLabel(creationDate);
         }
@@ -81,7 +96,12 @@ namespace Byte_me___Group_2
             changeCoverButton(true);
         }
 
-        private void loadImage(string playlist)
+        /// <summary>
+        /// Loads the picture into a picturebox
+        /// </summary>
+        /// <param name="playlist"> The playlist name </param>
+        /// <param name="pictureBox"> The picturebox that needs to be updated </param>
+        public void loadImage(string playlist, PictureBox pictureBox)
         {
             // Write all the image files to an array
             string[] coverImagesFiles = Directory.GetFiles(coversFolder);
@@ -96,23 +116,23 @@ namespace Byte_me___Group_2
                 string currentImage = Path.GetFileNameWithoutExtension(coverImage);
 
 
-                //  Checks if the current image in the loop is the correct one
+                //  Checks if the current image in the loop is the one corresponding with the playlist
                 if (currentImage == playlist)
                 {
-                    pbxPlaylistCoverPhoto.Image = Image.FromFile(coverImage);
-                    pbxPlaylistCoverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pictureBox.Image = Image.FromFile(coverImage);
+                    pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
                     // The user has a image for the playlist
                     hasImage = true;
                 }
             }
 
-            //Sets the default image if the user didn't set an image themselves
+            // Sets the default image if the user didn't set an image themselves
             if (!hasImage)
             {
                 string defaultImagePath = Path.Combine(dataFolder, "DefaultCover", "default.png");
-                pbxPlaylistCoverPhoto.Image = Image.FromFile(defaultImagePath);
-                pbxPlaylistCoverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox.Image = Image.FromFile(defaultImagePath);
+                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
 
@@ -138,18 +158,24 @@ namespace Byte_me___Group_2
             }
         }
 
+        // Makes the button to add a new playlist visible on the sidebar
         private void addPLaylistButton(bool home)
         {
             btnNewPlaylist.Visible = !home;
             btnNewPlaylist.Enabled = !home;
         }
 
+        // Makes the button to change the cover photo visible on the sidebar
         private void changeCoverButton(bool home)
         {
             btnChangeCoverPhoto.Visible = !home;
             btnChangeCoverPhoto.Enabled = !home;
         }
 
+        /// <summary>
+        /// Shows the the that the playlist was created
+        /// </summary> 
+        /// <param name="val"> The value to add to the display </param>
         private void addToCreationLabel(string val)
         {
             if (lblDateCreated.Text != "")
@@ -162,9 +188,13 @@ namespace Byte_me___Group_2
             }
         }
 
-        //Reads the songs from the textfile into the songs list
+        /// <summary>
+        /// Reads the songs from the playlist. Format: SongName|SongArtist|SongDuration|SongFilePath
+        /// </summary>
+        /// <param name="playlistName"> The name of the playlist </param>
         private void readSongs(string playlistName)
         {
+            // Get the filepath to where the playlist's textfile is saved.
             string filepath = Path.Combine(
             dataFolder,
             this.username,
@@ -172,191 +202,114 @@ namespace Byte_me___Group_2
             playlistName + ".txt"
             );
 
-            //Clears the lists from old values
-            songs.Clear();
-            artists.Clear();
-            songDurations.Clear();
+            //Removes the old playlist's songs from the list
+            if (Songs != null) Songs.Clear();
 
-            //Clears the display panel from old songs
-            flpSongs.Controls.Clear();
-            Panel titlePanel = createTitlePanel();
-            flpSongs.Controls.Add(titlePanel);
+            //Create a new binding list
+            Songs = new BindingList<Song>();
 
             //Reads from the textfile
             try
             {
                 using (StreamReader reader = new StreamReader(filepath))
                 {
+                    // Keep track of the total sonngs in the playlist
                     int totalSongs = 0;
+
+                    // The current line being read
                     string line;
+
+                    // Reads through the textfile
                     while ((line = reader.ReadLine()) != null)
                     {
-                        getSongTitle(line);
+                        // Adds the currentline to the Songs binding list by initialiing a new Song Object
+                        Songs.Add( new Song(line) );
+
+                        // Set the dustbin icon in the delete column of the datagridview
+                        dgvDisplaySongs.Columns["SongDelete"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        dgvDisplaySongs.Columns["SongDelete"].DefaultCellStyle.ForeColor = Color.Red;
+
+                        // Increases the total songs in the playlist
                         totalSongs++;
                     }
 
+                    // Display the total songs in the playlist on a label
                     addToCreationLabel($"{totalSongs} tracks");
+                    dgvDisplaySongs.DataSource = Songs;
                 }
             }
             catch (FileNotFoundException)
             {
                 MessageBox.Show("Playlist file corrupted.");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Please try again");
-            }
-
-            //Displays the songs in the panel
-            displaySongs(playlistName);
-        }
-
-        //gets the song title from the textfile and saves it into the songs list
-        private void getSongTitle(string line)
-        {
-            int characterPosition = line.IndexOf("|");
-            songs.Add(line.Substring(0, characterPosition));
-
-            getSongArtist(line.Substring(characterPosition + 1));
-        }
-
-        //Gets the songs artist from the textfile and saves it into the artists list
-        private void getSongArtist(string line)
-        {
-            int characterPosition = line.IndexOf("|");
-            artists.Add(line.Substring(0, characterPosition));
-            getSongDuration(line.Substring(characterPosition + 1));
-        }
-
-        //Gets the song duration from the textfile and saves it into the songDurations List
-        private void getSongDuration(string line)
-        {
-            songDurations.Add(line);
-        }
-
-        //Displays the songs into the display panel
-        private void displaySongs(string playlistName)
-        {
-            for (int i = 0; i < songs.Count; i++)
-            {
-                Panel songPanel = createSongPanel(songs[i], artists[i], songDurations[i], playlistName, i);
-                flpSongs.Controls.Add(songPanel);
+                MessageBox.Show(ex.Message);
             }
         }
 
-        //Creates the headers for the display panel
-        private Panel createTitlePanel()
+        // Deletes the playlist that was clicked
+        private void dgvDisplaySongs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Panel headingPanel = new Panel();
-            headingPanel.Width = 784;
-            headingPanel.Height = 30;
-            headingPanel.Cursor = Cursors.Hand;
 
-            Label Title = new Label();
-            Title.Text = "Names";
-            Title.Font = new Font("Microsoft Sans Sarif", 10, FontStyle.Bold);
-            Title.Width = 53;
-            Title.Height = 16;
-            Title.AutoSize = false;
-            Title.TextAlign = ContentAlignment.MiddleLeft;
-            Title.Left = 17;
-            Title.Top = 13;
+            if (e.RowIndex < 0)
+            {
+                SortPlaylistSongs(dgvDisplaySongs.Columns[e.ColumnIndex].Name, false, lblPlaylistName.Text);
+                return;
+            }
 
-            Label Artist = new Label();
-            Artist.Text = "Artists";
-            Artist.Font = new Font("Microsoft Sans Sarif", 10, FontStyle.Bold);
-            Artist.Width = 53;
-            Artist.Height = 16;
-            Artist.AutoSize = false;
-            Artist.TextAlign = ContentAlignment.MiddleLeft;
-            Artist.Left = 241;
-            Artist.Top = 13;
+            // First check is to check if the column on the far left is clicked
+            // The second check is to check if the song needs to be deleted
+            if (e.ColumnIndex > 0 && dgvDisplaySongs.Columns[e.ColumnIndex].Name == "SongDelete")
+            {
+                DeleteSong(e.RowIndex, lblPlaylistName.Text);
+            } 
+            else
+            {
+                wmpSongPlay.URL = Songs[e.RowIndex].SongFilePath;
 
-            Label Duration = new Label();
-            Duration.Text = "Duration";
-            Duration.Font = new Font("Microsoft Sans Sarif", 10, FontStyle.Bold);
-            Duration.Width = 70;
-            Duration.Height = 16;
-            Duration.AutoSize = false;
-            Duration.TextAlign = ContentAlignment.MiddleLeft;
-            Duration.Left = 423;
-            Duration.Top = 13;
-
-            headingPanel.Controls.Add(Title);
-            headingPanel.Controls.Add(Artist);
-            headingPanel.Controls.Add(Duration);
-
-            return headingPanel;
+                playSong(e.RowIndex, Songs[e.RowIndex].SongFilePath);
+            }
         }
 
-        //Creates the song display
-        private Panel createSongPanel(string songName, string artist, string duration, string playlistName, int songIndex)
+        /// <summary>
+        /// Plays the song
+        /// </summary>
+        /// <param name="rowIndex"> The index in the list that saves the songs in the current playlist </param>
+        /// <param name="filepath"> The filepath to the current song being played </param>
+        public void playSong(int rowIndex, string filepath)
         {
-            //Song panel
-            Panel songPanel = new Panel();
-            songPanel.Width = 784;
-            songPanel.Height = 30;
-            songPanel.Cursor = Cursors.Hand;
+            //Set the URL of the mediaplayer equal to the song's filepath
+            wmpSongPlay.URL = filepath;
 
-            //Title
-            Label songTitle = new Label();
-            songTitle.Text = songName;
-            songTitle.Font = new Font("Microsoft Sans Sarif", 8, FontStyle.Regular);
-            songTitle.Width = 53;
-            songTitle.Height = 16;
-            songTitle.AutoSize = false;
-            songTitle.TextAlign = ContentAlignment.MiddleLeft;
-            songTitle.Left = 17;
-            songTitle.Top = 13;
-
-            //Artist
-            Label songArtist = new Label();
-            songArtist.Text = artist;
-            songArtist.Font = new Font("Microsoft Sans Sarif", 8, FontStyle.Regular);
-            songArtist.Width = 53;
-            songArtist.Height = 16;
-            songArtist.AutoSize = false;
-            songArtist.TextAlign = ContentAlignment.MiddleLeft;
-            songArtist.Left = 241;
-            songArtist.Top = 13;
-
-            //Duration
-            Label songDuration = new Label();
-            songDuration.Text = duration;
-            songDuration.Font = new Font("Microsoft Sans Sarif", 8, FontStyle.Regular);
-            songDuration.Width = 53;
-            songDuration.Height = 16;
-            songDuration.AutoSize = false;
-            songDuration.TextAlign = ContentAlignment.MiddleLeft;
-            songDuration.Left = 423;
-            songDuration.Top = 13;
-
-            //Delete button
-            Button buttonDelete = new Button();
-            buttonDelete.Width = 40;
-            buttonDelete.Height = 24;
-            buttonDelete.Cursor = Cursors.Hand;
-            buttonDelete.Left = flpSongs.Width - buttonDelete.Width - 40;
-            buttonDelete.Top = 3;
-            buttonDelete.Text = "🗑️";
-            buttonDelete.Font = new Font("Microsoft Sans Sarif", 8, FontStyle.Regular);
-            buttonDelete.ForeColor = Color.Black;
-            buttonDelete.BackColor = Color.Red;
-
-            // Delete functionality. Sends the index in the array as paramater
-            buttonDelete.Click += (sender, e) =>
-            {
-                DeleteSong(songIndex, playlistName);
-            };
-
-            // Adds the controls to the song panel
-            songPanel.Controls.Add(songTitle);
-            songPanel.Controls.Add(songArtist);
-            songPanel.Controls.Add(songDuration);
-            songPanel.Controls.Add(buttonDelete);
+            // Play the song
+            wmpSongPlay.Ctlcontrols.play();
 
 
-            return songPanel;
+            currentlyPlayingSong = new CurrentlyPlaying(Songs[rowIndex]);
+            currentlyPlayingSong.setMediaPlayer(playerControls1);
+            currentlyPlayingSong.currentlyPlayingIndex = rowIndex;
+
+            playerControls1.lblTime.Text = currentlyPlayingSong.Duration;
+
+            setCurrentSongDisplay(rowIndex);
+        }
+
+        public void setCurrentSongDisplay(int rowIndex)
+        {
+            playerControls1.tmrTrackbarTime.Enabled = true;
+            playerControls1.lblTime.Text = dgvDisplaySongs[2, rowIndex].Value.ToString();
+
+            playerControls1.lblArtistName.Text = dgvDisplaySongs[1, rowIndex].Value.ToString();
+            playerControls1.lblCurrentSong.Text = dgvDisplaySongs[0, rowIndex].Value.ToString();
+        }
+
+        private void btnAddsongs_Click(object sender, EventArgs e)
+        {
+            homeForm.btnUploadSong_Click(sender, e);
+            Songs.Clear();
+            readSongs(lblPlaylistName.Text);
+            MessageBox.Show(Songs.Last().Name);
         }
 
         private void DeleteSong(int songIndex, string playlistName)
@@ -382,24 +335,21 @@ namespace Byte_me___Group_2
             // Saves the current playlist path
             string playlistPath = files[0];
 
-            // Reads the songs into an array
-            string[] songs = File.ReadAllLines(playlistPath);
-
             // Checks if the playlist does have songs
-            if (songs.Length == 0)
+            if (Songs.Count == 0)
             {
                 MessageBox.Show("There are no songs to delete.");
                 return;
             }
 
             // Checks if the selected song actually exists in the playlist
-            if (songIndex < 0 || songIndex >= songs.Length)
+            if (songIndex < 0 || songIndex >= Songs.Count)
             {
                 return;
             }
 
             // Gets the song that the user selected
-            string songToDelete = songs[songIndex];
+            string songToDelete = Songs[songIndex].Name;
 
             // Ask the user for confirmation
             DialogResult confirm = MessageBox.Show(
@@ -414,17 +364,17 @@ namespace Byte_me___Group_2
                 return;
             }
 
-            // Converts array into a list so that it is easier to delete
-            List<string> remainingSongs = songs.ToList();
-
             // Deletes the song from the list
-            remainingSongs.RemoveAt(songIndex);
+            Songs.RemoveAt(songIndex);
 
             // Writes remaining songs back into the playlist
-            File.WriteAllLines(playlistPath, remainingSongs);
-
-            // Rerenders all the remaining songs to display
-            readSongs(playlistName);
+            using (StreamWriter writer = new StreamWriter(playlistPath))
+            {
+                foreach (Song song in Songs)
+                {
+                    writer.WriteLine($"{song.Name}|{song.Artist}|{song.Duration}|{song.SongFilePath}");
+                }
+            }
 
             // Shows a message for successful deletion
             MessageBox.Show("Song deleted successfully.");
@@ -458,9 +408,104 @@ namespace Byte_me___Group_2
         //Deletes the current playlist
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            // Create a new instance of the home class sending the user's username as paramater
             Home homePage = new Home(this.username);
             homePage.deletePlaylist(lblPlaylistName.Text, Path.Combine(playlistsFolder, lblPlaylistName.Text + ".txt"));
             btnBackHome_Click(sender, e);
         }
+
+        //This method sorts the songs according to the selected option
+        private void SortPlaylistSongs(string sortBy, bool ascending, string playlistName)
+        {
+            //Creates a list that stores the positions of the songs
+            List<int> songIndexes = new List<int>();
+
+            //Adds each song to the position list
+            for (int i = 0; i < Songs.Count; i++)
+            {
+                songIndexes.Add(i);
+            }
+            //checks if user wants to sort by title
+            if (sortBy == "songName")
+            {
+                if (ascending)
+                {
+                    songIndexes = songIndexes.OrderBy(i => Songs[i].Name).ToList();//from A to Z
+                }
+                else
+                {
+                    songIndexes = songIndexes.OrderByDescending(i => Songs[i].Name).ToList();//from Z to A
+                }
+            }
+            else if (sortBy == "songArtist")
+            {
+                if (ascending)
+                {
+                    songIndexes = songIndexes.OrderBy(i => Songs[i].Artist).ToList();
+                }
+                else
+                {
+                    songIndexes = songIndexes.OrderByDescending(i => Songs[i].Artist).ToList();
+                }
+            }
+            else if (sortBy == "songDuration")
+            {
+                if (ascending)
+                {
+                    songIndexes = songIndexes.OrderBy(i => GetDurationInSeconds(Songs[i].Duration)).ToList();
+                }
+                else
+                {
+                    songIndexes = songIndexes.OrderByDescending(i => GetDurationInSeconds(Songs[i].Duration)).ToList();
+                }
+            }
+
+            //Creates temporary list to store the sorted information.
+            List<Song> sortedSongs = new List<Song>();
+
+            //Goes through their index in the new sorted order
+            for (int i = 0; i < songIndexes.Count; i++)
+            {
+                //Gets original position of a song
+                int index = songIndexes[i];
+
+                //Adds info to the temporary list
+                sortedSongs.Add(Songs[index]);
+            }
+
+            //clear the original lists
+            Songs.Clear();
+
+            //Add sorted info back to the original list
+            foreach (Song song in sortedSongs)
+            {
+                Songs.Add(song);
+            }
+
+        }
+
+
+        private int GetDurationInSeconds(string duration)
+        {
+            //Splits duration such as "3:45"into seconds.
+            string[] parts = duration.Split(':');
+
+            //checks if duration contains minutes and seconds
+            if (parts.Length == 2)
+            {
+                int minutes;
+                int seconds;
+
+                //minutes snd seconds into numbers
+                if (int.TryParse(parts[0], out minutes) && int.TryParse(parts[1], out seconds))
+                {
+                    return (minutes * 60) + seconds;
+                }
+            }
+            //Return Zero if duration cannot be converted
+            return 0;
+        }
     }
+
+
 }

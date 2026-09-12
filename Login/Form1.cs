@@ -83,7 +83,7 @@ namespace Byte_me___Group_2
                 ReadUsersFromFile();
 
                 // Variable keep track of whether username or password were found 
-                bool found = false;
+               bool found = false;
 
                 // Go through each User object in the list
                 foreach (User user in users)
@@ -122,6 +122,12 @@ namespace Byte_me___Group_2
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

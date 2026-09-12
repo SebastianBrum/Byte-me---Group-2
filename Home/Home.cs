@@ -12,12 +12,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 namespace Byte_me___Group_2
 {
     // Home page: dashboard visuals (welcome message, search, theme toggle) + playlist functionality.
-    // Data is stored as plain text files under a "Data" folder next to the .exe.
-
-    // IDK random work
+    // Data is stored as plain text files under a "Data" folder next to the .exe.\
     public partial class Home : Form
     {
         private string username;
+        
 
         // Text shown in the search box when empty and unfocused
         private const string SearchPlaceholder = "Search playlists or songs...";
@@ -35,7 +34,6 @@ namespace Byte_me___Group_2
 
         // True = only show favourited playlists in sidebar/grid
         private bool showFavouritesOnly = false;
-
         // Dynamically built sidebar rows (replace the fixed demo rows)
         private readonly Panel[] dynamicNavRows = new Panel[200];
         private int dynamicNavRowCount = 0;
@@ -65,7 +63,7 @@ namespace Byte_me___Group_2
         public Home(string username)
         {
             InitializeComponent(); // build Designer-generated controls
-
+            
             //Sets the username
             this.username = username;
 
@@ -85,6 +83,7 @@ namespace Byte_me___Group_2
 
             favouritesFile = Path.Combine(userFolder, "favourites.txt");
 
+            // Recent playlists opened
             recentFile = Path.Combine(userFolder, "recent.txt");
 
             lblAvatar.Text = this.username[0].ToString();
@@ -94,6 +93,10 @@ namespace Byte_me___Group_2
             SetActiveFilterHighlight();  // highlight "All playlists" as active
             RefreshPlaylistView();       // populate sidebar/grid from disk
         }
+        //Add an option to add a playlist to favourites
+        
+
+
 
         // Hides the Designer's original 6 hardcoded sidebar rows and 6 grid cards permanently
         private void HideLegacyFixedSlots()
@@ -215,6 +218,7 @@ namespace Byte_me___Group_2
                 MessageBox.Show("This playlist could not be opened:\n" + ex.Message,
                     "Error opening playlist", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         // Moves playlistName to the top of recent.txt, capped at MaxRecentEntries
@@ -348,5 +352,52 @@ namespace Byte_me___Group_2
         {
             Application.Exit();
         }
+
+        // Fires when the heart button on a sidebar row is clicked ---> for favourites
+
+        // Toggles a playlist's favourite status in favourites.txt
+        private void ToggleFavourite(string playlistName)
+        {
+            string[] existing = ReadAllLinesSafe(favouritesFile);
+
+            if (StringArrayContains(existing, playlistName))
+            {
+                RemoveNameFromFile(favouritesFile, playlistName);
+            }
+            else
+            {
+                try
+                {
+                    using (StreamWriter writer = new StreamWriter(favouritesFile, true))
+                    {
+                        writer.WriteLine(playlistName);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Could not save the favourite:\n" + ex.Message,
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            RefreshPlaylistView();
+        }
+
+        private void FavHeart_Click(object sender, EventArgs e)
+        {
+            Control c = sender as Control;
+
+            if (c != null && c.Tag is string)
+            {
+                string filePath = (string)c.Tag;
+                string name = Path.GetFileNameWithoutExtension(filePath);
+                ToggleFavourite(name);
+            }
+        }
+        
+
+        
+
+
     }
 }
