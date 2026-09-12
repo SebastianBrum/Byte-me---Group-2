@@ -25,7 +25,7 @@ namespace Byte_me___Group_2
         Button btnNewPlaylist, btnChangeCoverPhoto;
 
         // The list of songs in the playlist
-        private BindingList<Song> Songs;
+        public BindingList<Song> Songs;
 
         // The class for the song that is currently playing
         CurrentlyPlaying currentlyPlayingSong;
@@ -50,6 +50,7 @@ namespace Byte_me___Group_2
 
 
             playerControls1.setSongPlayer(wmpSongPlay);
+            playerControls1.setPlaylistPanel(this);
         }
 
         /// <summary>
@@ -227,6 +228,8 @@ namespace Byte_me___Group_2
                     {
                         // Adds the currentline to the Songs binding list by initialiing a new Song Object
                         Songs.Add( new Song(line) );
+
+                        // Set the dustbin icon in the delete column of the datagridview
                         dgvDisplaySongs.Columns["SongDelete"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         dgvDisplaySongs.Columns["SongDelete"].DefaultCellStyle.ForeColor = Color.Red;
 
@@ -259,29 +262,39 @@ namespace Byte_me___Group_2
                 return;
             }
 
-            // Deletes the song which delete button is pressed
-            if (e.ColumnIndex > 0 || dgvDisplaySongs.Columns[e.ColumnIndex].Name == "SongDelete")
+            // First check is to check if the column on the far left is clicked
+            // The second check is to check if the song needs to be deleted
+            if (e.ColumnIndex > 0 && dgvDisplaySongs.Columns[e.ColumnIndex].Name == "SongDelete")
             {
                 DeleteSong(e.RowIndex, lblPlaylistName.Text);
             } 
             else
             {
-                //Plays the song that is clicked
                 wmpSongPlay.URL = Songs[e.RowIndex].SongFilePath;
-                wmpSongPlay.Ctlcontrols.play();
 
-                currentlyPlayingSong = new CurrentlyPlaying();
-
-                playSong(e.RowIndex);
+                playSong(e.RowIndex, Songs[e.RowIndex].SongFilePath);
             }
         }
 
-        public void playSong(int rowIndex)
+        // Set display when a song is played
+        public void playSong(int rowIndex, string filepath)
         {
+            wmpSongPlay.URL = filepath;
+            wmpSongPlay.Ctlcontrols.play();
+
+
+            currentlyPlayingSong = new CurrentlyPlaying();
+
+            setCurrentSongDisplay(rowIndex);
+        }
+
+        public void setCurrentSongDisplay(int rowIndex)
+        {
+            playerControls1.tmrTrackbarTime.Enabled = true;
             playerControls1.lblTime.Text = dgvDisplaySongs[2, rowIndex].Value.ToString();
 
-            playerControls1.tmrTrackbarTime.Enabled = true;
-            
+            playerControls1.lblArtistName.Text = dgvDisplaySongs[1, rowIndex].Value.ToString();
+            playerControls1.lblCurrentSong.Text = dgvDisplaySongs[0, rowIndex].Value.ToString();
         }
 
         private void btnAddsongs_Click(object sender, EventArgs e)

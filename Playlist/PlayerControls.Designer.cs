@@ -72,7 +72,7 @@
             this.pnlTrackChild.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.pnlTrackChild.Location = new System.Drawing.Point(480, 40);
             this.pnlTrackChild.Name = "pnlTrackChild";
-            this.pnlTrackChild.Size = new System.Drawing.Size(95, 10);
+            this.pnlTrackChild.Size = new System.Drawing.Size(10, 10);
             this.pnlTrackChild.TabIndex = 0;
             // 
             // pnlTrackParent
@@ -114,10 +114,10 @@
             // btnShuffle
             // 
             this.btnShuffle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnShuffle.Location = new System.Drawing.Point(390, 26);
+            this.btnShuffle.Location = new System.Drawing.Point(390, 31);
             this.btnShuffle.Margin = new System.Windows.Forms.Padding(2);
             this.btnShuffle.Name = "btnShuffle";
-            this.btnShuffle.Size = new System.Drawing.Size(26, 28);
+            this.btnShuffle.Size = new System.Drawing.Size(26, 23);
             this.btnShuffle.TabIndex = 7;
             this.btnShuffle.Text = "🔀";
             this.btnShuffle.UseVisualStyleBackColor = true;
@@ -219,8 +219,8 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.Button btnPrevious;
-        private System.Windows.Forms.Label lblArtistName;
-        private System.Windows.Forms.Label lblCurrentSong;
+        public System.Windows.Forms.Label lblArtistName;
+        public System.Windows.Forms.Label lblCurrentSong;
         private System.Windows.Forms.PictureBox picAlbumArt;
         public System.Windows.Forms.Timer tmrTrackbarTime;
     }

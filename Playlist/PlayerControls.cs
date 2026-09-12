@@ -17,6 +17,8 @@ namespace Byte_me___Group_2.Playlist
         private bool Dragging = false;
         private double width;
 
+        private PlaylistControl PlaylistPanel;
+
         private AxWindowsMediaPlayer songPlayer;
 
         public PlayerControls()
@@ -31,6 +33,11 @@ namespace Byte_me___Group_2.Playlist
         public void setSongPlayer(AxWindowsMediaPlayer player)
         {
             songPlayer = player;
+        }
+
+        public void setPlaylistPanel(PlaylistControl playlistPanel)
+        {
+            this.PlaylistPanel = playlistPanel;
         }
 
         /// Play or pause the song
@@ -55,7 +62,12 @@ namespace Byte_me___Group_2.Playlist
 
         private void btnShuffle_Click(object sender, EventArgs e)
         {
+            int SongCount = PlaylistPanel.Songs.Count;
 
+            Random randomSongIndex = new Random();
+            int songIndex = randomSongIndex.Next(0, SongCount);
+
+            PlaylistPanel.playSong(songIndex, PlaylistPanel.Songs[songIndex].SongFilePath);
         }
 
         /// <summary>
