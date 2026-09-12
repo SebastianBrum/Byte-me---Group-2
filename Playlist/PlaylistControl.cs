@@ -161,18 +161,24 @@ namespace Byte_me___Group_2
             }
         }
 
+        // Makes the button to add a new playlist visible on the sidebar
         private void addPLaylistButton(bool home)
         {
             btnNewPlaylist.Visible = !home;
             btnNewPlaylist.Enabled = !home;
         }
 
+        // Makes the button to change the cover photo visible on the sidebar
         private void changeCoverButton(bool home)
         {
             btnChangeCoverPhoto.Visible = !home;
             btnChangeCoverPhoto.Enabled = !home;
         }
 
+        /// <summary>
+        /// Shows the the that the playlist was created
+        /// </summary> 
+        /// <param name="val"> The value to add to the display </param>
         private void addToCreationLabel(string val)
         {
             if (lblDateCreated.Text != "")
@@ -185,9 +191,13 @@ namespace Byte_me___Group_2
             }
         }
 
-        //Reads the songs from the textfile into the songs list
+        /// <summary>
+        /// Reads the songs from the playlist. Format: SongName|SongArtist|SongDuration|SongFilePath
+        /// </summary>
+        /// <param name="playlistName"> The name of the playlist </param>
         private void readSongs(string playlistName)
         {
+            // Get the filepath to where the playlist's textfile is saved.
             string filepath = Path.Combine(
             dataFolder,
             this.username,
@@ -198,7 +208,7 @@ namespace Byte_me___Group_2
             //Removes the old playlist's songs from the list
             if (Songs != null) Songs.Clear();
 
-
+            //Create a new binding list
             Songs = new BindingList<Song>();
 
             //Reads from the textfile
@@ -206,15 +216,23 @@ namespace Byte_me___Group_2
             {
                 using (StreamReader reader = new StreamReader(filepath))
                 {
+                    // Keep track of the total sonngs in the playlist
                     int totalSongs = 0;
+
+                    // The current line being read
                     string line;
+
+                    // Reads through the textfile
                     while ((line = reader.ReadLine()) != null)
                     {
+                        // Adds the currentline to the Songs binding list by initialiing a new Song Object
                         Songs.Add( new Song(line) );
 
+                        // Increases the total songs in the playlist
                         totalSongs++;
                     }
 
+                    // Display the total songs in the playlist on a label
                     addToCreationLabel($"{totalSongs} tracks");
                     dgvDisplaySongs.DataSource = Songs;
                 }
@@ -236,7 +254,6 @@ namespace Byte_me___Group_2
             if (e.RowIndex < 0)
             {
                 SortPlaylistSongs(dgvDisplaySongs.Columns[e.ColumnIndex].Name, false, lblPlaylistName.Text);
-                MessageBox.Show($"{lblPlaylistName.Text} + {dgvDisplaySongs.Columns[e.ColumnIndex].Name}");
                 return;
             }
 
@@ -369,6 +386,7 @@ namespace Byte_me___Group_2
         //Deletes the current playlist
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            // Create a new instance of the home class sending the user's username as paramater
             Home homePage = new Home(this.username);
             homePage.deletePlaylist(lblPlaylistName.Text, Path.Combine(playlistsFolder, lblPlaylistName.Text + ".txt"));
             btnBackHome_Click(sender, e);
