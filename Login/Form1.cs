@@ -45,7 +45,7 @@ namespace Byte_me___Group_2
             try
             {
                 // Open the users file
-                FileStream file = new FileStream("ExsistingUsers.txt", FileMode.Open, FileAccess.Read);
+                FileStream file = new FileStream("ExistingUsers.ser", FileMode.Open, FileAccess.Read);
 
                 // Create BinaryFormatter
                 BinaryFormatter formatter = new BinaryFormatter();
