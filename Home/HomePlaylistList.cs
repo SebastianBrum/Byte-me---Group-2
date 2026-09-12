@@ -49,6 +49,17 @@ namespace Byte_me___Group_2
             titleLabel.Size = new Size(150, 22);
             titleLabel.Text = title;                   // playlist name
             titleLabel.Click += pnlPlaylistCard_Click;
+            titleLabel.BackColor = Color.Black;
+
+            Label favoriteLabel = new Label();
+            favoriteLabel.Text = "♥";
+            favoriteLabel.ForeColor = Color.Red;
+            favoriteLabel.Location = new Point(card.Width - 50, 180);
+            favoriteLabel.Size = new Size(40, 30);
+            favoriteLabel.Font = new Font(favoriteLabel.Font.FontFamily, 20);
+            favoriteLabel.Cursor = Cursors.Hand;
+            favoriteLabel.Tag = filePath;  
+            favoriteLabel.Click += FavHeart_Click;
 
             Label countLabel = new Label();
             countLabel.Font = new Font("Segoe UI", 8F);
@@ -75,6 +86,7 @@ namespace Byte_me___Group_2
             card.Controls.Add(titleLabel);
             card.Controls.Add(countLabel);
             card.Controls.Add(deleteButton);
+            card.Controls.Add(favoriteLabel);
             deleteButton.BringToFront(); // make sure the "x" sits above the cover
             return card;
         }

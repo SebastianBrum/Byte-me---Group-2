@@ -319,6 +319,17 @@ namespace Byte_me___Group_2
         //Deletes a playlist
         public void deletePlaylist(string playlist, string filePath)
         {
+            string[] files = Directory.GetFiles(
+               dataFolder,
+               playlist + ".txt",
+               SearchOption.AllDirectories);
+
+            string playlistPath = files[0];
+
+            PictureBox homeCoverPhoto = GetPlaylistCoverBox(playlistPath);
+
+            homeCoverPhoto.Image?.Dispose();
+
             DialogResult confirm = MessageBox.Show(
                 "Delete \"" + playlist + "\"? This cannot be undone.",
                 "Delete playlist", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);

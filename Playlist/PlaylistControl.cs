@@ -88,50 +88,12 @@ namespace Byte_me___Group_2
         //Goes back to the home screen when the user clicks back
         private void btnBackHome_Click(object sender, EventArgs e)
         {
+            pbxPlaylistCoverPhoto.Image?.Dispose();
+
             playlistVisible(true);
             homeVisible(true);
             changeCoverButton(true);
         }
-
-        ///// <summary>
-        ///// Loads the picture into a picturebox
-        ///// </summary>
-        ///// <param name="playlist"> The playlist name </param>
-        ///// <param name="pictureBox"> The picturebox that needs to be updated </param>
-        //public void loadImage(string playlist, PictureBox pictureBox)
-        //{
-        //    // Write all the image files to an array
-        //    string[] coverImagesFiles = Directory.GetFiles(coversFolder);
-
-        //    //Boolean to check if the user selected a file for the playlist
-        //    bool hasImage = false;
-
-        //    // Iterate through the images in the folder
-        //    foreach (string coverImage in coverImagesFiles)
-        //    {
-        //        // Gets the image name without the extension
-        //        string currentImage = Path.GetFileNameWithoutExtension(coverImage);
-
-
-        //        //  Checks if the current image in the loop is the one corresponding with the playlist
-        //        if (currentImage == playlist)
-        //        {
-        //            pictureBox.Image = Image.FromFile(coverImage);
-        //            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-
-        //            // The user has a image for the playlist
-        //            hasImage = true;
-        //        }
-        //    }
-
-        //    // Sets the default image if the user didn't set an image themselves
-        //    if (!hasImage)
-        //    {
-        //        string defaultImagePath = Path.Combine(dataFolder, "DefaultCover", "default.png");
-        //        pictureBox.Image = Image.FromFile(defaultImagePath);
-        //        pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-        //    }
-        //}
 
         //Makeing the active playlist visible on a panel, or making it invisible if the home screen is showing
         private void playlistVisible(bool home)
@@ -290,6 +252,7 @@ namespace Byte_me___Group_2
             // Display the song name and song artist
             setCurrentSongDisplay(rowIndex);
         }
+
 
         public void setCurrentSongDisplay(int rowIndex)
         {

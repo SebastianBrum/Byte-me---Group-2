@@ -13,7 +13,7 @@ namespace Byte_me___Group_2.Playlist
 {
     public partial class PlayerControls : UserControl
     {
-        private bool isPlaying = false;
+        private bool isPlaying = true;
         private bool Dragging = false;
         private double width;
         private bool shufflePlay = false;
@@ -55,13 +55,13 @@ namespace Byte_me___Group_2.Playlist
             {
                 songPlayer.Ctlcontrols.play();
                 isPlaying = true;
-                btnPlay.Text = "▶";
+                btnPlay.Text = "Ⅱ";
             }
             else
             {
                 songPlayer.Ctlcontrols.pause();
                 isPlaying = false;
-                btnPlay.Text = "Ⅱ";
+                btnPlay.Text = "▶";
             }
         }
 
@@ -77,15 +77,24 @@ namespace Byte_me___Group_2.Playlist
 
         private void btnShuffle_Click(object sender, EventArgs e)
         {
+            // Gets the amount of songs in the playlist
             int SongCount = PlaylistPanel.Songs.Count;
 
             Random randomSongIndex = new Random();
+
+            // Generate a random number to select a random song
             int songIndex = randomSongIndex.Next(0, SongCount);
 
-            PlaylistPanel.playSong(songIndex, PlaylistPanel.Songs[songIndex].SongFilePath);
+            // If a song is currently playing it will not start playing a new one.
+            if (songCurrentlyPlaying == null)
+            {
+                PlaylistPanel.playSong(songIndex, PlaylistPanel.Songs[songIndex].SongFilePath);
+            }
 
+            // Sets shuffle to true if it was false and false if it was true
             shufflePlay = !shufflePlay;
 
+            // Changes the background color of the button to indicate if shuffle is active.
             if (shufflePlay)
             {
                 btnShuffle.BackColor = Color.Lime;
@@ -136,7 +145,16 @@ namespace Byte_me___Group_2.Playlist
         /// </summary>
         private void playNextSong()
         {
-            if (songCurrentlyPlaying.currentlyPlayingIndex < PlaylistPanel.Songs.Count)
+            if (shufflePlay == true)
+            {
+                int SongCount = PlaylistPanel.Songs.Count;
+                Random randomSongIndex = new Random();
+                // Generate a random number to select a random song
+                int songIndex = randomSongIndex.Next(0, SongCount);
+                PlaylistPanel.playSong(songIndex, PlaylistPanel.Songs[songIndex].SongFilePath);
+            }
+
+            if (songCurrentlyPlaying.currentlyPlayingIndex < PlaylistPanel.Songs.Count - 1)
             {
                 string nextFilePath = PlaylistPanel.Songs[songCurrentlyPlaying.currentlyPlayingIndex + 1].SongFilePath;
                 int nextIndex = songCurrentlyPlaying.currentlyPlayingIndex + 1;
