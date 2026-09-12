@@ -47,11 +47,13 @@ namespace Byte_me___Group_2.Playlist
             {
                 songPlayer.Ctlcontrols.play();
                 isPlaying = true;
+                btnPlay.Text = "▶";
             }
             else
             {
                 songPlayer.Ctlcontrols.pause();
                 isPlaying = false;
+                btnPlay.Text = "Ⅱ";
             }
         }
 

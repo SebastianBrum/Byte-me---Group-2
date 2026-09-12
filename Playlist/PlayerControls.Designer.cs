@@ -90,7 +90,7 @@
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(31, 16);
             this.lblTime.TabIndex = 11;
-            this.lblTime.Text = "3:42";
+            this.lblTime.Text = "0:00";
             // 
             // lblD
             // 
@@ -109,15 +109,15 @@
             this.lblElpased.Name = "lblElpased";
             this.lblElpased.Size = new System.Drawing.Size(31, 16);
             this.lblElpased.TabIndex = 9;
-            this.lblElpased.Text = "1:24";
+            this.lblElpased.Text = "0:00";
             // 
             // btnShuffle
             // 
             this.btnShuffle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnShuffle.Location = new System.Drawing.Point(390, 31);
+            this.btnShuffle.Location = new System.Drawing.Point(390, 32);
             this.btnShuffle.Margin = new System.Windows.Forms.Padding(2);
             this.btnShuffle.Name = "btnShuffle";
-            this.btnShuffle.Size = new System.Drawing.Size(26, 23);
+            this.btnShuffle.Size = new System.Drawing.Size(26, 30);
             this.btnShuffle.TabIndex = 7;
             this.btnShuffle.Text = "🔀";
             this.btnShuffle.UseVisualStyleBackColor = true;
@@ -126,10 +126,10 @@
             // btnNext
             // 
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNext.Location = new System.Drawing.Point(349, 31);
+            this.btnNext.Location = new System.Drawing.Point(350, 34);
             this.btnNext.Margin = new System.Windows.Forms.Padding(2);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(36, 22);
+            this.btnNext.Size = new System.Drawing.Size(36, 28);
             this.btnNext.TabIndex = 6;
             this.btnNext.Text = "▶I";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -140,7 +140,7 @@
             this.btnPlay.Location = new System.Drawing.Point(278, 32);
             this.btnPlay.Margin = new System.Windows.Forms.Padding(2);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(68, 21);
+            this.btnPlay.Size = new System.Drawing.Size(68, 30);
             this.btnPlay.TabIndex = 5;
             this.btnPlay.Text = "I I";
             this.btnPlay.UseVisualStyleBackColor = true;
@@ -152,7 +152,7 @@
             this.btnPrevious.Location = new System.Drawing.Point(238, 32);
             this.btnPrevious.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(36, 22);
+            this.btnPrevious.Size = new System.Drawing.Size(36, 30);
             this.btnPrevious.TabIndex = 3;
             this.btnPrevious.Text = "I◀";
             this.btnPrevious.UseVisualStyleBackColor = true;

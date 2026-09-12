@@ -30,8 +30,6 @@ namespace Byte_me___Group_2
         // The class for the song that is currently playing
         CurrentlyPlaying currentlyPlayingSong;
 
-        SongHistory SongsQueue;
-
 
         public PlaylistControl(Home homeForm, string username, string coversFolder, string playListsFolder, string dataFolder, OpenFileDialog ofdCoverPicture, Panel pnlMain, Panel Sidebar, Button btnNewPlayList, Button btnChangeCover)
         {
@@ -78,8 +76,6 @@ namespace Byte_me___Group_2
             //Gets the creation date of the playlist and displays it
             string creationDate = File.GetCreationTime(Path.Combine(playlistsFolder, $"{title}.txt")).ToString("dd MMMM yyyy");
             addToCreationLabel(creationDate);
-
-            SongsQueue = new SongHistory( playlistsFolder, title );
         }
 
         //Goes back to the home screen when the user clicks on the filepath
@@ -276,14 +272,21 @@ namespace Byte_me___Group_2
             }
         }
 
-        // Set display when a song is played
+        /// <summary>
+        /// Plays the song
+        /// </summary>
+        /// <param name="rowIndex"> The index in the list that saves the songs in the current playlist </param>
+        /// <param name="filepath"> The filepath to the current song being played </param>
         public void playSong(int rowIndex, string filepath)
         {
+            //Set the URL of the mediaplayer equal to the song's filepath
             wmpSongPlay.URL = filepath;
+
+            // Play the song
             wmpSongPlay.Ctlcontrols.play();
 
 
-            currentlyPlayingSong = new CurrentlyPlaying();
+            currentlyPlayingSong = new CurrentlyPlaying(Songs[rowIndex]);
 
             setCurrentSongDisplay(rowIndex);
         }
@@ -475,9 +478,9 @@ namespace Byte_me___Group_2
                 Songs.Add(song);
             }
 
-
-
         }
+
+
         private int GetDurationInSeconds(string duration)
         {
             //Splits duration such as "3:45"into seconds.
