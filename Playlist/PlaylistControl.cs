@@ -19,7 +19,7 @@ namespace Byte_me___Group_2
     {
         private Home homeForm;
 
-        private string username, coversFolder, playlistsFolder, dataFolder;
+        private string username, coversFolder, playlistsFolder, dataFolder, playlistPath;
         OpenFileDialog ofdCoverPicture;
         Panel pnlMainContent, pnlSidebar;
         Button btnNewPlaylist, btnChangeCoverPhoto;
@@ -67,9 +67,8 @@ namespace Byte_me___Group_2
 
             playlistVisible(false);
             homeVisible(false);
-            addPLaylistButton(false);
             changeCoverButton(false);
-            loadImage(title, pbxPlaylistCoverPhoto);
+            homeForm.loadImage(title, pbxPlaylistCoverPhoto);
 
             lblPlalistCount.Text = $"This playlist has {Songs.Count} songs";
 
@@ -83,7 +82,6 @@ namespace Byte_me___Group_2
         {
             playlistVisible(true);
             homeVisible(true);
-            addPLaylistButton(true);
             changeCoverButton(true);
         }
 
@@ -92,49 +90,48 @@ namespace Byte_me___Group_2
         {
             playlistVisible(true);
             homeVisible(true);
-            addPLaylistButton(true);
             changeCoverButton(true);
         }
 
-        /// <summary>
-        /// Loads the picture into a picturebox
-        /// </summary>
-        /// <param name="playlist"> The playlist name </param>
-        /// <param name="pictureBox"> The picturebox that needs to be updated </param>
-        public void loadImage(string playlist, PictureBox pictureBox)
-        {
-            // Write all the image files to an array
-            string[] coverImagesFiles = Directory.GetFiles(coversFolder);
+        ///// <summary>
+        ///// Loads the picture into a picturebox
+        ///// </summary>
+        ///// <param name="playlist"> The playlist name </param>
+        ///// <param name="pictureBox"> The picturebox that needs to be updated </param>
+        //public void loadImage(string playlist, PictureBox pictureBox)
+        //{
+        //    // Write all the image files to an array
+        //    string[] coverImagesFiles = Directory.GetFiles(coversFolder);
 
-            //Boolean to check if the user selected a file for the playlist
-            bool hasImage = false;
+        //    //Boolean to check if the user selected a file for the playlist
+        //    bool hasImage = false;
 
-            // Iterate through the images in the folder
-            foreach (string coverImage in coverImagesFiles)
-            {
-                // Gets the image name without the extension
-                string currentImage = Path.GetFileNameWithoutExtension(coverImage);
+        //    // Iterate through the images in the folder
+        //    foreach (string coverImage in coverImagesFiles)
+        //    {
+        //        // Gets the image name without the extension
+        //        string currentImage = Path.GetFileNameWithoutExtension(coverImage);
 
 
-                //  Checks if the current image in the loop is the one corresponding with the playlist
-                if (currentImage == playlist)
-                {
-                    pictureBox.Image = Image.FromFile(coverImage);
-                    pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        //  Checks if the current image in the loop is the one corresponding with the playlist
+        //        if (currentImage == playlist)
+        //        {
+        //            pictureBox.Image = Image.FromFile(coverImage);
+        //            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
-                    // The user has a image for the playlist
-                    hasImage = true;
-                }
-            }
+        //            // The user has a image for the playlist
+        //            hasImage = true;
+        //        }
+        //    }
 
-            // Sets the default image if the user didn't set an image themselves
-            if (!hasImage)
-            {
-                string defaultImagePath = Path.Combine(dataFolder, "DefaultCover", "default.png");
-                pictureBox.Image = Image.FromFile(defaultImagePath);
-                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            }
-        }
+        //    // Sets the default image if the user didn't set an image themselves
+        //    if (!hasImage)
+        //    {
+        //        string defaultImagePath = Path.Combine(dataFolder, "DefaultCover", "default.png");
+        //        pictureBox.Image = Image.FromFile(defaultImagePath);
+        //        pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+        //    }
+        //}
 
         //Makeing the active playlist visible on a panel, or making it invisible if the home screen is showing
         private void playlistVisible(bool home)
@@ -156,13 +153,6 @@ namespace Byte_me___Group_2
             { 
                 homeForm.adjustFormHomeWidth(pnlMainContent.Width + 75);
             }
-        }
-
-        // Makes the button to add a new playlist visible on the sidebar
-        private void addPLaylistButton(bool home)
-        {
-            btnNewPlaylist.Visible = !home;
-            btnNewPlaylist.Enabled = !home;
         }
 
         // Makes the button to change the cover photo visible on the sidebar
@@ -285,22 +275,34 @@ namespace Byte_me___Group_2
             // Play the song
             wmpSongPlay.Ctlcontrols.play();
 
-
+            // Initialize a new CurrentlyPlaying song class
             currentlyPlayingSong = new CurrentlyPlaying(Songs[rowIndex]);
+
+            // Set the Mediaplayer for the song class
             currentlyPlayingSong.setMediaPlayer(playerControls1);
+
+            // Set the song index that is currently playing
             currentlyPlayingSong.currentlyPlayingIndex = rowIndex;
 
+            // Set the duration text
             playerControls1.lblTime.Text = currentlyPlayingSong.Duration;
 
+            // Display the song name and song artist
             setCurrentSongDisplay(rowIndex);
         }
 
         public void setCurrentSongDisplay(int rowIndex)
         {
+            // Enables the timer control for the track
             playerControls1.tmrTrackbarTime.Enabled = true;
+            
+            // Display the duration time
             playerControls1.lblTime.Text = dgvDisplaySongs[2, rowIndex].Value.ToString();
 
+            // Display the Artist name
             playerControls1.lblArtistName.Text = dgvDisplaySongs[1, rowIndex].Value.ToString();
+
+            // Displat the Song Name
             playerControls1.lblCurrentSong.Text = dgvDisplaySongs[0, rowIndex].Value.ToString();
         }
 
@@ -309,9 +311,13 @@ namespace Byte_me___Group_2
             homeForm.btnUploadSong_Click(sender, e);
             Songs.Clear();
             readSongs(lblPlaylistName.Text);
-            MessageBox.Show(Songs.Last().Name);
         }
 
+        /// <summary>
+        /// Deletes a song
+        /// </summary>
+        /// <param name="songIndex"> Song index that needs to be deleted </param>
+        /// <param name="playlistName"> The playlistname that the song needs to be deleted from </param>
         private void DeleteSong(int songIndex, string playlistName)
         {
             // Get datafolder
@@ -382,8 +388,22 @@ namespace Byte_me___Group_2
 
         public void changeCoverPhoto()
         {
+
+            string[] files = Directory.GetFiles(
+               dataFolder,
+               lblPlaylistName.Text + ".txt",
+               SearchOption.AllDirectories);
+
+            playlistPath = files[0];
+
             //Prevents the user from selected a file that isn't an image
             ofdCoverPicture.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+
+            // Acces the picutre box on the home screen that corresponds to the current playlist
+            PictureBox homeCoverPhoto = homeForm.GetPlaylistCoverBox(playlistPath);
+
+            pbxPlaylistCoverPhoto.Image?.Dispose();
+            homeCoverPhoto.Image?.Dispose();
 
             //Open the filedialog
             if (ofdCoverPicture.ShowDialog() == DialogResult.OK)
@@ -394,14 +414,15 @@ namespace Byte_me___Group_2
                 //Gets the image extension
                 string extension = Path.GetExtension(filepath);
 
+                //Copies the coverphoto over to the covers file.
+                File.Copy(filepath, Path.Combine(coversFolder, lblPlaylistName.Text + extension), true);
+
                 // Changes the coverPhoto visually
                 pbxPlaylistCoverPhoto.Image = Image.FromFile(filepath);
+                homeCoverPhoto.Image = Image.FromFile(filepath);
 
                 //Makes the image fit
                 pbxPlaylistCoverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
-
-                //Copies the coverphoto over to the covers file.
-                File.Copy(filepath, Path.Combine(coversFolder, lblPlaylistName.Text + extension), true);
             }
         }
 

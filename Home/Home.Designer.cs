@@ -180,7 +180,7 @@ namespace Byte_me___Group_2
             // 
             // btnChangeCoverPhoto
             // 
-            this.btnChangeCoverPhoto.Location = new System.Drawing.Point(8, 772);
+            this.btnChangeCoverPhoto.Location = new System.Drawing.Point(8, 820);
             this.btnChangeCoverPhoto.Margin = new System.Windows.Forms.Padding(2);
             this.btnChangeCoverPhoto.Name = "btnChangeCoverPhoto";
             this.btnChangeCoverPhoto.Size = new System.Drawing.Size(285, 46);

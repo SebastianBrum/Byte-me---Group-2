@@ -16,6 +16,7 @@ namespace Byte_me___Group_2.Playlist
         private bool isPlaying = false;
         private bool Dragging = false;
         private double width;
+        private bool shufflePlay = false;
 
         private PlaylistControl PlaylistPanel;
 
@@ -50,7 +51,7 @@ namespace Byte_me___Group_2.Playlist
         /// Play or pause the song
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            if (!isPlaying) 
+            if (!isPlaying)
             {
                 songPlayer.Ctlcontrols.play();
                 isPlaying = true;
@@ -69,6 +70,11 @@ namespace Byte_me___Group_2.Playlist
 
         }
 
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            playNextSong();
+        }
+
         private void btnShuffle_Click(object sender, EventArgs e)
         {
             int SongCount = PlaylistPanel.Songs.Count;
@@ -77,6 +83,17 @@ namespace Byte_me___Group_2.Playlist
             int songIndex = randomSongIndex.Next(0, SongCount);
 
             PlaylistPanel.playSong(songIndex, PlaylistPanel.Songs[songIndex].SongFilePath);
+
+            shufflePlay = !shufflePlay;
+
+            if (shufflePlay)
+            {
+                btnShuffle.BackColor = Color.Lime;
+            } 
+            else
+            {
+                btnShuffle.BackColor = this.BackColor;
+            }
         }
 
         /// <summary>
@@ -114,6 +131,9 @@ namespace Byte_me___Group_2.Playlist
             }
         }
 
+        /// <summary>
+        /// Plays the next song
+        /// </summary>
         private void playNextSong()
         {
             if (songCurrentlyPlaying.currentlyPlayingIndex < PlaylistPanel.Songs.Count)

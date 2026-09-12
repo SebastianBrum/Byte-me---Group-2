@@ -24,6 +24,7 @@ namespace Byte_me___Group_2
         {
             InitializeComponent();
         }
+
         private void btnRegister_Click(object sender, EventArgs e)
         {
             // input //

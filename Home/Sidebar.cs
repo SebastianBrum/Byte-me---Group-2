@@ -113,6 +113,7 @@ namespace Byte_me___Group_2
 
                 Panel card = BuildPlaylistCard(name, trackCount, path); // build the grid card
                 flpPlaylists.Controls.Add(card);                        // add to grid
+                flpPlaylists.AutoScroll = true;
                 dynamicCards[dynamicCardCount] = card;                  // track for next teardown
                 dynamicCardCount++;
             }

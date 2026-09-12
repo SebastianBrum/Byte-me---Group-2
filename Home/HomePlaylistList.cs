@@ -27,34 +27,19 @@ namespace Byte_me___Group_2
             cover.SizeMode = PictureBoxSizeMode.StretchImage;
             cover.Cursor = Cursors.Hand;
             cover.Click += pnlPlaylistCard_Click;
+            cover.Name = $"pbx{title}";
+
+            // Remember this cover box so other forms/classes can look it up later
+            playlistCoverBoxes[filePath] = cover;
 
             // Try to load a custom cover image using the playlist panel helper; if none exists, fall back to a colored placeholder
             try
             {
-                if (playlistPanel != null)
-                {
-                    playlistPanel.loadImage(title, cover);
-                }
-                else
-                {
-                    // fallback: coloured placeholder with note drawn as an image
-                    Bitmap bmp = new Bitmap(255, 175);
-                    using (Graphics g = Graphics.FromImage(bmp))
-                    {
-                        g.Clear(GetCoverColorFor(title));
-                        using (Font f = new Font("Segoe UI", 48F))
-                        using (Brush b = Brushes.White)
-                        {
-                            var sz = g.MeasureString("♫", f);
-                            g.DrawString("♫", f, b, (bmp.Width - sz.Width) / 2, (bmp.Height - sz.Height) / 2);
-                        }
-                    }
-                    cover.Image = bmp;
-                }
+                    
+                    loadImage(title, cover);
             }
-            catch
+            catch (Exception ex)
             {
-                // ignore failures and leave the picturebox empty
             }
 
             Label titleLabel = new Label();
@@ -113,35 +98,6 @@ namespace Byte_me___Group_2
             deletePlaylist(name, filePath);
         }
 
-        ////Deletes a playlist
-        //private void deletePlaylist(string playlist, string filePath)
-        //{
-        //    DialogResult confirm = MessageBox.Show(
-        //        "Delete \"" + playlist + "\"? This cannot be undone.",
-        //        "Delete playlist", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-        //    if (confirm == DialogResult.No)
-        //        return; // user backed out
-
-        //    try
-        //    {
-        //        if (File.Exists(filePath))
-        //            File.Delete(filePath); // remove the playlist file
-        //        RemoveNameFromFile(favouritesFile, playlist); // scrub from favourites
-        //        RemoveNameFromFile(recentFile, playlist);     // scrub from recents
-
-        //        string coverPath = Path.Combine(coversFolder, playlist + ".png");
-        //        if (File.Exists(coverPath))
-        //            File.Delete(coverPath); // remove any cover art too
-
-        //        RefreshPlaylistView(); // rebuild sidebar/grid without the deleted playlist
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("This playlist could not be deleted:\n" + ex.Message,
-        //            "Error deleting playlist", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
         // Picks a consistent cover colour for a playlist name (same name = same colour)
         private Color GetCoverColorFor(string playlistName)
         {
@@ -168,6 +124,16 @@ namespace Byte_me___Group_2
                 return;
             string filePath = card.Tag as string; // file path stored on the card
             OpenPlaylist(filePath);
+        }
+        /// <summary>
+        /// Gets the cover PictureBox for a given playlist file, so other forms/classes can update it.
+        /// </summary>
+        /// <param name="filePath"> The playlist's file path </param>
+        /// <returns> The matching PictureBox, or null if no card exists for that playlist </returns>
+        public PictureBox GetPlaylistCoverBox(string filePath)
+        { 
+            playlistCoverBoxes.TryGetValue(filePath, out PictureBox box);
+            return box;
         }
     }
 }
