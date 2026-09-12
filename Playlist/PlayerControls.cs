@@ -21,6 +21,8 @@ namespace Byte_me___Group_2.Playlist
 
         private AxWindowsMediaPlayer songPlayer;
 
+        private CurrentlyPlaying songCurrentlyPlaying;
+
         public PlayerControls()
         {
             InitializeComponent();
@@ -38,6 +40,11 @@ namespace Byte_me___Group_2.Playlist
         public void setPlaylistPanel(PlaylistControl playlistPanel)
         {
             this.PlaylistPanel = playlistPanel;
+        }
+
+        public void setCurrentlyPlaying(CurrentlyPlaying song)
+        {
+            this.songCurrentlyPlaying = song;
         }
 
         /// Play or pause the song
@@ -100,9 +107,19 @@ namespace Byte_me___Group_2.Playlist
                 // Updates lblElapsed
                 UpdateTimeElapsed(secondsElapsed);
 
-                //button2.Left = panel1.Left + pnlTime.Width - Convert.ToInt32(button2.Width * 0.5);
-                //button2.Top = panel1.Top + pnlTime.Top - Convert.ToInt32(button2.Height * 0.4);
+                if (secondsElapsed >= duration)
+                {
+                    playNextSong();
+                }
             }
+        }
+
+        private void playNextSong()
+        {
+            string nextFilePath = PlaylistPanel.Songs[songCurrentlyPlaying.currentlyPlayingIndex + 1].SongFilePath;
+            int nextIndex = songCurrentlyPlaying.currentlyPlayingIndex + 1;
+
+            PlaylistPanel.playSong(nextIndex, nextFilePath);
         }
 
         /// <summary>
@@ -113,6 +130,9 @@ namespace Byte_me___Group_2.Playlist
         {
             // Formats the time displayed so that it is minutes : seconds
             lblElpased.Text = $"{(int)secondsElapsed.TotalMinutes:D2}:{secondsElapsed.Seconds:D2}";
+
+            // Updates the time elapsed on the CurrentlyPlaying class
+            songCurrentlyPlaying.secondsElapsed = secondsElapsed;
         }
     }
 }

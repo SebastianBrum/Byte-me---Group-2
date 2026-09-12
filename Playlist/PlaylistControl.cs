@@ -287,6 +287,10 @@ namespace Byte_me___Group_2
 
 
             currentlyPlayingSong = new CurrentlyPlaying(Songs[rowIndex]);
+            currentlyPlayingSong.setMediaPlayer(playerControls1);
+            currentlyPlayingSong.currentlyPlayingIndex = rowIndex;
+
+            playerControls1.lblTime.Text = currentlyPlayingSong.Duration;
 
             setCurrentSongDisplay(rowIndex);
         }
