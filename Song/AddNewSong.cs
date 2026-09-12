@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
 
 namespace Byte_me___Group_2
 {
@@ -33,35 +34,12 @@ namespace Byte_me___Group_2
                 // Step 2: collect song details and target playlist(s)
                 string songTitle, songArtist, songDuration;
                 string[] targetPlaylists;
-                bool confirmed = ShowUploadSongPrompt(playlistFiles, suggestedTitle,
-                    out songTitle, out songArtist, out songDuration, out targetPlaylists);
-                if (!confirmed)
-                    return; // user cancelled the details prompt
-                if (targetPlaylists.Length == 0)
-                {
-                    MessageBox.Show("Tick at least one playlist to add the song to.",
-                        "No playlist selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Step 3: write the song into each chosen playlist
                 int addedCount = 0;     // playlists it was newly added to
                 int replacedCount = 0;  // playlists where it replaced an existing track
-                int i = 0;
-                for (i = 0; i < targetPlaylists.Length; i++)
-                {
-                    try
-                    {
-                        bool wasReplaced = UpsertTrackInPlaylist(targetPlaylists[i], songTitle, songArtist, songDuration, fileDlg.FileName);
-                        if (wasReplaced) replacedCount++; else addedCount++;
-                    }
-                    catch (Exception ex)
-                    {
-                        // one bad playlist file shouldn't stop the rest from being updated
-                        MessageBox.Show("Could not add the song to " + Path.GetFileNameWithoutExtension(targetPlaylists[i]) +
-                            ":\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                bool confirmed = ShowUploadSongPrompt(playlistFiles, suggestedTitle, fileDlg.FileName,
+                    out songTitle, out songArtist, out songDuration, out targetPlaylists, out addedCount, out replacedCount);
+                if (!confirmed)
+                    return; // user cancelled the details prompt
 
                 // build a summary message describing what happened
                 string summary = "\"" + songTitle + "\" ";
@@ -77,13 +55,15 @@ namespace Byte_me___Group_2
         }
 
         // Pop-up form collecting song title/artist/duration and which playlists to add it to
-        private bool ShowUploadSongPrompt(string[] playlistFiles, string suggestedTitle,
-            out string songTitle, out string songArtist, out string songDuration, out string[] targetPlaylists)
+        private bool ShowUploadSongPrompt(string[] playlistFiles, string suggestedTitle, string songFilePath,
+            out string songTitle, out string songArtist, out string songDuration, out string[] targetPlaylists, out int addedCount, out int replacedCount)
         {
             songTitle = null;
             songArtist = null;
             songDuration = null;
             targetPlaylists = new string[0];
+            addedCount = 0;
+            replacedCount = 0;
 
             using (Form prompt = new Form())
             {
@@ -99,8 +79,45 @@ namespace Byte_me___Group_2
                 TextBox txtTitle = new TextBox() { Left = 20, Top = 38, Width = 320, Text = suggestedTitle }; // pre-filled from filename
                 Label lblArtist = new Label() { Left = 20, Top = 70, Width = 320, Text = "Artist:" };
                 TextBox txtArtist = new TextBox() { Left = 20, Top = 93, Width = 320 };
-                Label lblDuration = new Label() { Left = 20, Top = 125, Width = 320, Text = "Duration (e.g. 3:45) - optional:" };
-                TextBox txtDuration = new TextBox() { Left = 20, Top = 148, Width = 320 };
+                Label lblDuration = new Label() { Left = 20, Top = 125, Width = 320, Text = "Duration (auto-detected):" };
+                TextBox txtDuration = new TextBox() { Left = 20, Top = 148, Width = 320, ReadOnly = true };
+
+                // Try to read the duration from the selected audio file using TagLib# if available.
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(songFilePath) && File.Exists(songFilePath))
+                    {
+                        // Attempt to locate the TagLib.File type from loaded assemblies or by common assembly names
+                        Type tagFileType = Type.GetType("TagLib.File, TagLib")
+                            ?? Type.GetType("TagLib.File, taglib-sharp")
+                            ?? AppDomain.CurrentDomain.GetAssemblies()
+                                .Select(a => a.GetType("TagLib.File")).FirstOrDefault(t => t != null);
+
+                        if (tagFileType != null)
+                        {
+                            MethodInfo createMethod = tagFileType.GetMethod("Create", new Type[] { typeof(string) });
+                            if (createMethod != null)
+                            {
+                                object tfile = createMethod.Invoke(null, new object[] { songFilePath });
+                                if (tfile != null)
+                                {
+                                    PropertyInfo propsProp = tfile.GetType().GetProperty("Properties");
+                                    object props = propsProp.GetValue(tfile);
+                                    PropertyInfo durationProp = props.GetType().GetProperty("Duration");
+                                    TimeSpan dur = (TimeSpan)durationProp.GetValue(props);
+                                    if (dur.TotalHours >= 1)
+                                        txtDuration.Text = string.Format("{0}:{1:D2}:{2:D2}", (int)dur.TotalHours, dur.Minutes, dur.Seconds);
+                                    else
+                                        txtDuration.Text = string.Format("{0}:{1:D2}", dur.Minutes, dur.Seconds);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                    // If TagLib# is not present or fails, leave duration empty (it will default to 0:00 later)
+                }
                 Label lblPlaylists = new Label() { Left = 20, Top = 180, Width = 320, Text = "Add to which playlist(s)?" };
                 CheckedListBox clb = new CheckedListBox() { Left = 20, Top = 203, Width = 320, Height = 130 };
 
@@ -112,6 +129,14 @@ namespace Byte_me___Group_2
 
                 Button addButton = new Button() { Text = "Add Song", Left = 195, Width = 145, Top = 345 };
                 Button cancelButton = new Button() { Text = "Cancel", Left = 20, Width = 145, Top = 345 };
+
+                // locals to capture values from the lambda (cannot assign out params inside lambda)
+                string localSongTitle = null;
+                string localSongArtist = null;
+                string localSongDuration = null;
+                string[] localTargetPlaylists = new string[0];
+                int localAdded = 0;
+                int localReplaced = 0;
 
                 addButton.Click += (s, e) =>
                 {
@@ -128,7 +153,55 @@ namespace Byte_me___Group_2
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                    prompt.DialogResult = DialogResult.OK; // only close once valid
+                    // ensure at least one playlist is selected; keep the popup open if not
+                    if (clb.CheckedItems.Count == 0)
+                    {
+                        MessageBox.Show("Tick at least one playlist to add the song to.",
+                            "No playlist selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // Collect selected playlist paths
+                    int checkedCountLocal = 0;
+                    for (int ii = 0; ii < clb.Items.Count; ii++) if (clb.GetItemChecked(ii)) checkedCountLocal++;
+                    string[] selectedLocal = new string[checkedCountLocal];
+                    int wi = 0;
+                    for (int ii = 0; ii < clb.Items.Count; ii++)
+                    {
+                        if (clb.GetItemChecked(ii))
+                        {
+                            selectedLocal[wi] = playlistFiles[ii];
+                            wi++;
+                        }
+                    }
+
+                    // Try to write into each selected playlist now. If any fail, show error and keep dialog open
+                    int addedLocal = 0;
+                    int replacedLocal = 0;
+                    try
+                    {
+                        for (int ii = 0; ii < selectedLocal.Length; ii++)
+                        {
+                            bool wasReplaced = UpsertTrackInPlaylist(selectedLocal[ii], txtTitle.Text.Trim(), txtArtist.Text.Trim(),
+                                string.IsNullOrWhiteSpace(txtDuration.Text) ? "0:00" : txtDuration.Text.Trim(), songFilePath);
+                            if (wasReplaced) replacedLocal++; else addedLocal++;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Could not add the song to one or more selected playlists:\n" + ex.Message,
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // keep dialog open so user can retry/change selection
+                    }
+
+                    // success: capture into locals and close
+                    localSongTitle = txtTitle.Text.Trim();
+                    localSongArtist = txtArtist.Text.Trim();
+                    localSongDuration = string.IsNullOrWhiteSpace(txtDuration.Text) ? "0:00" : txtDuration.Text.Trim();
+                    localTargetPlaylists = selectedLocal;
+                    localAdded = addedLocal;
+                    localReplaced = replacedLocal;
+                    prompt.DialogResult = DialogResult.OK; // close
                 };
                 cancelButton.Click += (s, e) => { prompt.DialogResult = DialogResult.Cancel; };
 
@@ -148,28 +221,13 @@ namespace Byte_me___Group_2
                 if (prompt.ShowDialog() != DialogResult.OK)
                     return false; // user cancelled
 
-                songTitle = txtTitle.Text.Trim();
-                songArtist = txtArtist.Text.Trim();
-                songDuration = string.IsNullOrWhiteSpace(txtDuration.Text) ? "0:00" : txtDuration.Text.Trim(); // default duration
-
-                // count how many playlists were ticked
-                int checkedCount = 0;
-                for (i = 0; i < clb.Items.Count; i++)
-                {
-                    if (clb.GetItemChecked(i))
-                        checkedCount++;
-                }
-                string[] selected = new string[checkedCount];
-                int writeIndex = 0;
-                for (i = 0; i < clb.Items.Count; i++)
-                {
-                    if (clb.GetItemChecked(i))
-                    {
-                        selected[writeIndex] = playlistFiles[i]; // collect the ticked playlist paths
-                        writeIndex++;
-                    }
-                }
-                targetPlaylists = selected;
+                // transfer captured locals to out parameters
+                songTitle = localSongTitle;
+                songArtist = localSongArtist;
+                songDuration = localSongDuration;
+                targetPlaylists = localTargetPlaylists;
+                addedCount = localAdded;
+                replacedCount = localReplaced;
                 return true;
             }
         }

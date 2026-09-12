@@ -13,23 +13,11 @@ namespace Byte_me___Group_2
         // Handles the "+ New Playlist" button: name it, save it, select it
         private void btnNewPlaylist_Click(object sender, EventArgs e)
         {
-            string typed = PromptForPlaylistName(); // ask the user for a name
+            string typed = PromptForPlaylistName(); // ask the user for a name (prompt validates input)
             if (typed == null)
                 return; // user cancelled
             string playlistName = typed.Trim();
-            if (playlistName.Length == 0)
-            {
-                MessageBox.Show("Please enter a playlist name.", "Name required",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             string targetPath = Path.Combine(playlistsFolder, playlistName + ".txt"); // default save path
-            if (File.Exists(targetPath))
-            {
-                MessageBox.Show("A playlist with that name already exists. Please choose another name.",
-                    "Duplicate playlist", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             // let the user confirm/change where the file is actually saved
             using (SaveFileDialog saveDlg = new SaveFileDialog())
@@ -75,7 +63,24 @@ namespace Byte_me___Group_2
                 Button cancelButton = new Button() { Text = "Cancel", Left = 20, Width = 145, Top = 80 };
 
                 // set DialogResult in code (not on the buttons) so we control exactly when the form closes
-                confirmButton.Click += (s, e) => { prompt.DialogResult = DialogResult.OK; };
+                confirmButton.Click += (s, e) =>
+                {
+                    string name = textBox.Text.Trim();
+                    if (name.Length == 0)
+                    {
+                        MessageBox.Show("Please enter a playlist name.", "Name required",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // keep the dialog open
+                    }
+                    string defaultPath = Path.Combine(playlistsFolder, name + ".txt");
+                    if (File.Exists(defaultPath))
+                    {
+                        MessageBox.Show("A playlist with that name already exists. Please choose another name.",
+                            "Duplicate playlist", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // keep the dialog open
+                    }
+                    prompt.DialogResult = DialogResult.OK;
+                };
                 cancelButton.Click += (s, e) => { prompt.DialogResult = DialogResult.Cancel; };
 
                 prompt.Controls.Add(label);

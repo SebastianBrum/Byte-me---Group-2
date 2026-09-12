@@ -104,7 +104,7 @@ namespace Byte_me___Group_2
         /// </summary>
         /// <param name="playlist"> The playlist name </param>
         /// <param name="pictureBox"> The picturebox that needs to be updated </param>
-        private void loadImage(string playlist, PictureBox pictureBox)
+        public void loadImage(string playlist, PictureBox pictureBox)
         {
             // Write all the image files to an array
             string[] coverImagesFiles = Directory.GetFiles(coversFolder);
