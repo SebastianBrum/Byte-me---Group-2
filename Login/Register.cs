@@ -20,6 +20,7 @@ namespace Byte_me___Group_2
     {
         // this list that holds all existing users
         List<User> ExistingUsers = new List<User>();
+        FrmMain login = new FrmMain();
         public Register()
         {
             InitializeComponent();
@@ -88,7 +89,6 @@ namespace Byte_me___Group_2
 
                 MessageBox.Show("Account created successfully!");
 
-                FrmMain login = new FrmMain();
                 login.Show();
                 this.Hide();
             }
@@ -146,6 +146,12 @@ namespace Byte_me___Group_2
             {
                 MessageBox.Show("there is an error reading your data " + generalException.Message);
             }
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            login.Show();
+            this.Hide();
         }
     }
 }

@@ -206,7 +206,7 @@ namespace Byte_me___Group_2
 
             if (e.RowIndex < 0)
             {
-                SortPlaylistSongs(dgvDisplaySongs.Columns[e.ColumnIndex].Name, false, lblPlaylistName.Text);
+                SortPlaylistSongs(dgvDisplaySongs.Columns[e.ColumnIndex].Name, rdbAscending.Checked, lblPlaylistName.Text);
                 return;
             }
 
@@ -271,9 +271,112 @@ namespace Byte_me___Group_2
 
         private void btnAddsongs_Click(object sender, EventArgs e)
         {
-            homeForm.btnUploadSong_Click(sender, e);
+            //homeForm.btnUploadSong_Click(sender, e);
+            ShowAddSongPanel();
             Songs.Clear();
             readSongs(lblPlaylistName.Text);
+        }
+
+        private void ShowAddSongPanel()
+        {
+            int top = (homeForm.Height / 2) - 250;
+            int left = (homeForm.Width / 2) - 250;
+            Dictionary<string, string[]> songDataByTitle = new Dictionary<string, string[]>();
+
+            Panel pnlSongs = new Panel();
+            pnlSongs.Name = "pnlSongsAdd";
+            pnlSongs.Location = new Point(left, top);
+            pnlSongs.Size = new Size(500, 500);
+            pnlSongs.Visible = true;
+            pnlSongs.BackColor = Color.White;
+
+            // CheckedListBox to display the song titles
+            CheckedListBox clbSongs = new CheckedListBox();
+            clbSongs.Name = "clbSongs";
+            clbSongs.Location = new Point(25, 60);
+            clbSongs.Size = new Size(450, 350);
+
+            Button btnClose = new Button();
+            btnClose.Name = "btnClose";
+            btnClose.Location = new Point(450, 10);
+            btnClose.Size = new Size(40, 40);
+            btnClose.Text = "X";
+            btnClose.Font = new Font("Arial", 15, FontStyle.Bold);
+            btnClose.Cursor = Cursors.Hand;
+            btnClose.Click += (sender, e) =>
+            {
+                homeForm.Controls.Remove(pnlSongs);
+                pnlSongs.Dispose();
+            };
+            btnClose.BackColor = Color.Red;
+
+            Button btnConfirm = new Button();
+            btnConfirm.Text = "Confirm";
+            btnConfirm.Name = "btnConfirm";
+            btnConfirm.Location = new Point(275, 430);
+            btnConfirm.Size = new Size(200, 60);
+            btnConfirm.Font = new Font("Arial", 15, FontStyle.Bold);
+            btnConfirm.Click += (sender, e) =>
+            {
+                foreach (var checkedItem in clbSongs.CheckedItems)
+                {
+                    string title = checkedItem.ToString();
+                    if (songDataByTitle.TryGetValue(title, out string[] data))
+                    {
+                        homeForm.UpsertTrackInPlaylist(
+                            Path.Combine(homeForm.playlistsFolder, $"{lblPlaylistName.Text}.txt"),
+                            data[0].Trim(),   // title
+                            data[1].Trim(),   // artist
+                            data[2].Trim(),   // duration
+                            data[3].Trim());  // file path
+                    }
+
+                    readSongs(lblPlaylistName.Text);
+                }
+
+                homeForm.Controls.Remove(pnlSongs);
+                pnlSongs.Dispose();
+            };
+
+            Button btnCancel = new Button();
+            btnCancel.Text = "Cancel";
+            btnCancel.Name = "btnCancel";
+            btnCancel.Location = new Point(25, 430);
+            btnCancel.Size = new Size(200, 60);
+            btnCancel.Font = new Font("Arial", 15, FontStyle.Bold);
+            btnCancel.Click += (sender, e) =>
+            {
+                homeForm.Controls.Remove(pnlSongs);
+                pnlSongs.Dispose();
+            };
+
+            string songsFilePath = Path.Combine(homeForm.userFolder, "Songs.txt");
+
+            using (StreamReader SongsFile = new StreamReader(songsFilePath))
+            {
+                string line;
+                while ((line = SongsFile.ReadLine()) != null)
+                {
+                    if (string.IsNullOrWhiteSpace(line))
+                        continue;
+
+                    string[] parts = line.Split('|');
+                    if (parts.Length < 4)
+                        continue;
+
+                    string title = parts[0].Trim();
+                    songDataByTitle[title] = parts; // store full row, keyed by title
+
+                    clbSongs.Items.Add(title);
+                }
+            }
+
+            homeForm.Controls.Add(pnlSongs);
+            pnlSongs.Controls.Add(btnClose);
+            pnlSongs.Controls.Add(clbSongs);
+            pnlSongs.Controls.Add(btnConfirm);
+            pnlSongs.Controls.Add(btnCancel);
+            pnlSongs.BringToFront();
         }
 
         /// <summary>

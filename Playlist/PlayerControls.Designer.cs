@@ -133,7 +133,6 @@
             this.btnNext.TabIndex = 6;
             this.btnNext.Text = "▶I";
             this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPlay
             // 

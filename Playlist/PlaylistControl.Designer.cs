@@ -32,6 +32,9 @@ namespace Byte_me___Group_2
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlaylistControl));
             this.pnlPlaylist = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdbDescending = new System.Windows.Forms.RadioButton();
+            this.rdbAscending = new System.Windows.Forms.RadioButton();
             this.wmpSongPlay = new AxWMPLib.AxWindowsMediaPlayer();
             this.dgvDisplaySongs = new System.Windows.Forms.DataGridView();
             this.songName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +57,7 @@ namespace Byte_me___Group_2
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.playerControls1 = new Byte_me___Group_2.Playlist.PlayerControls();
             this.pnlPlaylist.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wmpSongPlay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDisplaySongs)).BeginInit();
             this.pnlPlaylistHeader.SuspendLayout();
@@ -63,6 +67,7 @@ namespace Byte_me___Group_2
             // 
             // pnlPlaylist
             // 
+            this.pnlPlaylist.Controls.Add(this.groupBox1);
             this.pnlPlaylist.Controls.Add(this.wmpSongPlay);
             this.pnlPlaylist.Controls.Add(this.dgvDisplaySongs);
             this.pnlPlaylist.Controls.Add(this.btnBackHome);
@@ -75,6 +80,39 @@ namespace Byte_me___Group_2
             this.pnlPlaylist.Name = "pnlPlaylist";
             this.pnlPlaylist.Size = new System.Drawing.Size(946, 698);
             this.pnlPlaylist.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rdbDescending);
+            this.groupBox1.Controls.Add(this.rdbAscending);
+            this.groupBox1.Location = new System.Drawing.Point(27, 292);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(260, 65);
+            this.groupBox1.TabIndex = 17;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // rdbDescending
+            // 
+            this.rdbDescending.AutoSize = true;
+            this.rdbDescending.Location = new System.Drawing.Point(142, 19);
+            this.rdbDescending.Name = "rdbDescending";
+            this.rdbDescending.Size = new System.Drawing.Size(101, 20);
+            this.rdbDescending.TabIndex = 15;
+            this.rdbDescending.TabStop = true;
+            this.rdbDescending.Text = "Descending";
+            this.rdbDescending.UseVisualStyleBackColor = true;
+            // 
+            // rdbAscending
+            // 
+            this.rdbAscending.AutoSize = true;
+            this.rdbAscending.Location = new System.Drawing.Point(20, 19);
+            this.rdbAscending.Name = "rdbAscending";
+            this.rdbAscending.Size = new System.Drawing.Size(92, 20);
+            this.rdbAscending.TabIndex = 16;
+            this.rdbAscending.TabStop = true;
+            this.rdbAscending.Text = "Ascending";
+            this.rdbAscending.UseVisualStyleBackColor = true;
             // 
             // wmpSongPlay
             // 
@@ -93,7 +131,7 @@ namespace Byte_me___Group_2
             this.songArtist,
             this.songDuration,
             this.SongDelete});
-            this.dgvDisplaySongs.Location = new System.Drawing.Point(12, 329);
+            this.dgvDisplaySongs.Location = new System.Drawing.Point(3, 363);
             this.dgvDisplaySongs.Name = "dgvDisplaySongs";
             this.dgvDisplaySongs.RowHeadersWidth = 51;
             this.dgvDisplaySongs.RowTemplate.Height = 24;
@@ -126,6 +164,7 @@ namespace Byte_me___Group_2
             this.songDuration.MinimumWidth = 6;
             this.songDuration.Name = "songDuration";
             this.songDuration.ReadOnly = true;
+            this.songDuration.Width = 125;
             // 
             // SongDelete
             // 
@@ -309,6 +348,8 @@ namespace Byte_me___Group_2
             this.Size = new System.Drawing.Size(947, 702);
             this.pnlPlaylist.ResumeLayout(false);
             this.pnlPlaylist.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wmpSongPlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDisplaySongs)).EndInit();
             this.pnlPlaylistHeader.ResumeLayout(false);
@@ -344,5 +385,8 @@ namespace Byte_me___Group_2
         private AxWMPLib.AxWindowsMediaPlayer wmpSongPlay;
         private CheckBox checkBox1;
         private Playlist.PlayerControls playerControls1;
+        private RadioButton rdbDescending;
+        private RadioButton rdbAscending;
+        private GroupBox groupBox1;
     }
 }

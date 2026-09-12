@@ -67,7 +67,16 @@ namespace Byte_me___Group_2.Playlist
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
+            if (songCurrentlyPlaying == null)
+                return; // nothing has played yet, nothing to go back to
 
+            if (songCurrentlyPlaying.currentlyPlayingIndex > 0)
+            {
+                int previousIndex = songCurrentlyPlaying.currentlyPlayingIndex - 1;
+                string previousFilePath = PlaylistPanel.Songs[previousIndex].SongFilePath;
+
+                PlaylistPanel.playSong(previousIndex, previousFilePath);
+            }
         }
 
         private void btnNext_Click(object sender, EventArgs e)

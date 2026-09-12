@@ -25,8 +25,8 @@ namespace Byte_me___Group_2
 
         //  File-backed data layer
         private readonly string dataFolder;        // Data folder path
-        private readonly string userFolder;
-        private readonly string playlistsFolder;    // Data\Playlists folder path
+        public readonly string userFolder;
+        public readonly string playlistsFolder;    // Data\Playlists folder path
         private readonly string coversFolder;        // Data\Covers folder path
         private readonly string favouritesFile;       // favourites.txt path
         private readonly string recentFile;            // recent.txt path

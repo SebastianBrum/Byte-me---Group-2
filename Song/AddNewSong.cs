@@ -233,40 +233,69 @@ namespace Byte_me___Group_2
         }
 
         // Adds (or updates) a "Title|Artist|Duration" line in a playlist file
-        private bool UpsertTrackInPlaylist(string filePath, string title, string artist, string duration, string songFilePath)
+        public bool UpsertTrackInPlaylist(string filePath, string title, string artist, string duration, string songFilePath)
         {
-            string safeTitle = title.Replace("|", "/").Trim();       // strip separator character from values
+            string safeTitle = title.Replace("|", "/").Trim();
             string safeArtist = artist.Replace("|", "/").Trim();
             string safeDuration = duration.Replace("|", "/").Trim();
-            string newLine = safeTitle + "|" + safeArtist + "|" + safeDuration + "|" +  songFilePath; // line to write
+            string newLine = safeTitle + "|" + safeArtist + "|" + safeDuration + "|" + songFilePath;
 
-            string[] existingLines = ReadAllLinesSafe(filePath); // current tracks
-            bool foundExisting = false;                          // true if we replaced a track instead of adding one
+            string[] existingLines = ReadAllLinesSafe(filePath);
+            bool foundExisting = false;
 
-            using (StreamWriter writer = new StreamWriter(filePath, false)) // rewrite the whole file
+            using (StreamWriter writer = new StreamWriter(filePath, false))
             {
                 int i = 0;
                 for (i = 0; i < existingLines.Length; i++)
                 {
                     if (existingLines[i].Trim().Length == 0)
-                        continue; // skip blank lines
+                        continue;
                     string[] parts = existingLines[i].Split('|');
                     string existingTitle = parts.Length > 0 ? parts[0].Trim() : "";
                     if (string.Equals(existingTitle, safeTitle, StringComparison.OrdinalIgnoreCase))
                     {
-                        writer.WriteLine(newLine);   // overwrite the matching track
+                        writer.WriteLine(newLine);
                         foundExisting = true;
                     }
                     else
                     {
-                        writer.WriteLine(existingLines[i]); // keep every other track unchanged
+                        writer.WriteLine(existingLines[i]);
                     }
                 }
                 if (!foundExisting)
                 {
-                    writer.WriteLine(newLine); // no match found, append as a new track
+                    writer.WriteLine(newLine);
                 }
             }
+
+            // Only add to Songs.txt if this title isn't already listed there
+            string songsFilePath = Path.Combine(userFolder, "Songs.txt");
+            string[] existingSongsLines = ReadAllLinesSafe(songsFilePath);
+            bool alreadyInSongsFile = false;
+
+            for (int i = 0; i < existingSongsLines.Length; i++)
+            {
+                if (existingSongsLines[i].Trim().Length == 0)
+                    continue;
+
+                string[] parts = existingSongsLines[i].Split('|');
+                string existingTitle = parts.Length > 0 ? parts[0].Trim() : "";
+
+                if (string.Equals(existingTitle, safeTitle, StringComparison.OrdinalIgnoreCase))
+                {
+                    alreadyInSongsFile = true;
+                    break;
+                }
+            }
+
+            if (!alreadyInSongsFile)
+            {
+                using (StreamWriter SongsFile = new StreamWriter(songsFilePath, true))
+                {
+                    SongsFile.WriteLine($"{safeTitle}|{safeArtist}|{safeDuration}|{songFilePath}");
+                }
+            }
+
             return foundExisting;
         }
     }
