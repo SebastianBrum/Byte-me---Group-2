@@ -227,6 +227,8 @@ namespace Byte_me___Group_2
                     {
                         // Adds the currentline to the Songs binding list by initialiing a new Song Object
                         Songs.Add( new Song(line) );
+                        dgvDisplaySongs.Columns["SongDelete"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        dgvDisplaySongs.Columns["SongDelete"].DefaultCellStyle.ForeColor = Color.Red;
 
                         // Increases the total songs in the playlist
                         totalSongs++;
@@ -247,7 +249,7 @@ namespace Byte_me___Group_2
             }
         }
 
-        //
+        // Deletes the playlist that was clicked
         private void dgvDisplaySongs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -258,7 +260,7 @@ namespace Byte_me___Group_2
             }
 
             // Deletes the song which delete button is pressed
-            if (e.ColumnIndex > 0 && dgvDisplaySongs.Columns[e.ColumnIndex].Name == "SongDelete")
+            if (e.ColumnIndex > 0 || dgvDisplaySongs.Columns[e.ColumnIndex].Name == "SongDelete")
             {
                 DeleteSong(e.RowIndex, lblPlaylistName.Text);
             } 
